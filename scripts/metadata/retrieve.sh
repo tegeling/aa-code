@@ -2,16 +2,21 @@
 sfdx force:source:retrieve --manifest mdapi/package.xml
 
 ## Convert the source to metadata format
-sfdx force:source:convert --rootdir force-app --outputdir tmp_convert
+sfdx force:source:convert --rootdir force-app --outputdir mdapi
 
 ## Create a .zip file of the contents in the tmp_convert directory.
+cd mdapi
+rm aa-code.zip && zip -r aa-code.zip *
 
 ## Run the deploy command
-sfdx force:mdapi:deploy --zipfile winter19.zip --targetusername dev-pro-sandbox \
---testlevel RunSpecifiedTests --runtests TestMyCode
+## sfdx force:mdapi:deploy --zipfile mdapi/aa-code.zip --testlevel RunSpecifiedTests --runtests TestMyCode
 
 ## validate the deployment without saving 
-sfdx force:mdapi:deploy --checkonly --zipfile mdapi_output/winter19.zip --targetusername full-sandbox --testlevel RunLocalTests
+sfdx force:mdapi:deploy --checkonly --zipfile aa-code.zip --testlevel RunLocalTests --wait=-1
+
+## check status
+sfdx force:mdapi:deploy:report --jobid=0Af5E00001BMXiqSAH
+
 
 ## Test the actual production deployment
 sfdx force:mdapi:deploy --checkonly --zipfile mdapi_output/winter19.zip --targetusername full-sandbox --testlevel RunSpecifiedTests TestLanguageCourseTrigger

@@ -30,7 +30,7 @@ public class MyRelatedJobsController {
             }
         }
         
-        // If no maxDistance was set, or the Flüchtling has no Address set, then return all jobs
+        // If no maxDistance was set, or the Klient has no Address set, then return all jobs
         return [SELECT Job__c.Name, Description__c, Anzahl_Bewerber__c, Account_Name__r.Name, 
                 Account_Name__r.BillingCity 
                 FROM Job__c
