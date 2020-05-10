@@ -1,0 +1,47 @@
+## Retrieve the changes from the developer sandbox.
+sfdx force:source:retrieve --manifest mdapi/package.xml
+
+## Convert the source to metadata format
+sfdx force:source:convert --rootdir force-app --outputdir tmp_convert
+
+## Create a .zip file of the contents in the tmp_convert directory.
+
+## Run the deploy command
+sfdx force:mdapi:deploy --zipfile winter19.zip --targetusername dev-pro-sandbox \
+--testlevel RunSpecifiedTests --runtests TestMyCode
+
+## validate the deployment without saving 
+sfdx force:mdapi:deploy --checkonly --zipfile mdapi_output/winter19.zip --targetusername full-sandbox --testlevel RunLocalTests
+
+## Test the actual production deployment
+sfdx force:mdapi:deploy --checkonly --zipfile mdapi_output/winter19.zip --targetusername full-sandbox --testlevel RunSpecifiedTests TestLanguageCourseTrigger
+
+## test the quick deploy using the job ID returned in the previous step
+sfdx force:mdapi:deploy --targetusername full-sandbox --validateddeployrequestid jobID
+
+## convert your files from source format to metadata format
+sfdx force:source:convert
+
+## quick deploy using source
+sfdx force:source:deploy --checkonly \
+--sourcepath force-app --targetusername production-org \
+--testlevel RunLocalTests
+
+## quick deploy using mdapi
+sfdx force:mdapi:deploy --checkonly \
+--zipfile winter19.zip --targetusername production-org \
+--testlevel RunLocalTests
+
+## Run the quick deploy using source
+sfdx force:source:deploy \
+--targetusername production-org \
+--validateddeployrequestid jobID
+
+## run the quick deploy using mdapi
+sfdx force:mdapi:deploy \
+--targetusername production-org \
+--validateddeployrequestid jobID
+
+## Cancel deployment
+sfdx force:mdapi:deploy:cancel -i <jobid>
+
