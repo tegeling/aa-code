@@ -1,0 +1,48 @@
+<aura:component
+  controller="MyRelatedJobsController"
+  implements="flexipage:availableForRecordHome,force:hasRecordId"
+  access="global"
+>
+  <aura:attribute name="recordId" type="Id" />
+  <aura:attribute name="persAccount" type="Account" />
+  <aura:attribute name="relatedJobs" type="Object[]" />
+  <aura:attribute name="maxDistance" type="Integer" default="30" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <force:recordData
+    aura:id="record"
+    recordId="{!v.recordId}"
+    targetRecord="{!v.persAccount}"
+    recordUpdated="{!c.doInit}"
+    layoutType="FULL"
+  />
+
+  <lightning:card
+    iconName="custom:custom14"
+    title="{! ' Offene Stellen '}"
+    class="slds-is-relative"
+  >
+    <div class="slds-p-left--medium slds-p-right--medium">
+      <lightning:input
+        type="number"
+        min="0"
+        name="maximal Distance"
+        label="Umkreissuche (In Km, funktioniert nur, wenn dem Bewerber eine Adresse zugewiesen ist. Ist dieses Feld leer oder gleich 0 werden alle existierenden Jobs angezeigt. Ist das Feld gesetzt werden nur Jobs berücksichtigt, welche eine Adresse zugewiesen haben.):"
+        title="Umkreissuche (In Km, funktioniert nur, wenn dem Bewerber eine Adresse zugewiesen ist. Ist dieses Feld leer oder gleich 0 werden alle existierenden Jobs angezeigt. Ist das Feld gesetzt werden nur Jobs berücksichtigt, welche eine Adresse zugewiesen haben.):"
+        value="{!v.maxDistance}"
+        onchange="{!c.doInit}"
+      />
+      <ul class="slds-list--vertical slds-has-dividers--top-space">
+        <aura:iteration items="{!v.relatedJobs}" var="item" indexVar="i">
+          <li class="slds-list__item">
+            <a onclick="{!c.navToRecord}" id="{!item.Id}">
+              {!item.Name} ({!item.Account_Name__r.Name} /
+              {!item.Account_Name__r.BillingCity})
+            </a>
+          </li>
+        </aura:iteration>
+      </ul>
+    </div>
+  </lightning:card>
+</aura:component>

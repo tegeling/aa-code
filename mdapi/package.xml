@@ -41,10 +41,25 @@
     <members>subscription</members>
     <members>subscriptionTest</members>
   </types>
+  <types>
+    <name>ApexTrigger</name>
+    <members>LeadTrigger</members>
+    <members>OpportunityTrigger</members>
+  </types>
 	<types>
-		<members>LeadTrigger</members>
-		<members>OpportunityTrigger</members>
-		<name>ApexTrigger</name>
+		<members>BewerberMatcher</members>
+		<members>DataTable</members>
+		<members>DataTableWithFlow</members>
+		<members>JobMatcher</members>
+		<members>JobWizard</members>
+		<members>MultiSelect</members>
+		<members>RelatedApplicants</members>
+		<members>RelatedJobs</members>
+		<members>SearchBox</members>
+		<members>SearchResult</members>
+		<members>UpdateScreen</members>
+		<members>navigateEverywhereLFA</members>
+		<name>AuraDefinitionBundle</name>
 	</types>
   <version>48.0</version>
 </Package>
