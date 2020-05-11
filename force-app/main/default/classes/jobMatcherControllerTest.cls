@@ -112,7 +112,7 @@ public class jobMatcherControllerTest {
 
     String url = jobMatcherController.getGoogleMapsURL(jobA.Id, applicantA.Id);
     System.assertEquals(
-      'https://www.google.com/maps/dir/?api=1&origin=null+null+null&destination=null+null+null&travelmode=transit',
+      'https://www.google.com/maps/dir/?api=1&origin=&destination=&travelmode=transit',
       url
     );
   }
