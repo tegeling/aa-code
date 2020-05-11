@@ -68,7 +68,7 @@ export default class JobMatcherFilter extends LightningElement {
   })
   fetchedCategories({ error, data }) {
     if (data) {
-      this.fetchedCategories = data;
+      //this.fetchedCategories = data;
       this.categoryOptions = [];
 
       let categoryArrayLength = data.values.length;

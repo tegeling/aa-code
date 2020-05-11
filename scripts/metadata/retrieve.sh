@@ -14,10 +14,10 @@ cd mdapi && zip -r aa-code.zip *
 sfdx force:mdapi:deploy --checkonly --zipfile aa-code.zip --testlevel RunLocalTests --wait=-1
 
 ## check status
-## sfdx force:mdapi:deploy:report --jobid=0Af5E00001BNq3jSAD
+## sfdx force:mdapi:deploy:report --jobid=0Af5E00001BHa2YSAT
 
 ## Deploy and skip validation using quick deploy with job ID returned in the previous step
-sfdx force:mdapi:deploy --targetusername aa-release --validateddeployrequestid=0Af5E00001BNq3jSAD --wait=-1
+sfdx force:mdapi:deploy --targetusername aa-partial --validateddeployrequestid=0Af5E00001BHa2YSAT --wait=-1
 
 ## Cancel deployment
 sfdx force:mdapi:deploy:cancel -i <jobid>

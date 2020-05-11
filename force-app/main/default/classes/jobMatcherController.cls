@@ -1,3 +1,4 @@
+// Used
 public with sharing class jobMatcherController {
   public class Filters {
     public String recordId { get; set; }
@@ -308,23 +309,31 @@ public with sharing class jobMatcherController {
       WHERE Id = :applicantId
       LIMIT 1
     ];
-    String origin =
-      applicant[0].BillingStreet +
-      '+' +
-      applicant[0].BillingPostalCode +
-      '+' +
-      applicant[0].BillingCity;
-    String destination =
-      jobs[0].Billing_Street__c +
-      '+' +
-      jobs[0].Billing_Zip_Postal_Code__c +
-      '+' +
-      jobs[0].Billing_City__c;
+    String origin = '';
+    if (applicant[0].BillingStreet != null) {
+      origin += applicant[0].BillingStreet + '+';
+    }
+    if (applicant[0].BillingPostalCode != null) {
+      origin += applicant[0].BillingPostalCode + '+';
+    }
+    if (applicant[0].BillingCity != null) {
+      origin += applicant[0].BillingCity;
+    }
+    String destination = '';
+    if (jobs[0].Billing_Street__c != null) {
+      destination += jobs[0].Billing_Street__c + '+';
+    }
+    if (jobs[0].Billing_Zip_Postal_Code__c != null) {
+      destination += jobs[0].Billing_Zip_Postal_Code__c + '+';
+    }
+    if (jobs[0].Billing_City__c != null) {
+      destination += jobs[0].Billing_City__c;
+    }
     String googleMapURL =
       'https://www.google.com/maps/dir/?api=1&origin=' +
-      origin +
+      EncodingUtil.urlEncode(origin, 'UTF-8') +
       '&destination=' +
-      destination +
+      EncodingUtil.urlEncode(destination, 'UTF-8') +
       '&travelmode=transit';
     return googleMapURL;
   }

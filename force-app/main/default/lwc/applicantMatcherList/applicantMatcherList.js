@@ -1,3 +1,4 @@
+// Used
 import { LightningElement, wire, track, api } from "lwc";
 import { CurrentPageReference, NavigationMixin } from "lightning/navigation";
 import getAccounts from "@salesforce/apex/jobMatcherController.getAccounts";
@@ -108,22 +109,25 @@ export default class ApplicantMatcherList extends NavigationMixin(
   showMaps(row) {
     this.record = row;
     let mapUrl = "https://www.google.com/maps/dir/?api=1";
+    console.log("#### Open Google Maps");
     getGoogleMapsURL({
       jobId: this.recordId,
       applicantId: this.record.Record_Id__c
     })
       .then((result) => {
+        console.log("#### URL: " + result);
         mapUrl = result;
         this.error = undefined;
+        this[NavigationMixin.Navigate]({
+          type: "standard__webPage",
+          attributes: {
+            url: mapUrl
+          }
+        });
       })
       .catch((error) => {
+        console.log("#### URL error");
         this.error = error;
       });
-    this[NavigationMixin.Navigate]({
-      type: "standard__webPage",
-      attributes: {
-        url: mapUrl
-      }
-    });
   }
 }

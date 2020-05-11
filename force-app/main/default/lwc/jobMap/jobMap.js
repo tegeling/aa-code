@@ -1,3 +1,4 @@
+// Used
 import { LightningElement, api, track, wire } from "lwc";
 import { getRecord, getFieldValue } from "lightning/uiRecordApi";
 
@@ -9,11 +10,8 @@ const fields = [BILLING_LAT, BILLING_LONG, NAME];
 
 export default class JobMap extends LightningElement {
   @api recordId;
-
   @track zoomLevel = 16;
-
   @track markers = [];
-
   @track error;
 
   @wire(getRecord, { recordId: "$recordId", fields })

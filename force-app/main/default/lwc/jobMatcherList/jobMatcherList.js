@@ -105,15 +105,15 @@ export default class JobMatcherList extends NavigationMixin(LightningElement) {
       .then((result) => {
         mapUrl = result;
         this.error = undefined;
+        this[NavigationMixin.Navigate]({
+          type: "standard__webPage",
+          attributes: {
+            url: mapUrl
+          }
+        });
       })
       .catch((error) => {
         this.error = error;
       });
-    this[NavigationMixin.Navigate]({
-      type: "standard__webPage",
-      attributes: {
-        url: mapUrl
-      }
-    });
   }
 }

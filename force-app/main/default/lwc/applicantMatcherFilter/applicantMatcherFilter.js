@@ -1,3 +1,4 @@
+// Used
 import { LightningElement, api, wire, track } from "lwc";
 import { CurrentPageReference } from "lightning/navigation";
 import { getPicklistValues } from "lightning/uiObjectInfoApi";
@@ -43,7 +44,7 @@ export default class ApplicantMatcherFilter extends LightningElement {
   })
   fetchedCategories({ error, data }) {
     if (data) {
-      this.fetchedCategories = data;
+      //this.fetchedCategories = data;
       this.categoryOptions = [];
 
       let categoryArrayLength = data.values.length;
@@ -86,7 +87,7 @@ export default class ApplicantMatcherFilter extends LightningElement {
 
   @wire(getActiveAccountOwners) fetchedOwners({ error, data }) {
     if (data) {
-      this.fetchedOwners = data;
+      //this.fetchedOwners = data;
       this.ownerOptions = [];
       let ownerArrayLength = data.length;
       for (let i = 0; i < ownerArrayLength; i++) {
