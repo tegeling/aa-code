@@ -17,33 +17,10 @@ cd mdapi && zip -r aa-code.zip *
 sfdx force:mdapi:deploy --checkonly --zipfile aa-code.zip --testlevel RunLocalTests --wait=-1
 
 ## check status
-sfdx force:mdapi:deploy:report --jobid=0Af5E00001BNMTrSAP
+sfdx force:mdapi:deploy:report --jobid=0Af5E00001BH10JSAT
 
 ## test the quick deploy using the job ID returned in the previous step
-sfdx force:mdapi:deploy --targetusername aa-release --validateddeployrequestid=0Af5E00001BNMTrSAP --wait=-1
-
-## convert your files from source format to metadata format
-sfdx force:source:convert
-
-## quick deploy using source
-sfdx force:source:deploy --checkonly \
---sourcepath force-app --targetusername production-org \
---testlevel RunLocalTests
-
-## quick deploy using mdapi
-sfdx force:mdapi:deploy --checkonly \
---zipfile winter19.zip --targetusername production-org \
---testlevel RunLocalTests
-
-## Run the quick deploy using source
-sfdx force:source:deploy \
---targetusername production-org \
---validateddeployrequestid jobID
-
-## run the quick deploy using mdapi
-sfdx force:mdapi:deploy \
---targetusername production-org \
---validateddeployrequestid jobID
+sfdx force:mdapi:deploy --targetusername aa-partial --validateddeployrequestid=0Af5E00001BH10JSAT --wait=-1
 
 ## Cancel deployment
 sfdx force:mdapi:deploy:cancel -i <jobid>
