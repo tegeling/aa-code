@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>48.0</apiVersion>
-    <description
-  >Lightning Component to search for job candidates on the account record page. Filter by criteria and distance between account location and candidate location</description>
-</AuraDefinitionBundle>
