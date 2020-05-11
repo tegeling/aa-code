@@ -61,5 +61,24 @@
 		<members>navigateEverywhereLFA</members>
 		<name>AuraDefinitionBundle</name>
 	</types>
+	<types>
+		<members>applicantMatcherFilter</members>
+		<members>applicantMatcherList</members>
+		<members>auraPubsub</members>
+		<members>errorPanel</members>
+		<members>inlineMessage</members>
+		<members>jobMap</members>
+		<members>jobMatcherFilter</members>
+		<members>jobMatcherList</members>
+		<members>ldsUtils</members>
+		<members>pubsub</members>
+		<members>translAidMap</members>
+		<name>LightningComponentBundle</name>
+  </types>
+	<types>
+		<members>RecordHunterLib</members>
+		<members>noDataErrorIllustration</members>
+		<name>StaticResource</name>
+	</types>  
   <version>48.0</version>
 </Package>

@@ -1,0 +1,39 @@
+<template>
+  <lightning-card title="Auswahlkriterien" icon-name="standard:calibration">
+    <div class="slds-m-horizontal_medium">
+      <section>
+        <lightning-input
+          label="Suchtext"
+          type="search"
+          onchange={handleSearchKeyChange}
+        ></lightning-input>
+      </section>
+      <section>
+        <lightning-slider
+          label="Entfernung (Umkreis in km)"
+          step="1"
+          min="0"
+          max="100"
+          value="5"
+          onchange={handleDistanceChange}
+        ></lightning-slider>
+      </section>
+      <section>
+        <lightning-checkbox-group
+          name="Job Type"
+          label="Job Type"
+          options={categoryOptions}
+          value={categoryValues}
+          onchange={handleJobTypeCheckboxChange}
+        ></lightning-checkbox-group>
+      </section>
+      <section>
+        <lightning-input
+          label="Job CreatedDate jünger als"
+          type="datetime"
+          onchange={handleCreatedDateChange}
+        ></lightning-input>
+      </section>
+    </div>
+  </lightning-card>
+</template>
