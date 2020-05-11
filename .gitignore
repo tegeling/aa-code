@@ -111,3 +111,7 @@ mdapi/aa-code/classes/TranslAidMapController.cls-meta.xml
 mdapi/aa-code/classes/TranslAidMapControllerTest.cls
 mdapi/aa-code/classes/TranslAidMapControllerTest.cls-meta.xml
 mdapi/aa-code.zip
+mdapi/aa-code/triggers/LeadTrigger.trigger
+mdapi/aa-code/triggers/LeadTrigger.trigger-meta.xml
+mdapi/aa-code/triggers/OpportunityTrigger.trigger
+mdapi/aa-code/triggers/OpportunityTrigger.trigger-meta.xml
