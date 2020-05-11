@@ -1,5 +1,5 @@
 public class MyRelatedJobsController {
-    
+
     @AuraEnabled
     public static List<Job__c> getRelatedJobs (Id recordId, Integer maxDistance) {
         

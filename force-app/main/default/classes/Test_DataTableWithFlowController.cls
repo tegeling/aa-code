@@ -18,4 +18,33 @@ public class Test_DataTableWithFlowController {
     System.assertEquals(true, true);
     Test.stopTest();
   }
+
+  static testMethod void getNoRecordsWithNull() {
+    List<String> recordIds = new List<String>();
+    Test.startTest();
+    Object result = DataTableWithFlowController.getRecords(recordIds);
+    System.assertEquals(true, true);
+    Test.stopTest();
+  }
+
+  static testMethod void getNoRecordWithNull() {
+    Test.startTest();
+    Object result = DataTableWithFlowController.getRecord(null);
+    System.assertEquals(true, true);
+    Test.stopTest();
+  }
+
+  static testMethod void getNoRecordWithBlank() {
+    Test.startTest();
+    Object result = DataTableWithFlowController.getRecord('');
+    System.assertEquals(true, true);
+    Test.stopTest();
+  }
+
+  static testMethod void getNoRecordWithInvalidId() {
+    Test.startTest();
+    Object result = DataTableWithFlowController.getRecord('123456789012345678');
+    System.assertEquals(true, true);
+    Test.stopTest();
+  }
 }

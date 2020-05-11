@@ -1,62 +1,54 @@
 global with sharing class GetRandomNumber {
-    
-    @InvocableMethod
-    global static List<Results> getRandomNumberFromRange(List<Requests> requests)
-       {
-           
-            Results curResult = new Results();
-            curResult.randomNumber = generateRandomFromRange(requests[0].startNumber, requests[0].endNumber);
-           
-            List<Results> resultsList = new List<results>();
-            resultsList.add(curResult);
-            return resultsList;
-       }
-  
-    
-    
-    global static Double generateRandomFromRange(Integer startNum, Integer endNum) {
-        
-        
-        if(startNum == 0 && endNum == 1)
-            return Math.random();
-        
-        Integer returnValue;
-        //Logic- first we will generate random boolean value which will decide if we want to
-        //add the random number from startNum or will subtract random number from endNum
-        Integer randomNumber = Integer.valueof((math.random() * 10));
-        boolean addSubFlag= math.mod(randomNumber,2) == 0 ? true : false;
-        
-        integer diffInRange = endNum-startNum;
-        //Now find random number staring from 0 to diffInRange
-        Integer randomNum = Math.mod(Math.round(Math.random()*diffInRange+1),diffInRange);
-        
-        //If addSubFlag is true, we will add random number generated between 0 and diffInRange from start number
-        //else we will subtract random number from end number
-                if(addSubFlag){
-            if(diffInRange > 1)
-                returnValue =startNum + randomNum;
-            else
-                returnValue =startNum;
-        }else{
-            if(diffInRange > 1)
-                returnValue = endNum - randomNum;
-            else
-                returnValue =endNum;
-        }
-        return returnValue;
-        
+  global static String TYPE_NUMBER = 'number';
+  global static String TYPE_BOOLEAN = 'boolean';
+
+  global static Integer MAX_INTEGER = 2147483647;
+
+  @InvocableMethod
+  global static List<Results> getRandomNumberFromRange(
+    List<Requests> requests
+  ) {
+    Results curResult = new Results();
+    curResult.randomNumber = generateRandomFromRange(
+      requests[0].startNumber,
+      requests[0].endNumber
+    );
+
+    List<Results> resultsList = new List<results>();
+    resultsList.add(curResult);
+    return resultsList;
+  }
+
+  global static Double generateRandomFromRange(
+    Integer startNum,
+    Integer endNum
+  ) {
+    Double rand = Math.random();
+    // If no range is provided return a random number in [0;1[
+    if (startNum == null && endNum == null) {
+      return rand;
     }
-    
-    global class Requests {
-        @InvocableVariable(required=true)
-    	global Integer startNumber;
-        
-        @InvocableVariable(required=true)
-    	global Integer endNumber;
+    if (startNum == null) {
+      startNum = 0;
+    } else if (endNum == null) {
+      endNum = MAX_INTEGER;
     }
-    
-    global class Results {
-        @InvocableVariable
-    	global Double randomNumber;
-    }
+    // Generate random number in range
+    Integer min = Math.min(startNum, endNum);
+    Integer range = Math.abs(endNum - startNum);
+    return min + rand * range;
+  }
+
+  global class Requests {
+    @InvocableVariable(required=true)
+    global Integer startNumber;
+
+    @InvocableVariable(required=true)
+    global Integer endNumber;
+  }
+
+  global class Results {
+    @InvocableVariable
+    global Double randomNumber;
+  }
 }

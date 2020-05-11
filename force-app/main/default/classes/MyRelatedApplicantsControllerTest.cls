@@ -15,8 +15,8 @@ public class MyRelatedApplicantsControllerTest {
     insert jobCustom;
 
     Account testApplicant1 = new Account(
-      FirstName = 'ApplicantName1First',
-      LastName = 'ApplicantName1Last'
+      FirstName = 'FirstABC',
+      LastName = 'LastABC'
     );
     testApplicant1.RecordTypeId = fluechtlingRecordTypeId;
     insert testApplicant1;
@@ -24,8 +24,8 @@ public class MyRelatedApplicantsControllerTest {
     Id ownerId1 = testApplicant1.OwnerId;
 
     Account testApplicant2 = new Account(
-      FirstName = 'ApplicantName2First',
-      LastName = 'ApplicantName2Last'
+      FirstName = 'XYZFirst',
+      LastName = 'XYZLast'
     );
     testApplicant2.RecordTypeId = fluechtlingRecordTypeId;
     insert testApplicant2;
@@ -57,16 +57,16 @@ public class MyRelatedApplicantsControllerTest {
 
     //Account testApplicant1 = new Account(Name = 'ApplicantName1', RecordTypeId = fluechtlingRecordTypeId);
     Account testApplicant1 = new Account(
-      FirstName = 'ApplicantName1First',
-      LastName = 'ApplicantName1Last',
+      FirstName = 'FirstABC',
+      LastName = 'LastABC',
       RecordTypeId = fluechtlingRecordTypeId
     );
     insert testApplicant1;
     Id ownerId1 = testApplicant1.OwnerId;
 
     Account testApplicant2 = new Account(
-      FirstName = 'ApplicantName2First',
-      LastName = 'ApplicantName2Last',
+      FirstName = 'XYZFirst',
+      LastName = 'XYZLast',
       RecordTypeId = fluechtlingRecordTypeId
     );
     insert testApplicant2;
@@ -105,8 +105,8 @@ public class MyRelatedApplicantsControllerTest {
     insert jobCustom;
 
     Account testApplicant1 = new Account(
-      FirstName = 'ApplicantName1First',
-      LastName = 'ApplicantName1Last',
+      FirstName = 'FirstABC',
+      LastName = 'LastABC',
       BillingStreet = 'Alpenblickstraße 24',
       BillingCity = 'Holzkirchen',
       BillingPostalCode = '83607',
@@ -119,8 +119,8 @@ public class MyRelatedApplicantsControllerTest {
     Id ownerId1 = testApplicant1.OwnerId;
 
     Account testApplicant2 = new Account(
-      FirstName = 'ApplicantName2First',
-      LastName = 'ApplicantName2Last'
+      FirstName = 'XYZFirst',
+      LastName = 'XYZLast'
     );
     insert testApplicant2;
 
@@ -157,8 +157,8 @@ public class MyRelatedApplicantsControllerTest {
     insert jobCustom;
 
     Account testApplicant1 = new Account(
-      FirstName = 'Applicant1NameFirst',
-      LastName = 'Applicant1NameLast',
+      FirstName = 'FirstABC',
+      LastName = 'LastABC',
       BillingStreet = 'Engasserbogen 32',
       BillingCity = 'München',
       BillingPostalCode = '80639',
@@ -184,8 +184,8 @@ public class MyRelatedApplicantsControllerTest {
     insert testApplicant2;
 
     Account testApplicant3 = new Account(
-      FirstName = 'Applicant3NameFirst',
-      LastName = 'Applicant3NameLast',
+      FirstName = 'XYZFirst',
+      LastName = 'XYZLast',
       BillingStreet = 'Kornmarkt 1',
       BillingCity = 'Nürnberg',
       BillingPostalCode = '90402',
@@ -205,7 +205,7 @@ public class MyRelatedApplicantsControllerTest {
     );
     System.assertEquals(2, relatedApplicants.size());
     System.assertEquals('OtherNameLast', relatedApplicants[0].LastName);
-    System.assertEquals('Applicant1NameLast', relatedApplicants[1].LastName);
+    System.assertEquals('LastABC', relatedApplicants[1].LastName);
   }
 
   static testMethod void getActiveUsers() {

@@ -3,6 +3,11 @@ private class subscriptionTest {
   // The following test methods provide adequate code coverage
   // for the subscription email class.
   static testMethod void testSubscriptionLead() {
+    // get Lead RecordTypeId
+    Id locatorRecordTypeId = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName()
+      .get('Locator')
+      .getRecordTypeId();
+
     // Create a new email and envelope object.
     Messaging.InboundEmail email = new Messaging.InboundEmail();
     Messaging.InboundEnvelope env = new Messaging.InboundEnvelope();
@@ -12,7 +17,8 @@ private class subscriptionTest {
       firstName = 'John',
       lastName = 'Lead',
       Company = 'Salesforce',
-      Email = 'lead@acme.com'
+      Email = 'lead@acme.com',
+      RecordTypeId = locatorRecordTypeId
     );
     insert l;
 
@@ -38,7 +44,7 @@ private class subscriptionTest {
     Account a = new Account(
       firstName = 'John',
       lastName = 'Personaccount',
-      RecordType = personAccountRecordType,
+      RecordTypeId = personAccountRecordType,
       PersonEmail = 'personaccount@acme.com'
     );
     insert a;
