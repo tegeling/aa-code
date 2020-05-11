@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+  <types>
+    <name>ApexClass</name>
+    <members>BewerberMatcherController</members>
+    <members>BewerberMatcherControllerTest</members>
+    <members>MyRelatedApplicantsController</members>
+    <members>MyRelatedApplicantsControllerTest</members>
+    <members>MyRelatedJobsController</members>
+    <members>MyRelatedJobsControllerTest</members>
+    <members>DynamicAnonymizerActions</members>
+    <members>DynamicAnonymizerActionsTest</members>
+    <members>subscription</members>
+    <members>subscriptionTest</members>
+	</types>
+	<types>
+		<members>BewerberMatcher</members>
+		<members>JobMatcher</members>
+		<members>JobWizard</members>
+		<members>RelatedApplicants</members>
+		<members>RelatedJobs</members>
+		<name>AuraDefinitionBundle</name>
+	</types>
+</Package>
