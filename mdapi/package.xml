@@ -4,12 +4,8 @@
     <name>ApexClass</name>
     <members>AnonymizerActions</members>
     <members>AnonymizerActionsTest</members>
-    <members>BewerberMatcherController</members>
-    <members>BewerberMatcherControllerTest</members>
     <members>DataTableController</members>
     <members>DataTableWithFlowController</members>
-    <members>DynamicAnonymizerActions</members>
-    <members>DynamicAnonymizerActionsTest</members>
     <members>Field</members>
     <members>GetRandomNumber</members>
     <members>GetRandomNumberTest</members>
@@ -20,10 +16,6 @@
     <members>LeadTriggerHandler</members>
     <members>LeadTriggerTest</members>
     <members>Lexer</members>
-    <members>MyRelatedApplicantsController</members>
-    <members>MyRelatedApplicantsControllerTest</members>
-    <members>MyRelatedJobsController</members>
-    <members>MyRelatedJobsControllerTest</members>
     <members>OpportunityActions</members>
     <members>OpportunityTriggerHandler</members>
     <members>OpportunityTriggerTest</members>
@@ -38,8 +30,6 @@
     <members>jobMatcherController</members>
     <members>jobMatcherControllerTest</members>
     <members>jobMatcherControllerTestDataFactory</members>
-    <members>subscription</members>
-    <members>subscriptionTest</members>
   </types>
   <types>
     <name>ApexTrigger</name>
@@ -47,14 +37,9 @@
     <members>OpportunityTrigger</members>
   </types>
 	<types>
-		<members>BewerberMatcher</members>
 		<members>DataTable</members>
 		<members>DataTableWithFlow</members>
-		<members>JobMatcher</members>
-		<members>JobWizard</members>
 		<members>MultiSelect</members>
-		<members>RelatedApplicants</members>
-		<members>RelatedJobs</members>
 		<members>SearchBox</members>
 		<members>SearchResult</members>
 		<members>UpdateScreen</members>
