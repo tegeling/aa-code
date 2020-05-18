@@ -1,10 +1,10 @@
 ({
-  onInit: function(c, e, h) {
+  onInit: function (c, e, h) {
     // Then we we need to initialize the columns of table.
     const fieldNames = c
       .get("v.fieldNames")
       .split(",")
-      .map(function(fieldName) {
+      .map(function (fieldName) {
         return fieldName.trim().toLowerCase();
       });
     if (fieldNames.length === 1 && !fieldNames[0]) fieldNames.shift();
@@ -14,12 +14,12 @@
 
     p_getFields
       .then(
-        $A.getCallback(function(fields) {
+        $A.getCallback(function (fields) {
           // First, we will pre-process the fields.
           // This step includes;
           // 1. invalidate Fields which are not supported or may cause a malfunctioning for this component
           // 2. invalidate Fields which are not supported by this component
-          fields = fields.filter(function(field) {
+          fields = fields.filter(function (field) {
             if (!field || !field.isAccessible) return false;
             else if (
               field.type === "ADDRESS" ||
@@ -43,19 +43,19 @@
         })
       )
       .then(
-        $A.getCallback(function(fields) {
-          const columns = fields.map(function(field) {
+        $A.getCallback(function (fields) {
+          const columns = fields.map(function (field) {
             return h.createColumn(c, h, field);
           });
           c.set("v.columns", columns);
           c.set("v.fields", fields);
         })
       )
-      .catch(function(reason) {
+      .catch(function (reason) {
         h.showError(c, h, "controller.initColumns : " + reason);
       });
   },
-  onSetRecordIds: function(c, e, h) {
+  onSetRecordIds: function (c, e, h) {
     const args = e.getParam("arguments");
     c.find("dataTable").set("v.enableInfiniteLoading", true);
     c.set("v.offset", 0);
@@ -63,25 +63,25 @@
     c.set("v.data", []);
     h.loadData(c, h);
   },
-  onReload: function(c, e, h) {
+  onReload: function (c, e, h) {
     c.find("dataTable").set("v.enableInfiniteLoading", true);
     c.set("v.offset", 0);
     c.set("v.data", []);
     h.loadData(c, h);
   },
-  onGetSelectedIds: function(c, e, h) {
+  onGetSelectedIds: function (c, e, h) {
     return c
       .find("dataTable")
       .getSelectedRows()
-      .reduce(function(prev, row) {
+      .reduce(function (prev, row) {
         prev.push(row[c.get("v.objectName").toLowerCase() + ".id"]);
         return prev;
       }, []);
   },
-  onLoadMoreData: function(c, e, h) {
+  onLoadMoreData: function (c, e, h) {
     if (c.get("v.recordIds").length > c.get("v.data").length) h.loadData(c, h);
   },
-  onRowAction: function(c, e, h) {
+  onRowAction: function (c, e, h) {
     const action = e.getParam("action");
     const row = e.getParam("row");
     switch (action.name) {
@@ -92,13 +92,13 @@
         break;
     }
   },
-  onSort: function(c, e, h) {
+  onSort: function (c, e, h) {
     let fieldName = e.getParam("fieldName");
     const sortDirection = e.getParam("sortDirection");
     c.set("v.sortedBy", fieldName);
     c.set("v.sortedDirection", sortDirection);
     const data = c.get("v.data");
-    data.sort(function(a, b) {
+    data.sort(function (a, b) {
       let val1 = a[fieldName],
         val2 = b[fieldName];
       val1 =

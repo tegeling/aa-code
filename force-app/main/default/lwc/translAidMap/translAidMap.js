@@ -23,10 +23,10 @@ export default class TranslAidMap extends LightningElement {
   handleSearchKeyChange(searchKey) {
     this.recordIds = searchKey;
     getLocations({ recordIds: this.recordIds })
-      .then(result => {
+      .then((result) => {
         this.mapMarkers = result;
       })
-      .catch(error => {
+      .catch((error) => {
         this.error = error;
       });
   }

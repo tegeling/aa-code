@@ -1,11 +1,11 @@
 ({
-  onAfterScriptsLoaded: function(c, e, h) {
+  onAfterScriptsLoaded: function (c, e, h) {
     // We will first tidy up field names by eliminate redundant spaces
     // and make all of them into lowercase for convenience.
     // Then request for Fields and store the result in promise object to use it later.
     const fieldNames = (c.get("v.fieldNames") || "")
       .split(",")
-      .map(function(fieldName) {
+      .map(function (fieldName) {
         return fieldName.trim().toLowerCase();
       });
     if (fieldNames.length === 1 && !fieldNames[0]) fieldNames.shift();
@@ -20,7 +20,7 @@
     const recordId = c.get("v.recordId");
     const defaultValues = (c.get("v.fieldNamesOrDefaultValues") || "")
       .split(",")
-      .map(function(value) {
+      .map(function (value) {
         return value.trim();
       });
     if (defaultValues.length === 1 && !defaultValues[0]) defaultValues.shift();
@@ -36,12 +36,12 @@
     // 3. group Fields up with appropriate header lables.
     Promise.all([p_getFields, p_getDefaultValues])
       .then(
-        $A.getCallback(function([fields, defaultValues]) {
+        $A.getCallback(function ([fields, defaultValues]) {
           // First, we will pre-process the fields.
           // This step includes;
           // 1. invalidate Fields which are not supported or may cause a mlfunctioning for this component
           // 2. invalidate Fields which are not supported by this component
-          fields.forEach(function(field, index) {
+          fields.forEach(function (field, index) {
             if (!field) {
               fields[index] = null;
             } else if (!field.isFilterable && field.type !== "LOCATION") {
@@ -76,7 +76,7 @@
         })
       )
       .then(
-        $A.getCallback(function([fields, defaultValues]) {
+        $A.getCallback(function ([fields, defaultValues]) {
           // Then we will pre-populate fields with default values.
           // The first value is always set to the keyword.
           // The rest of values will be inserted into the Fields in order of the list.
@@ -86,7 +86,7 @@
           // since invalid fields are always invalid no matter who is running the component.
 
           c.set("v.keyword", defaultValues.shift());
-          fields.forEach(function(field) {
+          fields.forEach(function (field) {
             if (!field) {
               // skip if null or invalid
             } else if (
@@ -127,7 +127,7 @@
               field.value = defaultValues.shift() === "true";
             } else if (field.type === "PICKLIST") {
               const value = defaultValues.shift();
-              field.options.forEach(function(option) {
+              field.options.forEach(function (option) {
                 if (option.value === value) {
                   option.isSelected = true;
                   field.value = value;
@@ -143,12 +143,12 @@
         })
       )
       .then(
-        $A.getCallback(function([fields, defaultValues]) {
+        $A.getCallback(function ([fields, defaultValues]) {
           // Here we will post-process the fields.
           // This is mainly for forcing user-specific limits or access controls
           // This step includes;
           // 1. hide to prohibit access to fields which current user has no privilege to access to.
-          fields.forEach(function(field, index) {
+          fields.forEach(function (field, index) {
             if (field && !field.isAccessible) fields[index] = null;
           });
 
@@ -156,13 +156,13 @@
         })
       )
       .then(
-        $A.getCallback(function([fields, defaultValues]) {
+        $A.getCallback(function ([fields, defaultValues]) {
           // Then we will derive a default logic if no custom logic is specified.
           // The index 0 is reserved for keyword, and the rest follows the index of each field.`
           let customLogic = c.get("v.customLogic");
 
           if (!customLogic) {
-            const indices = fields.reduce(function(prev, field) {
+            const indices = fields.reduce(function (prev, field) {
               if (field) prev.push(field.index);
               return prev;
             }, []);
@@ -177,14 +177,14 @@
         })
       )
       .then(
-        $A.getCallback(function([fields, defaultValues]) {
+        $A.getCallback(function ([fields, defaultValues]) {
           // Then we will group up Fields in a size of group size specified.
           // the group object consists of fields and headers.
           const headers = [];
           if (c.get("v.sectionHeaders")) {
             c.get("v.sectionHeaders")
               .split(",")
-              .forEach(function(header) {
+              .forEach(function (header) {
                 header = header.trim();
                 headers.push(header ? { label: header } : null);
               });
@@ -203,14 +203,14 @@
           c.set("v.groups", groups);
         })
       )
-      .catch(function(reason) {
+      .catch(function (reason) {
         h.showError(c, h, reason);
       });
   },
-  onFilterControlButtonClicked: function(c, e, h) {
+  onFilterControlButtonClicked: function (c, e, h) {
     c.set("v.isConditionFolded", !c.get("v.isConditionFolded"));
   },
-  onSearch: function(c, e, h) {
+  onSearch: function (c, e, h) {
     // This is a function is called when user requests to perform a search.
     // There are few things to be done before querying the records on server and they are;
     // - to show an indicator.
@@ -218,10 +218,10 @@
     // - to format values into the expected form of SOQL queries.
     h.showSpinner(c, h);
 
-    const fields = c.get("v.fields").filter(function(field) {
+    const fields = c.get("v.fields").filter(function (field) {
       return field;
     });
-    fields.forEach(function(field) {
+    fields.forEach(function (field) {
       if (field.type === "DATETIME") {
         if (field.minValue)
           field.minValue = moment(field.minValue).format(
@@ -256,18 +256,18 @@
       c.get("v.customLogic")
     )
       .then(
-        $A.getCallback(function(recordIds) {
+        $A.getCallback(function (recordIds) {
           h.fireAppEvent(c, h, "e.c:SearchResult", {
             recordIds: recordIds,
             origin: parseInt(c.get("v.order"))
           });
         })
       )
-      .catch(function(reason) {
+      .catch(function (reason) {
         h.showError(c, h, reason);
       })
       .then(
-        $A.getCallback(function() {
+        $A.getCallback(function () {
           h.hideSpinner(c, h);
         })
       );

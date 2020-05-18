@@ -100,9 +100,9 @@
           size="large"
           alternativeText="No Record Found"
         />
-        <div class="slds-text-body_regular  message-body"
-          >{!v.messageWhenNoResult}</div
-        >
+        <div class="slds-text-body_regular message-body">
+          {!v.messageWhenNoResult}
+        </div>
       </div>
     </aura:if>
     <!-- /Empty Message -->

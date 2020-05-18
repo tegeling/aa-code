@@ -125,9 +125,9 @@
             <!-- Section Header -->
             <aura:if isTrue="{!!empty(group.header)}">
               <lightning:layoutItem size="12" padding="around-small">
-                <div class="slds-form-element__legend slds-m-top_small"
-                  >{!group.header.label}</div
-                >
+                <div class="slds-form-element__legend slds-m-top_small">
+                  {!group.header.label}
+                </div>
               </lightning:layoutItem>
             </aura:if>
             <!-- /Section Header -->

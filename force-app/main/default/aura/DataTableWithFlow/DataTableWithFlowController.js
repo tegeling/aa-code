@@ -1,20 +1,20 @@
 ({
-  onInit: function(c, e, h) {
+  onInit: function (c, e, h) {
     const flowNames = (c.get("v.flowNames") || "")
       .split(",")
-      .map(function(flowName) {
+      .map(function (flowName) {
         return flowName.trim();
       });
     if (flowNames.length === 1 && !flowNames[0]) flowNames.shift();
 
     const flowLabels = (c.get("v.flowLabels") || "")
       .split(",")
-      .map(function(flowLabel) {
+      .map(function (flowLabel) {
         return flowLabel.trim();
       });
     if (flowLabels.length === 1 && !flowLabels[0]) flowLabels.shift();
 
-    const flows = flowNames.map(function(flowName, index) {
+    const flows = flowNames.map(function (flowName, index) {
       return {
         name: flowName,
         label:
@@ -25,7 +25,7 @@
     });
     c.set("v.flows", flows);
   },
-  onSearchResultEvent: function(c, e, h) {
+  onSearchResultEvent: function (c, e, h) {
     const order = parseInt(c.get("v.order"));
     const origin = e.getParam("origin");
     if (origin + 1 === order) {
@@ -34,7 +34,7 @@
       c.find("datatable").setRecordIds(recordIds);
     }
   },
-  onFlowSelected: function(c, e, h) {
+  onFlowSelected: function (c, e, h) {
     const flowInput = c.get("v.flowInput");
     const recordId = c.get("v.recordId");
 
@@ -42,7 +42,7 @@
     if (flowInput === "ID") {
       h.initFlowComponent(c, h)
         .then(
-          $A.getCallback(function(flowComponent) {
+          $A.getCallback(function (flowComponent) {
             c.set("v.modalBody", [flowComponent]);
             flowComponent.startFlow(e.getParam("value"), [
               {
@@ -58,7 +58,7 @@
             ]);
           })
         )
-        .catch(function(reason) {
+        .catch(function (reason) {
           h.showError(c, h, "controller.onFlowSelected : " + reason);
         });
     } else if (flowInput === "RECORD") {
@@ -71,9 +71,9 @@
           : Promise.resolve([]);
       Promise.all([getRecordResult, getRecordsResult])
         .then(
-          $A.getCallback(function([record, records]) {
+          $A.getCallback(function ([record, records]) {
             h.initFlowComponent(c, h).then(
-              $A.getCallback(function(flowComponent) {
+              $A.getCallback(function (flowComponent) {
                 c.set("v.modalBody", [flowComponent]);
                 flowComponent.startFlow(e.getParam("value"), [
                   {
@@ -92,13 +92,13 @@
           })
         )
         .catch(
-          $A.getCallback(function(reason) {
+          $A.getCallback(function (reason) {
             h.showError(c, h, "controller.onStartFlowWithRecords: " + reason);
           })
         );
     }
   },
-  onFlowStatusChanged: function(c, e, h) {
+  onFlowStatusChanged: function (c, e, h) {
     switch (e.getParam("status")) {
       case "FINISHED":
         c.set("v.modalBody", []);
@@ -111,7 +111,7 @@
         break;
     }
   },
-  onFlowClosed: function(c, e, h) {
+  onFlowClosed: function (c, e, h) {
     c.set("v.modalBody", []);
   }
 });

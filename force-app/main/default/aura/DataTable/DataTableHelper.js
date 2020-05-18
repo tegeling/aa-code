@@ -1,5 +1,5 @@
 ({
-  loadData: function(c, h) {
+  loadData: function (c, h) {
     const recordIds = c.get("v.recordIds");
     const offset = c.get("v.offset");
     const loadSize = Math.min(c.get("v.pageSize"), recordIds.length - offset);
@@ -14,8 +14,8 @@
       JSON.stringify(recordIds.slice(offset, offset + loadSize))
     )
       .then(
-        $A.getCallback(function(records) {
-          records.forEach(function(record, index) {
+        $A.getCallback(function (records) {
+          records.forEach(function (record, index) {
             record = h.flatten(c, h, record, c.get("v.objectName"));
             record = h.setKeysToLowerCase(c, h, record);
             records[index] = record;
@@ -24,13 +24,13 @@
         })
       )
       .then(
-        $A.getCallback(function(records) {
-          const types = c.get("v.fields").reduce(function(prev, field) {
+        $A.getCallback(function (records) {
+          const types = c.get("v.fields").reduce(function (prev, field) {
             prev[field.path] = field.type;
             return prev;
           }, {});
-          records.forEach(function(record) {
-            Object.keys(record).forEach(function(key) {
+          records.forEach(function (record) {
+            Object.keys(record).forEach(function (key) {
               if (types[key] === "BOOLEAN") {
                 if (record[key] === true) record[key] = c.get("v.true");
                 if (record[key] === false) record[key] = c.get("v.false");
@@ -48,7 +48,7 @@
         })
       )
       .then(
-        $A.getCallback(function(records) {
+        $A.getCallback(function (records) {
           if (recordIds !== c.get("v.recordIds")) return;
           const data = c.get("v.data").concat(records);
           c.set("v.data", data);
@@ -58,16 +58,16 @@
           }
         })
       )
-      .catch(function(reason) {
+      .catch(function (reason) {
         h.showError(c, h, reason);
       })
       .then(
-        $A.getCallback(function() {
+        $A.getCallback(function () {
           c.find("dataTable").set("v.isLoading", false);
         })
       );
   },
-  createColumn: function(c, h, field) {
+  createColumn: function (c, h, field) {
     switch (field.type) {
       case "STRING":
         if (field.isNameField) {
@@ -141,14 +141,14 @@
         };
     }
   },
-  navigateToSObject: function(c, h, recordId) {
+  navigateToSObject: function (c, h, recordId) {
     $A.get("e.force:navigateToSObject")
       .setParams({
         recordId: recordId
       })
       .fire();
   },
-  flatten: function(c, h, data, objectName) {
+  flatten: function (c, h, data, objectName) {
     var result = {};
     function recurse(cur, prop) {
       if (Object(cur) !== cur) {
@@ -169,7 +169,7 @@
     recurse(data, objectName);
     return result;
   },
-  setKeysToLowerCase: function(c, h, obj) {
+  setKeysToLowerCase: function (c, h, obj) {
     var key,
       keys = Object.keys(obj);
     var n = keys.length;
@@ -181,16 +181,16 @@
     return result;
   },
 
-  getValue: function(c, h, field, record) {
+  getValue: function (c, h, field, record) {
     const path = field.path.split(".");
     path.shift();
     let value = record;
-    path.forEach(function(key) {
+    path.forEach(function (key) {
       if (value) value = value[key];
     });
     return value;
   },
-  getData: function(c, h, field, record) {
+  getData: function (c, h, field, record) {
     const path = field.path.split(".");
     path.shift();
     const data = {
@@ -199,7 +199,7 @@
       label: field.label,
       isNameField: field.isNameField
     };
-    path.forEach(function(key) {
+    path.forEach(function (key) {
       if (data.value) {
         data.id = data.value.Id;
         data.value = data.value[key];
@@ -207,14 +207,14 @@
     });
     return data;
   },
-  getFields: function(c, h, objectName, fieldNames) {
+  getFields: function (c, h, objectName, fieldNames) {
     const action = c.get("c.getFields");
     action.setParams({
       objectName: objectName,
       fieldNames: fieldNames
     });
-    return new Promise(function(resolve, reject) {
-      action.setCallback(this, function(response) {
+    return new Promise(function (resolve, reject) {
+      action.setCallback(this, function (response) {
         const ret = response.getReturnValue();
         if (response.getState() === "SUCCESS")
           ret.hasError ? reject(ret.message) : resolve(ret);
@@ -223,15 +223,15 @@
       $A.enqueueAction(action);
     });
   },
-  getRecords: function(c, h, objectName, fieldsJson, recordIdsJson) {
+  getRecords: function (c, h, objectName, fieldsJson, recordIdsJson) {
     const action = c.get("c.getRecords");
     action.setParams({
       objectName: objectName,
       fieldsJson: fieldsJson,
       recordIdsJson: recordIdsJson
     });
-    return new Promise(function(resolve, reject) {
-      action.setCallback(this, function(response) {
+    return new Promise(function (resolve, reject) {
+      action.setCallback(this, function (response) {
         const ret = JSON.parse(response.getReturnValue());
         if (response.getState() === "SUCCESS")
           ret.hasError ? reject(ret.message) : resolve(ret);
@@ -240,7 +240,7 @@
       $A.enqueueAction(action);
     });
   },
-  showSuccessToast: function(c, h, message) {
+  showSuccessToast: function (c, h, message) {
     var toastEvent = $A.get("e.force:showToast");
     toastEvent.setParams({
       type: "success",
@@ -250,7 +250,7 @@
     });
     toastEvent.fire();
   },
-  showError: function(c, h, message) {
+  showError: function (c, h, message) {
     const isOnAppBuilder =
       document.location.href.toLowerCase().indexOf("flexipageeditor") >= 0;
     if (isOnAppBuilder) {
