@@ -57,38 +57,25 @@ global with sharing class MeineAnfragen {
       'per Video'
     };
 
-    // check params - no params at all
-    if (filterRaw == null) {
-      res.statusCode = 400;
-      MeineAnfragenError[] errs = new List<MeineAnfragenError>{
-        new MeineAnfragenError(
-          'BAD_REQUEST',
-          'Param: filter is missing (like \'?filter=All\', or specific field API names)'
-        )
-      };
-      res.responseBody = Blob.valueOf(JSON.serialize(errs));
-      return;
-    }
-    List<String> filter = filterRaw.split(',');
-    // no filter param set
-    if (filter.size() == 0) {
-      res.statusCode = 400;
-      MeineAnfragenError[] errs = new List<MeineAnfragenError>{
-        new MeineAnfragenError(
-          'BAD_REQUEST',
-          'Param: filter is missing (like \'?filter=All\', or specific field API names)'
-        )
-      };
-      res.responseBody = Blob.valueOf(JSON.serialize(errs));
-      return;
-    }
-
     // check filters
-    filterByAll = filter.contains('All') || filter.contains('all');
-    filterBySprachen = filter.contains('Sprachen__c');
-    filterByKategorie = filter.contains('TranslAid_Kategorie__c');
-    filterByFormat = filter.contains('TranslAid_Einsatz_Format__c');
-    filterByStandort = filter.contains('Termin_Standort__c');
+    try {
+      List<String> filter = filterRaw.split(',');
+      filterByAll = filter.contains('All') || filter.contains('all');
+      filterBySprachen = filter.contains('Sprachen__c');
+      filterByKategorie = filter.contains('TranslAid_Kategorie__c');
+      filterByFormat = filter.contains('TranslAid_Einsatz_Format__c');
+      filterByStandort = filter.contains('Termin_Standort__c');
+    } catch (Exception ex) {
+      res.statusCode = 400;
+      MeineAnfragenError[] errs = new List<MeineAnfragenError>{
+        new MeineAnfragenError(
+          'BAD_REQUEST',
+          'Param: filter is missing (like \'?filter=All\', or specific field API names)'
+        )
+      };
+      res.responseBody = Blob.valueOf(JSON.serialize(errs));
+      return;
+    }
     // get contact and filter
     String userId = UserInfo.getUserId();
     User u = [
