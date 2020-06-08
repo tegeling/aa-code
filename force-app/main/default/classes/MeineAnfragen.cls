@@ -195,8 +195,25 @@ global with sharing class MeineAnfragen {
     }
 
     query =
-      'SELECT Id, Name, Sprachen__c, TranslAid_Kategorie__c, TranslAid_Einsatz_Format__c, Termin_Standort__c' +
-      ' FROM TranslAid_Anfrage__c ' +
+      'SELECT ' +
+      'Id, ' +
+      'Name, ' +
+      'CreatedDate, ' +
+      'LastModifiedDate, ' +
+      'Sprachen__c, ' +
+      'Sprachmittler_in__c, ' +
+      'Termin_Standort__Latitude__s, ' +
+      'Termin_Standort__Longitude__s, ' +
+      'Termin_Details__c, ' +
+      'TranslAid_Kategorie__c, ' +
+      'TranslAid_Einsatz_Format__c, ' +
+      'Zugewiesen__c, ' +
+      'Meine_TranslAid_Anfrage__c, ' +
+      'Termin_Adresse__c, ' +
+      'Termin_Datum__c, ' +
+      'Termin_Dauer__c, ' +
+      'Uhrzeit__c ' +
+      'FROM TranslAid_Anfrage__c ' +
       whereClause +
       orderByClause;
     System.debug('#### query: ' + query);
