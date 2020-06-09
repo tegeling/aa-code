@@ -15,6 +15,7 @@ global with sharing class MeineAnfragen {
     Boolean filterByKategorie = false;
     Boolean filterByFormat = false;
     Boolean filterByStandort = false;
+    Boolean filterByZugewiesen = false;
     // define Format combinations to allow multiselect picklist matches
     List<String> formatPersoenlich = new List<String>{
       'persönlich;telefonisch;schriftlich;per Video',
@@ -65,6 +66,7 @@ global with sharing class MeineAnfragen {
       filterByKategorie = filter.contains('TranslAid_Kategorie__c');
       filterByFormat = filter.contains('TranslAid_Einsatz_Format__c');
       filterByStandort = filter.contains('Termin_Standort__c');
+      filterByZugewiesen = filter.contains('Zugewiesen__c');
     } catch (Exception ex) {
       res.statusCode = 400;
       MeineAnfragenError[] errs = new List<MeineAnfragenError>{
@@ -188,6 +190,11 @@ global with sharing class MeineAnfragen {
           c.Einsatzradius_km__c;
         criteria.add(standortFilter);
       }
+    }
+
+    // Zugewiesen Filter
+    if (filterByAll || filterByZugewiesen) {
+      criteria.add('Zugewiesen__c = false');
     }
 
     if (criteria.size() > 0) {
