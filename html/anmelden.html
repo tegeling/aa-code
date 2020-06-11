@@ -1,0 +1,326 @@
+<style>
+  div.select {
+    position: relative;
+    margin: 0 0 16px;
+  }
+  div.text {
+    position: relative;
+    margin: 0 0 16px;
+  }
+  div.option {
+    margin: 6px 0 4px;
+    font-size: 13px;
+  }
+  input.text {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 4px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: normal;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
+  div.description {
+    padding: 0.5em 0 0.5em;
+    font-size: 12px;
+    opacity: 0.7;
+    display: block;
+    white-space: pre-wrap;
+  }
+  textarea.text {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 4px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: normal;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
+  label.title {
+    display: block;
+    font-size: 20px;
+  }
+  select {
+    margin: 6px 0 4px;
+    max-width: 100%;
+    font-size: 18px;
+  }
+</style>
+
+<div class="field-list clear">
+  <div class="form-wrapper">
+    <div class="form-inner-wrapper">
+      <form
+        action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+        method="POST"
+      >
+        <input type="hidden" name="oid" value="00D24000000j9IC" />
+        <input
+          type="hidden"
+          name="retURL"
+          value="https://www.translaid.org/anmelden-besttigung"
+        />
+        <input
+          type="hidden"
+          name="lead_source"
+          value="TranslAid Webformular Ehrenamtliche"
+        />
+        <input type="hidden" name="recordType" value="0121p0000006yEv" />
+        <input type="hidden" name="00N2400000JC8Ev" value="0" />
+        <input
+          type="hidden"
+          name="company"
+          value="TranslAid Sprachmittler*innen Community"
+        />
+        <input type="hidden" name="00N1p00000JMC4g" value="TranslAid" />
+        <input type="hidden" name="00N1p00000JMOsz" value="interessiert" />
+
+        <div id="salutation-div" class="select">
+          <label class="title" for="salutation"
+            >Anrede <span class="required">*</span></label
+          >
+          <select name="salutation" id="salutation" required>
+            <option value=""></option>
+            <option value="Herr">Herr</option>
+            <option value="Frau">Frau</option>
+          </select>
+        </div>
+        <div id="first_name-div" class="text">
+          <label class="title" for="first_name"
+            >Vorname<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="first_name"
+            name="first_name"
+            maxlength="40"
+            required
+          />
+        </div>
+        <div id="last_name-div" class="text">
+          <label class="title" for="last_name"
+            >Nachname<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="last_name"
+            name="last_name"
+            maxlength="80"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMBkR-div" class="text">
+          <label class="title" for="00N1p00000JMBkR"
+            >Sprachen<span class="required">*</span></label
+          >
+          <div class="description">
+            Bitte nur Sprachen angeben, die du fließend sprichst und in denen du
+            dolmetschen möchtest.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMBkR"
+            name="00N1p00000JMBkR"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMBkW-div" class="text">
+          <label class="title" for="00N1p00000JMBkW"
+            >Verfügbarkeit<span class="required">*</span></label
+          >
+          <div class="description">
+            Bitte gib an, wann du prinzipiell Zeit hättest, Einsätze zu
+            übernehmen - z.B. vormittags, nachmittags, abends, unter der Woche,
+            am Wochenende.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMBkW"
+            name="00N1p00000JMBkW"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMBkb-div" class="text">
+          <label class="title" for="00N1p00000JMBkb">Geburtsdatum</label>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMBkb"
+            name="00N1p00000JMBkb"
+            placeholder="TT.MM.JJJJ"
+          />
+        </div>
+        <div id="00N1p00000JMBkg-div" class="text">
+          <label class="title" for="00N1p00000JMBkg">Aktuelle Tätigkeit</label>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMBkg"
+            name="00N1p00000JMBkg"
+            maxlength="255"
+          />
+        </div>
+        <div id="email-div" class="text">
+          <label class="title" for="email"
+            >E-Mail-Adresse<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="email"
+            id="email"
+            name="email"
+            maxlength="80"
+            required
+          />
+        </div>
+        <div id="street-div" class="text">
+          <label class="title" for="street">Straße und Hausnummer</label>
+          <input class="text" type="text" id="street" name="street" />
+        </div>
+        <div id="zip-div" class="text">
+          <label class="title" for="zip">PLZ</label>
+          <input
+            class="text"
+            type="text"
+            id="zip"
+            name="zip"
+            pattern="[0-9]{5}"
+          />
+        </div>
+        <div id="city-div" class="text">
+          <label class="title" for="city">Stadt</label>
+          <input
+            class="text"
+            type="text"
+            id="city"
+            name="city"
+            maxlength="40"
+          />
+        </div>
+        <div id="mobile-div" class="text">
+          <label class="title" for="mobile">Telefonnummer</label>
+          <div class="description">
+            (Nur Ziffern, keine Sonderzeichen oder Leerzeichen!)
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="mobile"
+            name="mobile"
+            maxlength="40"
+          />
+        </div>
+        <div id="00N1p00000JMBkl-div" class="text">
+          <label class="title" for="00N1p00000JMBkl"
+            >Wie hast du von uns erfahren?</label
+          >
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMBkl"
+            name="00N1p00000JMBkl"
+            maxlength="255"
+          />
+        </div>
+        <div id="00N1p00000JDbHC-div" class="text">
+          <label class="title" for="00N1p00000JDbHC"
+            >Verschwiegenheitspflicht</label
+          >
+          <div class="description">
+            Der*die Dolmetscher*in bewahrt über Angelegenheiten, die ihm*ihr in
+            im Zuge der ehrenamtlichen Tätigkeit anvertraut werden
+            Verschwiegenheit. Dies gilt insbesondere für Informationen über
+            betreute geflüchtete Personen. Ohne Genehmigung von TranslAid darf
+            der*die Dolmetscher*in von Vorgängen im Rahmen seiner Tätigkeit
+            weder sich, noch anderen Kenntnis, Abschriften, Ab- oder
+            Nachbildungen verschaffen.
+          </div>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N1p00000JDbHC"
+                name="00N1p00000JDbHC"
+                value="1"
+                required
+              />
+              Ich stimme der Verschwiegenheitserklärung zu.</label
+            >
+          </div>
+        </div>
+        <div id="00N1p00000JDbHH-div" class="text">
+          <label class="title" for="00N1p00000JDbHH"
+            >Datenschutzerklärung <span class="required">*</span></label
+          >
+          <div class="description">
+            Alle in diesem Formular angegebenen personenbezogenen Daten der
+            Ehrenamtlichen von TranslAid werden gespeichert, um je nach Sprache
+            und Einsatzform (z.B. Arzttermin oder juristische Beratung) eine
+            passende Vermittlung zu ermöglichen. Im Rahmen der Vermittlung zu
+            Dolmetsching-Einsätzen werden nach Zusage eines Ehrenamtlichen zu
+            einem Termin an die kooperierenden Partner die Namen, Sprachen sowie
+            Emailadressen und ggf. das Geschlecht der Ehrenamtlichen
+            weitergegeben. Alle Partner verpflichten sich dazu, die empfangenen
+            Daten streng vertraulich zu behandeln. Die Daten der übernommenen
+            Einsätze (Einsatzort, Einsatzform, Einsatzsprache und Datum des
+            Einsatzes) werden zum Zwecke der Erfolgsmessung und
+            Fördermittelakquise anonymisiert ausgewertet. Die Auswertung erfolgt
+            elektronisch. Die Ehrenamtlichen haben das Recht, eine erteilte
+            Einwilligung mit Wirkung für die Zukunft jederzeit zu widerrufen.
+            Die Löschung der gespeicherten personenbezogenen Daten erfolgt, wenn
+            die Ehrenamtlichen ihre Einwilligung zur Speicherung schriftlich
+            widerrufen haben. Das hat zur Folge, dass eine ehrenamtliche
+            Mitarbeit bei TranslAid nicht mehr stattfinden kann. Außerdem
+            erfolgt eine Löschung der personenbezogenen Daten wenn ihre
+            Speicherung aus sonstigen gesetzlichen Gründen unzulässig ist.
+          </div>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N1p00000JDbHH"
+                name="00N1p00000JDbHH"
+                value="1"
+                required
+              />
+              Ich stimme der Datenschutzerklärung zu.</label
+            >
+          </div>
+        </div>
+        <div id="description-div" class="text">
+          <label class="title" for="description">Kommentar</label>
+          <div class="description">
+            Hast du Fragen oder willst du uns sonst noch etwas mitteilen?
+          </div>
+          <textarea
+            class="text"
+            type="text"
+            id="description"
+            name="description"
+          ></textarea>
+        </div>
+        <div class="form-button-wrapper form-button-wrapper--align-left">
+          <input
+            class="button sqs-system-button sqs-editable-button"
+            type="submit"
+            value="Senden"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
