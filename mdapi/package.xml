@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
   <types>
+    <name>AuraDefinitionBundle</name>
+    <members>DataTable</members>
+    <members>DataTableWithFlow</members>
+    <members>MultiSelect</members>
+    <members>SearchBox</members>
+    <members>SearchResult</members>
+    <members>UpdateScreen</members>
+    <members>navigateEverywhereLFA</members>
+  </types>
+  <types>
     <name>ApexClass</name>
     <members>AnonymizerActions</members>
     <members>AnonymizerActionsTest</members>
@@ -16,6 +26,8 @@
     <members>LeadTriggerHandler</members>
     <members>LeadTriggerTest</members>
     <members>Lexer</members>
+    <members>MeineAnfragen</members>
+    <members>MeineAnfragenError</members>
     <members>OpportunityActions</members>
     <members>OpportunityTriggerHandler</members>
     <members>OpportunityTriggerTest</members>
@@ -24,6 +36,7 @@
     <members>Test_DataTableWithFlowController</members>
     <members>Test_Field</members>
     <members>Test_Lexer</members>
+    <members>Test_MeineAnfragen</members>
     <members>Test_SearchBoxController</members>
     <members>TranslAidMapController</members>
     <members>TranslAidMapControllerTest</members>
@@ -32,38 +45,28 @@
     <members>jobMatcherControllerTestDataFactory</members>
   </types>
   <types>
+    <name>LightningComponentBundle</name>
+    <members>applicantMatcherFilter</members>
+    <members>applicantMatcherList</members>
+    <members>auraPubsub</members>
+    <members>errorPanel</members>
+    <members>inlineMessage</members>
+    <members>jobMap</members>
+    <members>jobMatcherFilter</members>
+    <members>jobMatcherList</members>
+    <members>ldsUtils</members>
+    <members>pubsub</members>
+    <members>translAidMap</members>
+  </types>
+  <types>
+    <name>StaticResource</name>
+    <members>RecordHunterLib</members>
+    <members>noDataErrorIllustration</members>
+  </types>
+  <types>
     <name>ApexTrigger</name>
     <members>LeadTrigger</members>
     <members>OpportunityTrigger</members>
   </types>
-	<types>
-		<members>DataTable</members>
-		<members>DataTableWithFlow</members>
-		<members>MultiSelect</members>
-		<members>SearchBox</members>
-		<members>SearchResult</members>
-		<members>UpdateScreen</members>
-		<members>navigateEverywhereLFA</members>
-		<name>AuraDefinitionBundle</name>
-	</types>
-	<types>
-		<members>applicantMatcherFilter</members>
-		<members>applicantMatcherList</members>
-		<members>auraPubsub</members>
-		<members>errorPanel</members>
-		<members>inlineMessage</members>
-		<members>jobMap</members>
-		<members>jobMatcherFilter</members>
-		<members>jobMatcherList</members>
-		<members>ldsUtils</members>
-		<members>pubsub</members>
-		<members>translAidMap</members>
-		<name>LightningComponentBundle</name>
-  </types>
-	<types>
-		<members>RecordHunterLib</members>
-		<members>noDataErrorIllustration</members>
-		<name>StaticResource</name>
-	</types>  
   <version>48.0</version>
 </Package>
