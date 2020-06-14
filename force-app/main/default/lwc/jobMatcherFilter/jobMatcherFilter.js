@@ -41,9 +41,11 @@ export default class JobMatcherFilter extends LightningElement {
         })
       );
     } else if (data) {
-      this.categoryValues = data.fields.Stellenvermittlung_neu__c.value.split(
-        ";"
-      );
+      if (data.fields.Stellenvermittlung_neu__c.value) {
+        this.categoryValues = data.fields.Stellenvermittlung_neu__c.value.split(
+          ";"
+        );
+      }
       this.filters.categories = this.categoryValues;
       this.filters.recordId = this.recordId;
       fireEvent(this.pageRef, "filterChange", this.filters);

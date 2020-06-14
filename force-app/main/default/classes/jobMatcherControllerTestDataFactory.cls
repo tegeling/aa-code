@@ -63,7 +63,9 @@ public class jobMatcherControllerTestDataFactory {
       // account with jobs
       Account accountA = new Account(
         Name = 'Unternehmen A ',
-        RecordTypeId = unternehmenRecordTypeId
+        RecordTypeId = unternehmenRecordTypeId,
+        BillingLatitude = 48.09937,
+        BillingLongitude = 11.53105
       );
       insert accountA;
       Job__c jobA1 = new Job__c(
@@ -85,7 +87,9 @@ public class jobMatcherControllerTestDataFactory {
         FirstName = 'ApplicantFirstName A - ' + DateTime.now().getTime(),
         LastName = 'ApplicantLastName A - ' + DateTime.now().getTime(),
         RecordTypeId = applicantRecordTypeId,
-        Stellenvermittlung_neu__c = 'Vollzeitstelle'
+        Stellenvermittlung_neu__c = 'Vollzeitstelle',
+        BillingLatitude = 48.09937,
+        BillingLongitude = 11.53105
       );
       insert applicantA;
     }
@@ -95,7 +99,9 @@ public class jobMatcherControllerTestDataFactory {
       // account with jobs
       Account accountB = new Account(
         Name = 'Account B',
-        RecordTypeId = unternehmenRecordTypeId
+        RecordTypeId = unternehmenRecordTypeId,
+        BillingLatitude = 48.09937,
+        BillingLongitude = 11.53105
       );
       insert accountB;
       Job__c jobB1 = new Job__c(

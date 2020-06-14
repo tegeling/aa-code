@@ -14,7 +14,6 @@ public class jobMatcherControllerTest {
   @isTest
   static void getActiveAccountOwners() {
     List<User> activeAccountOwner = jobMatcherController.getActiveAccountOwners();
-    System.debug('#### activeAccountOwner.size():' + activeAccountOwner.size());
     System.assertEquals(1, activeAccountOwner.size());
   }
 
@@ -43,7 +42,8 @@ public class jobMatcherControllerTest {
 
     String filters = '{"recordId":"' + applicant.Id + '",';
     filters += '"searchKey":"searchtext",';
-    filters += '"maxDistance":"0",';
+    filters += '"createdDate":"2015-01-01T12:00:00",';
+    filters += '"maxDistance":"100",';
     filters += '"categories":["Vollzeitstelle"],';
     filters +=
       '"owners":["' +
@@ -55,7 +55,7 @@ public class jobMatcherControllerTest {
       '"]}';
 
     List<Job__c> jobs = jobMatcherController.getJobs(filters);
-    System.assertEquals(3, jobs.size());
+    System.assertEquals(2, jobs.size());
   }
 
   @isTest
@@ -76,8 +76,8 @@ public class jobMatcherControllerTest {
 
     String filters = '{"recordId":"' + job.Id + '",';
     filters += '"searchKey":"searchtext",';
-    filters += '"maxDistance":"0",';
-    filters += '"categories":["Vollzeitstelle"],';
+    filters += '"maxDistance":"100",';
+    filters += '"categories":["Vollzeitstelle","Teilzeitstelle"],';
     filters +=
       '"owners":["' +
       userA.Id +
@@ -88,8 +88,7 @@ public class jobMatcherControllerTest {
       '"]}';
 
     List<Account> accounts = jobMatcherController.getAccounts(filters);
-    //System.assertEquals(3, accounts.size());
-    System.debug('#### accounts.size()' + accounts.size());
+    System.assertEquals(1, accounts.size());
   }
 
   @isTest
