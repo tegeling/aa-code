@@ -102,7 +102,7 @@ global with sharing class MeineAnfragen {
     ];
 
     // Sprachen Filter
-    if (filterByAll || filterBySprachen) {
+    if ((c.Sprachen__c != null) && (filterByAll || filterBySprachen)) {
       String sprachenFilter = '';
       List<String> sprachen = c.Sprachen__c.split(';');
       integer count = 0;
@@ -120,7 +120,9 @@ global with sharing class MeineAnfragen {
       }
     }
     // Kategorie Filter
-    if (filterByAll || filterByKategorie) {
+    if (
+      (c.TranslAid_Kategorie__c != null) && (filterByAll || filterByKategorie)
+    ) {
       String kategorienFilter = '';
       List<String> kategorien = c.TranslAid_Kategorie__c.split(';');
       integer count = 0;
@@ -138,7 +140,9 @@ global with sharing class MeineAnfragen {
       }
     }
     // Format Filter
-    if (filterByAll || filterByFormat) {
+    if (
+      (c.TranslAid_Einsatz_Format__c != null) && (filterByAll || filterByFormat)
+    ) {
       String formateFilter = '';
       Set<String> formateSet = new Set<String>();
       List<String> formateList = new List<String>();
@@ -219,6 +223,7 @@ global with sharing class MeineAnfragen {
       'Termin_Adresse__c, ' +
       'Termin_Datum__c, ' +
       'Termin_Dauer__c, ' +
+      'Termin_Dauer_min__c, ' +
       'Uhrzeit__c ' +
       'FROM TranslAid_Anfrage__c ' +
       whereClause +
