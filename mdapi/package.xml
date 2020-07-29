@@ -14,6 +14,9 @@
     <name>ApexClass</name>
     <members>AnonymizerActions</members>
     <members>AnonymizerActionsTest</members>
+    <members>Begleiter_inActions</members>
+    <members>Begleiter_inTriggerHandler</members>
+    <members>Begleiter_inTriggerTest</members>
     <members>DataTableController</members>
     <members>DataTableWithFlowController</members>
     <members>Field</members>
@@ -65,6 +68,7 @@
   </types>
   <types>
     <name>ApexTrigger</name>
+    <members>Begleiter_inTrigger</members>
     <members>LeadTrigger</members>
     <members>OpportunityTrigger</members>
   </types>
