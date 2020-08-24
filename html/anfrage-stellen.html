@@ -1,3 +1,26 @@
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+  function timestamp() {
+    var response = document.getElementById("g-recaptcha-response");
+    if (response == null || response.value.trim() == "") {
+      var elems = JSON.parse(
+        document.getElementsByName("captcha_settings")[0].value
+      );
+      elems["ts"] = JSON.stringify(new Date().getTime());
+      document.getElementsByName("captcha_settings")[0].value = JSON.stringify(
+        elems
+      );
+    }
+  }
+  setInterval(timestamp, 500);
+</script>
+<script type="text/javascript">
+  function recaptcha_callback() {
+    var submitbutton = document.getElementById("submit");
+    submitbutton.removeAttribute("disabled");
+  }
+</script>
+
 <style>
   div.select {
     position: relative;
@@ -29,7 +52,7 @@
     font-size: 12px;
     opacity: 0.7;
     display: block;
-    white-space: pre-wrap;
+    white-space: normal;
   }
   textarea.text {
     width: 100%;
@@ -53,6 +76,9 @@
     max-width: 100%;
     font-size: 18px;
   }
+  .button:disabled {
+    background: #ccc !important;
+  }
 </style>
 
 <div class="field-list clear">
@@ -62,6 +88,11 @@
         action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
         method="POST"
       >
+        <input
+          type="hidden"
+          name="captcha_settings"
+          value='{"keyname":"TranslAid","fallback":"true","orgId":"00D24000000j9IC","ts":""}'
+        />
         <input type="hidden" name="oid" value="00D24000000j9IC" />
         <input
           type="hidden"
@@ -141,7 +172,9 @@
           <label class="title" for="00N1p00000JDbH2"
             >Ihre Handynummer<span class="required">*</span></label
           >
-          <div class="description">(Nur Ziffern, keine Sonderzeichen oder Leerzeichen!)</div>
+          <div class="description">
+            (Nur Ziffern, keine Sonderzeichen oder Leerzeichen!)
+          </div>
           <input
             class="text"
             type="text"
@@ -191,7 +224,11 @@
           <label class="title" for="00N1p00000JDbEr"
             >Herkunftsland/Ethnie<span class="required">*</span></label
           >
-          <div class="description">Die Auskunft ist nötig für die Vermittlung passender ehrenamtlicher Sprachmittler*innen. Andere Angaben bitte unter <b>Haben Sie sonst noch Fragen?</b> eintragen</div>
+          <div class="description">
+            Die Auskunft ist nötig für die Vermittlung passender ehrenamtlicher
+            Sprachmittler*innen. Andere Angaben bitte unter
+            <b>Haben Sie sonst noch Fragen?</b> eintragen
+          </div>
           <select name="00N1p00000JDbEr" id="00N1p00000JDbEr" required>
             <option value=""></option>
             <option value="Afghanistan">Afghanistan</option>
@@ -425,7 +462,12 @@
           <label class="title" for="mobile"
             >Handynummer des*der Klient*in</label
           >
-          <div class="description">(Nur Ziffern, keine Sonderzeichen oder Leerzeichen!) Die Handynummer ist wichtig für die Kontaktaufnahme der ehrenamtlichen Sprachmittler*innen mit den Klient*innen falls sie sich vor Ort nicht finden oder vorab etwas klären müssen.</div>
+          <div class="description">
+            (Nur Ziffern, keine Sonderzeichen oder Leerzeichen!) Die Handynummer
+            ist wichtig für die Kontaktaufnahme der ehrenamtlichen
+            Sprachmittler*innen mit den Klient*innen falls sie sich vor Ort
+            nicht finden oder vorab etwas klären müssen.
+          </div>
           <input
             class="text"
             type="text"
@@ -462,7 +504,11 @@
           <label class="title" for="00N1p00000JDbGd"
             >Datum des Termins<span class="required">*</span></label
           >
-          <div class="description">Bei den meisten Sprachen können wir wesentlich einfacher helfen, wenn der Termin am späten Nachmittag/Abend ist. Bitte versuchen Sie nach Möglichkeit die Termine entsprechend zu legen!</div>
+          <div class="description">
+            Bei den meisten Sprachen können wir wesentlich einfacher helfen,
+            wenn der Termin am späten Nachmittag/Abend ist. Bitte versuchen Sie
+            nach Möglichkeit die Termine entsprechend zu legen!
+          </div>
           <input
             class="text"
             type="text"
@@ -492,7 +538,12 @@
               >*</span
             ></label
           >
-          <div class="description">Bitte beschreiben Sie möglichst genau, um was es geht und was passieren wird, damit der*die Sprachmittler*in sich auf den Termin einstellen und vorbereiten kann. (Nur "Arzttermin" oder "Termin beim Orthopäden" ist nicht ausreichend!)</div>
+          <div class="description">
+            Bitte beschreiben Sie möglichst genau, um was es geht und was
+            passieren wird, damit der*die Sprachmittler*in sich auf den Termin
+            einstellen und vorbereiten kann. (Nur "Arzttermin" oder "Termin beim
+            Orthopäden" ist nicht ausreichend!)
+          </div>
           <textarea
             class="text"
             type="text"
@@ -505,7 +556,11 @@
           <label class="title" for="00N1p00000JMCC1"
             >Wo findet der Termin statt?<span class="required">*</span></label
           >
-          <div class="description">Bitte nennen Sie die Adresse und auch einen genauen Treffpunkt vor Ort, an dem der*die ehrenamtliche Sprachmittler*in den*die Klient*in treffen kann.</div>
+          <div class="description">
+            Bitte nennen Sie die Adresse und auch einen genauen Treffpunkt vor
+            Ort, an dem der*die ehrenamtliche Sprachmittler*in den*die Klient*in
+            treffen kann.
+          </div>
           <input
             class="text"
             type="text"
@@ -521,7 +576,12 @@
               >*</span
             ></label
           >
-          <div class="description">Bitte beachten Sie, dass lange Termine seltener übernommen werden. Außerdem ist wichtig, dass die Ehrenamtlichen nur für die hier angegebene Zeit zur Verfügung stehen und oft im Anschluss weitere Termine haben.</div>
+          <div class="description">
+            Bitte beachten Sie, dass lange Termine seltener übernommen werden.
+            Außerdem ist wichtig, dass die Ehrenamtlichen nur für die hier
+            angegebene Zeit zur Verfügung stehen und oft im Anschluss weitere
+            Termine haben.
+          </div>
           <input
             class="text"
             type="text"
@@ -538,7 +598,10 @@
               >*</span
             ></label
           >
-          <div class="description">Die Wahrscheinlichkeit, dass wir eine passende Person finden verringert sich leider durch diese Auswahl.</div>
+          <div class="description">
+            Die Wahrscheinlichkeit, dass wir eine passende Person finden
+            verringert sich leider durch diese Auswahl.
+          </div>
           <select name="00N1p00000JMCCB" id="00N1p00000JMCCB" required>
             <option value="Egal">Egal</option>
             <option value="Frau">Frau</option>
@@ -562,7 +625,40 @@
               >*</span
             ></label
           >
-          <div class="description">Soweit Sie TranslAid personenbezogene Daten von Klient*innen zur Verfügung stellen, verwendet TranslAid diese nur zur Beantwortung der Anfragen oder zur Abwicklung einer Begleitung durch eine*n ehrenamtliche*n Sprachmittler*in. Die personenbezogenen Daten der Klient*innen verbleiben bei TranslAid. Die Daten werden an Dritte nur weitergegeben oder sonst übermittelt, wenn diese zum Zwecke des Dolmetsching-Einsatzes erforderlich ist oder die Klient*innen zuvor eingewilligt haben. Es erfolgt keine Übermittlung von Daten an Behörden. Die Klient*innen haben das Recht, eine erteilte Einwilligung mit Wirkung für die Zukunft jederzeit zu widerrufen. Der Widerruf ist an datenschutz@arrivalaid.org zu richten. Die Löschung der gespeicherten personenbezogenen Daten erfolgt, wenn sie ihre Einwilligung zur Speicherung widerrufen, wenn ihre Kenntnis zur Erfüllung des mit der Speicherung verfolgten Zwecks nicht mehr erforderlich ist oder wenn ihre Speicherung aus sonstigen gesetzlichen Gründen unzulässig ist. Im Falle des Widerrufs, werden schnellstmöglich alle Daten aus der TranslAid-Datenbank gelöscht. Zudem wird TranslAid veranlassen, dass alle, die die Daten von TranslAid bekommen haben, die Daten ebenso unverzüglich löschen. Bitte beachten Sie, dass TranslAid danach keine weiteren Dienstleistungen für die Klient*innen durchführen kann. Hiermit bestätigen wir die betroffenen Klient*innen über die Verarbeitung von personenbezogenen Daten (wie Name, Vorname, Sprache) und die Möglichkeit auf Widerruf aufgeklärt, eine Zustimmung zur Verarbeitung der personenbezogenen Daten eingeholt zu haben sowie sorgsam mit den von den Klient*innen anvertrauten Daten umzugehen. Darüber hinaus verpflichtet wir uns dazu, die Kontaktdaten der Ehrenamtlichen von TranslAid nicht an Dritte weiterzugeben, sowie sie nur im Rahmen des jeweiligen Einsatzes und nur zur Detailabsprache zu kontaktieren. Eine Speicherung der Daten oder eigenständige Kontaktaufnahme unabhängig vom jeweiligen Fall ist nicht gestattet.</div>
+          <div class="description">
+            Soweit Sie TranslAid personenbezogene Daten von Klient*innen zur
+            Verfügung stellen, verwendet TranslAid diese nur zur Beantwortung
+            der Anfragen oder zur Abwicklung einer Begleitung durch eine*n
+            ehrenamtliche*n Sprachmittler*in. Die personenbezogenen Daten der
+            Klient*innen verbleiben bei TranslAid. Die Daten werden an Dritte
+            nur weitergegeben oder sonst übermittelt, wenn diese zum Zwecke des
+            Dolmetsching-Einsatzes erforderlich ist oder die Klient*innen zuvor
+            eingewilligt haben. Es erfolgt keine Übermittlung von Daten an
+            Behörden. Die Klient*innen haben das Recht, eine erteilte
+            Einwilligung mit Wirkung für die Zukunft jederzeit zu widerrufen.
+            Der Widerruf ist an datenschutz@arrivalaid.org zu richten. Die
+            Löschung der gespeicherten personenbezogenen Daten erfolgt, wenn sie
+            ihre Einwilligung zur Speicherung widerrufen, wenn ihre Kenntnis zur
+            Erfüllung des mit der Speicherung verfolgten Zwecks nicht mehr
+            erforderlich ist oder wenn ihre Speicherung aus sonstigen
+            gesetzlichen Gründen unzulässig ist. Im Falle des Widerrufs, werden
+            schnellstmöglich alle Daten aus der TranslAid-Datenbank gelöscht.
+            Zudem wird TranslAid veranlassen, dass alle, die die Daten von
+            TranslAid bekommen haben, die Daten ebenso unverzüglich löschen.
+            Bitte beachten Sie, dass TranslAid danach keine weiteren
+            Dienstleistungen für die Klient*innen durchführen kann. Hiermit
+            bestätigen wir die betroffenen Klient*innen über die Verarbeitung
+            von personenbezogenen Daten (wie Name, Vorname, Sprache) und die
+            Möglichkeit auf Widerruf aufgeklärt, eine Zustimmung zur
+            Verarbeitung der personenbezogenen Daten eingeholt zu haben sowie
+            sorgsam mit den von den Klient*innen anvertrauten Daten umzugehen.
+            Darüber hinaus verpflichtet wir uns dazu, die Kontaktdaten der
+            Ehrenamtlichen von TranslAid nicht an Dritte weiterzugeben, sowie
+            sie nur im Rahmen des jeweiligen Einsatzes und nur zur
+            Detailabsprache zu kontaktieren. Eine Speicherung der Daten oder
+            eigenständige Kontaktaufnahme unabhängig vom jeweiligen Fall ist
+            nicht gestattet.
+          </div>
           <div class="option">
             <label
               ><input
@@ -589,11 +685,19 @@
             >
           </div>
         </div>
+        <div
+          class="g-recaptcha"
+          data-sitekey="6LcFksIZAAAAAOZLqCAWv9coxSivQHxRZAk9-2vG"
+          data-callback="recaptcha_callback"
+        ></div>
+        <br />
         <div class="form-button-wrapper form-button-wrapper--align-left">
           <input
+            id="submit"
             class="button sqs-system-button sqs-editable-button"
             type="submit"
             value="Senden"
+            disabled="true"
           />
         </div>
       </form>
