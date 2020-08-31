@@ -28,6 +28,7 @@
     <members>Lexer</members>
     <members>MeineAnfragen</members>
     <members>MeineAnfragenError</members>
+    <members>MeineUrlaub</members>
     <members>OpportunityActions</members>
     <members>OpportunityTriggerHandler</members>
     <members>OpportunityTriggerTest</members>
@@ -37,6 +38,7 @@
     <members>Test_Field</members>
     <members>Test_Lexer</members>
     <members>Test_MeineAnfragen</members>
+    <members>Test_MeinUrlaub</members>
     <members>Test_SearchBoxController</members>
     <members>TranslAidMapController</members>
     <members>TranslAidMapControllerTest</members>
