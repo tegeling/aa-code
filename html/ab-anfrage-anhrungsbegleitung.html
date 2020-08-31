@@ -1,11 +1,11 @@
 <style>
   div.select {
     position: relative;
-    margin: 0 0 16px;
+    margin: 0 0 24px;
   }
   div.text {
     position: relative;
-    margin: 0 0 16px;
+    margin: 0 0 24px;
   }
   div.option {
     margin: 6px 0 4px;
@@ -19,7 +19,7 @@
     background: #fafafa;
     color: #000;
     font-family: sans-serif;
-    font-size: 16px;
+    font-size: 12px;
     line-height: normal;
     box-sizing: border-box;
     border-radius: 2px;
@@ -29,7 +29,7 @@
     font-size: 12px;
     opacity: 0.7;
     display: block;
-    white-space: pre-wrap;
+    white-space: normal;
   }
   textarea.text {
     width: 100%;
@@ -46,12 +46,10 @@
   }
   label.title {
     display: block;
-    font-size: 20px;
   }
   select {
     margin: 6px 0 4px;
     max-width: 100%;
-    font-size: 18px;
   }
 </style>
 
@@ -66,133 +64,76 @@
         <input
           type="hidden"
           name="retURL"
-          value="https://www.translaid.org/anfrage-besttigung"
+          value="https://www.arrivalaid-muenchen.org/antwort-anfrage-anhrungs-oder-klagebegleitung"
         />
         <input
           type="hidden"
           name="lead_source"
-          value="TranslAid Webformular Anfrage Vermittlung"
+          value="ArrivalAid München Website deutsch"
         />
-        <input type="hidden" name="recordType" value="0121p0000006yF0" />
+        <input type="hidden" name="recordType" value="0121p000000kRS3" />
         <input type="hidden" name="00N2400000JC8Ev" value="0" />
 
-        <div id="00N1p00000JlMFx-div" class="select">
-          <label class="title" for="00N1p00000JlMFx"
-            >Ihre Anrede<span class="required">*</span></label
-          >
-          <select name="00N1p00000JlMFx" id="00N1p00000JlMFx" required>
-            <option value=""></option>
-            <option value="Herr">Herr</option>
-            <option value="Frau">Frau</option>
-          </select>
-        </div>
-        <div id="00N1p00000JDbGs-div" class="text">
-          <label class="title" for="00N1p00000JDbGs"
-            >Ihr Vorname<span class="required">*</span></label
-          >
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JDbGs"
-            name="00N1p00000JDbGs"
-            maxlength="40"
-            required
-          />
-        </div>
-        <div id="00N1p00000JDbGn-div" class="text">
-          <label class="title" for="00N1p00000JDbGn"
-            >Ihr Nachname<span class="required">*</span></label
-          >
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JDbGn"
-            name="00N1p00000JDbGn"
-            maxlength="80"
-            required
-          />
-        </div>
-        <div id="00N1p00000JlKyb-div" class="text">
-          <label class="title" for="00N1p00000JlKyb"
-            >Name Ihrer Organisation</label
-          >
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JlKyb"
-            name="00N1p00000JlKyb"
-            maxlength="40"
-          />
-        </div>
-        <div id="00N1p00000JDbGx-div" class="text">
-          <label class="title" for="00N1p00000JDbGx"
-            >Ihre E-Mail-Adresse<span class="required">*</span></label
-          >
-          <input
-            class="text"
-            type="email"
-            id="00N1p00000JDbGx"
-            name="00N1p00000JDbGx"
-            maxlength="80"
-            required
-          />
-        </div>
-        <div id="00N1p00000JDbH2-div" class="text">
-          <label class="title" for="00N1p00000JDbH2"
-            >Ihre Handynummer<span class="required">*</span></label
-          >
-          <div class="description">(Nur Ziffern, keine Sonderzeichen oder Leerzeichen!)</div>
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JDbH2"
-            name="00N1p00000JDbH2"
-            maxlength="40"
-            required
-          />
-        </div>
         <div id="salutation-div" class="select">
           <label class="title" for="salutation"
-            >Anrede Klient*in<span class="required">*</span></label
+            >Anrede <span class="required">*</span></label
           >
           <select name="salutation" id="salutation" required>
             <option value=""></option>
             <option value="Herr">Herr</option>
             <option value="Frau">Frau</option>
+            <option value="Dr.">Dr.</option>
+            <option value="Prof.">Prof.</option>
+            <option value="Divers">Divers</option>
           </select>
         </div>
         <div id="first_name-div" class="text">
           <label class="title" for="first_name"
-            >Vorname Klient*in<span class="required">*</span></label
+            >Vorname Asylsuchende/r <span class="required">*</span></label
           >
           <input
             class="text"
             type="text"
             id="first_name"
             name="first_name"
-            maxlength="40"
             required
           />
         </div>
         <div id="last_name-div" class="text">
           <label class="title" for="last_name"
-            >Nachname Klient*in<span class="required">*</span></label
+            >Nachname Asylsuchende/r <span class="required">*</span></label
           >
           <input
             class="text"
             type="text"
             id="last_name"
             name="last_name"
-            maxlength="80"
             required
           />
         </div>
+        <div id="zip-div" class="text">
+          <label class="title" for="zip">PLZ Aufenthaltsort</label>
+          <input
+            class="text"
+            type="text"
+            id="zip"
+            name="zip"
+            pattern="[0-9]{5}"
+          />
+        </div>
+        <div id="00N1p00000JDbEm-div" class="text">
+          <label class="title" for="00N1p00000JDbEm">Alter (Jahre)</label>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JDbEm"
+            name="00N1p00000JDbEm"
+            pattern="[0-9]{2}"
+          />
+        </div>
         <div id="00N1p00000JDbEr-div" class="select">
-          <label class="title" for="00N1p00000JDbEr"
-            >Herkunftsland/Ethnie<span class="required">*</span></label
-          >
-          <div class="description">Die Auskunft ist nötig für die Vermittlung passender ehrenamtlicher Sprachmittler*innen. Andere Angaben bitte unter <b>Haben Sie sonst noch Fragen?</b> eintragen</div>
-          <select name="00N1p00000JDbEr" id="00N1p00000JDbEr" required>
+          <label class="title" for="00N1p00000JDbEr">Herkunftsland </label>
+          <select name="00N1p00000JDbEr" id="00N1p00000JDbEr">
             <option value=""></option>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Ägypten">Ägypten</option>
@@ -409,146 +350,181 @@
             <option value="Zypern">Zypern</option>
           </select>
         </div>
-        <div id="email-div" class="text">
-          <label class="title" for="email"
-            >E-Mail-Adresse des*der Klient*in</label
-          >
-          <input
-            class="text"
-            type="email"
-            id="email"
-            name="email"
-            maxlength="80"
-          />
-        </div>
-        <div id="mobile-div" class="text">
-          <label class="title" for="mobile"
-            >Handynummer des*der Klient*in</label
-          >
-          <div class="description">(Nur Ziffern, keine Sonderzeichen oder Leerzeichen!) Die Handynummer ist wichtig für die Kontaktaufnahme der ehrenamtlichen Sprachmittler*innen mit den Klient*innen falls sie sich vor Ort nicht finden oder vorab etwas klären müssen.</div>
+        <div id="00N1p00000JDbGJ-div" class="text">
+          <label class="title" for="00N1p00000JDbGJ">Muttersprache</label>
           <input
             class="text"
             type="text"
-            id="mobile"
-            name="mobile"
-            maxlength="40"
+            id="00N1p00000JDbGJ"
+            name="00N1p00000JDbGJ"
           />
         </div>
-        <div id="00N1p00000JMCBm-div" class="select">
-          <label class="title" for="00N1p00000JMCBm"
-            >Ist der*die Klient*in minderjährig?<span class="required"
-              >*</span
-            ></label
+        <div id="00N1p00000JDbGO-div" class="text">
+          <label class="title" for="00N1p00000JDbGO"
+            >Weitere Sprachkenntnisse, in der eine Vorbereitung möglich
+            ist</label
           >
-          <select name="00N1p00000JMCBm" id="00N1p00000JMCBm" required>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JDbGO"
+            name="00N1p00000JDbGO"
+          />
+        </div>
+        <div id="00N1p00000JDbGT-div" class="select">
+          <label class="title" for="00N1p00000JDbGT"
+            >Sprachmittler erforderlich?
+          </label>
+          <div class="description">
+            Ist ein Sprachmittler für die Vorbereitungsgespräche erforderlich?
+            Wenn ja, können wir versuchen einen Sprachmittler zu stellen. Aus
+            Kapazitätsgründen bitten wir Sie jedoch, falls möglich, um die
+            Organisation einer geeigneten Person.
+          </div>
+          <select name="00N1p00000JDbGT" id="00N1p00000JDbGT">
             <option value="0">Nein</option>
             <option value="1">Ja</option>
           </select>
         </div>
-        <div id="00N1p00000JMBkR-div" class="text">
-          <label class="title" for="00N1p00000JMBkR"
-            >Gesuchte Sprache<span class="required">*</span></label
+        <div id="email-div" class="text">
+          <label class="title" for="email"
+            >E-Mail-Adresse Asylsuchende/r
+            <span class="required">*</span></label
           >
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JMBkR"
-            name="00N1p00000JMBkR"
-            maxlength="255"
-            required
-          />
+          <input class="text" type="email" id="email" name="email" required />
+        </div>
+        <div id="mobile-div" class="text">
+          <label class="title" for="mobile">Telefonnummer</label>
+          <div class="description">
+            (Nur Ziffern, keine Sonderzeichen oder Leerzeichen!)
+          </div>
+          <input class="text" type="text" id="mobile" name="mobile" />
+        </div>
+        <div id="00N2400000JC8G8-div" class="select">
+          <label class="title" for="00N2400000JC8G8"
+            >Art des Termins beim BAMF/Gericht
+            <span class="required">*</span></label
+          >
+          <div class="description">
+            Bitte prüfen Sie unbedingt, ob das Schreiben an den Asylsuchenden
+            eine Einladung zur Anhörung, zum beschleunigten Verfahren, zur
+            Aktenanlage oder zum Dublin-Verfahren ist. Wenn Sie unsicher sind,
+            können Sie uns gern mit separater E-Mail an
+            begleitung(at)arrivalaid.org ein Foto oder das eingescannte Bild der
+            Einladung schicken. Bitte beachten Sie, dass wir für Antragstellung,
+            Aktenanlage oder Dublin-Interview nur in Ausnahmefällen
+            Unterstützung anbieten können.
+          </div>
+          <select name="00N2400000JC8G8" id="00N2400000JC8G8" required>
+            <option value="Anhörung">Anhörung</option>
+            <option value="Klageverfahren">Klageverfahren</option>
+            <option value="Überprüfungsverfahren">Überprüfungsverfahren</option>
+          </select>
         </div>
         <div id="00N1p00000JDbGd-div" class="text">
           <label class="title" for="00N1p00000JDbGd"
-            >Datum des Termins<span class="required">*</span></label
+            >Datum des Termins (falls vorhanden)</label
           >
-          <div class="description">Bei den meisten Sprachen können wir wesentlich einfacher helfen, wenn der Termin am späten Nachmittag/Abend ist. Bitte versuchen Sie nach Möglichkeit die Termine entsprechend zu legen!</div>
+          <div class="description">
+            Wann ist der Termin beim Bundesamt für Migration und Flüchtlinge
+            (BAMF)? Sie können sich bzw. Ihren Schützling auch ohne einen
+            konkreten Anhörungstermin anmelden. In diesem Fall lassen Sie das
+            Feld bitte einfach leer.
+          </div>
           <input
             class="text"
             type="text"
             id="00N1p00000JDbGd"
             name="00N1p00000JDbGd"
             placeholder="TT.MM.JJJJ"
-            pattern="\d{2}.\d{2}.\d{4}"
-            required
           />
         </div>
-        <div id="00N1p00000JMCBr-div" class="text">
-          <label class="title" for="00N1p00000JMCBr"
-            >Uhrzeit des Termins<span class="required">*</span></label
-          >
-          <input
-            class="text"
-            type="time"
-            id="00N1p00000JMCBr"
-            name="00N1p00000JMCBr"
-            maxlength="255"
-            required
-          />
-        </div>
-        <div id="00N1p00000JMCBw-div" class="text">
-          <label class="title" for="00N1p00000JMCBw"
-            >Um was genau geht es bei dem Termin?<span class="required"
-              >*</span
-            ></label
-          >
-          <div class="description">Bitte beschreiben Sie möglichst genau, um was es geht und was passieren wird, damit der*die Sprachmittler*in sich auf den Termin einstellen und vorbereiten kann. (Nur "Arzttermin" oder "Termin beim Orthopäden" ist nicht ausreichend!)</div>
-          <textarea
-            class="text"
-            type="text"
-            id="00N1p00000JMCBw"
-            name="00N1p00000JMCBw"
-            required
-          ></textarea>
-        </div>
-        <div id="00N1p00000JMCC1-div" class="text">
-          <label class="title" for="00N1p00000JMCC1"
-            >Wo findet der Termin statt?<span class="required">*</span></label
-          >
-          <div class="description">Bitte nennen Sie die Adresse und auch einen genauen Treffpunkt vor Ort, an dem der*die ehrenamtliche Sprachmittler*in den*die Klient*in treffen kann.</div>
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JMCC1"
-            name="00N1p00000JMCC1"
-            maxlength="255"
-            required
-          />
-        </div>
-        <div id="00N1p00000JMCC6-div" class="text">
-          <label class="title" for="00N1p00000JMCC6"
-            >Wie lange dauert der Termin in etwa?<span class="required"
-              >*</span
-            ></label
-          >
-          <div class="description">Bitte beachten Sie, dass lange Termine seltener übernommen werden. Außerdem ist wichtig, dass die Ehrenamtlichen nur für die hier angegebene Zeit zur Verfügung stehen und oft im Anschluss weitere Termine haben.</div>
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JMCC6"
-            name="00N1p00000JMCC6"
-            maxlength="255"
-            required
-          />
-        </div>
-        <div id="00N1p00000JMCCB-div" class="select">
-          <label class="title" for="00N1p00000JMCCB"
-            >Suchen Sie speziell eine Frau oder einen Mann?<span
-              class="required"
-              >*</span
-            ></label
-          >
-          <div class="description">Die Wahrscheinlichkeit, dass wir eine passende Person finden verringert sich leider durch diese Auswahl.</div>
-          <select name="00N1p00000JMCCB" id="00N1p00000JMCCB" required>
-            <option value="Egal">Egal</option>
-            <option value="Frau">Frau</option>
-            <option value="Mann">Mann</option>
+        <div id="00N1p00000JDbGi-div" class="select">
+          <label class="title" for="00N1p00000JDbGi"
+            >Ist eine Anhörungsvorbereitung in München möglich?
+          </label>
+          <select name="00N1p00000JDbGi" id="00N1p00000JDbGi">
+            <option value="1">Ja</option>
+            <option value="0">Nein</option>
           </select>
         </div>
-        <div id="00N1p00000JDbH7-div" class="text">
-          <label class="title" for="00N1p00000JDbH7"
-            >Haben Sie sonst noch Fragen?</label
+        <div id="00N1p00000JlKyb-div" class="text">
+          <label class="title" for="00N1p00000JlKyb"
+            >Name der vermittelnden Organisation (falls zutreffend)</label
           >
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JlKyb"
+            name="00N1p00000JlKyb"
+          />
+        </div>
+        <div id="00N1p00000JlMFx-div" class="select">
+          <label class="title" for="00N1p00000JlMFx"
+            >Anrede Vermittler/in<span class="required">*</span></label
+          >
+          <select name="00N1p00000JlMFx" id="00N1p00000JlMFx" required>
+            <option value=""></option>
+            <option value="Herr">Herr</option>
+            <option value="Frau">Frau</option>
+            <option value="Dr.">Dr.</option>
+            <option value="Prof.">Prof.</option>
+            <option value="Divers">Divers</option>
+          </select>
+        </div>
+        <div id="00N1p00000JDbGs-div" class="text">
+          <label class="title" for="00N1p00000JDbGs"
+            >Vorname Vermittler/in<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JDbGs"
+            name="00N1p00000JDbGs"
+            required
+          />
+        </div>
+        <div id="00N1p00000JDbGn-div" class="text">
+          <label class="title" for="00N1p00000JDbGn"
+            >Nachname Vermittler/in<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JDbGn"
+            name="00N1p00000JDbGn"
+            required
+          />
+        </div>
+        <div id="00N1p00000JDbGx-div" class="text">
+          <label class="title" for="00N1p00000JDbGx"
+            >E-Mail-Adresse Vermittler/in<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="email"
+            id="00N1p00000JDbGx"
+            name="00N1p00000JDbGx"
+            required
+          />
+        </div>
+        <div id="00N1p00000JDbH2-div" class="text">
+          <label class="title" for="00N1p00000JDbH2"
+            >Telefonnummer Vermittler/in</label
+          >
+          <div class="description">
+            (Nur Ziffern, keine Sonderzeichen oder Leerzeichen!)
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JDbH2"
+            name="00N1p00000JDbH2"
+          />
+        </div>
+        <div id="00N1p00000JDbH7-div" class="text">
+          <label class="title" for="00N1p00000JDbH7">Nachricht</label>
+          <div class="description">Möchten Sie uns noch etwas mitteilen?</div>
           <textarea
             class="text"
             type="text"
@@ -556,13 +532,42 @@
             name="00N1p00000JDbH7"
           ></textarea>
         </div>
+        <div id="00N1p00000JDbHC-div" class="text">
+          <label class="title" for="00N1p00000JDbHC">Bestätigung</label>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N1p00000JDbHC"
+                name="00N1p00000JDbHC"
+                value="1"
+                required
+              />
+              Ich bestätige, den Flüchtling über die hier dargestellte Tätigkeit
+              von ArrivalAid informiert zu haben und in seinem/ihrem Auftrag
+              nach gemeinsamer Absprache zu handeln.</label
+            >
+          </div>
+        </div>
         <div id="00N1p00000JDbHH-div" class="text">
           <label class="title" for="00N1p00000JDbHH"
-            >Datenschutzerklärung für Klient*in<span class="required"
-              >*</span
-            ></label
+            >Datenschutz <span class="required">*</span></label
           >
-          <div class="description">Soweit Sie TranslAid personenbezogene Daten von Klient*innen zur Verfügung stellen, verwendet TranslAid diese nur zur Beantwortung der Anfragen oder zur Abwicklung einer Begleitung durch eine*n ehrenamtliche*n Sprachmittler*in. Die personenbezogenen Daten der Klient*innen verbleiben bei TranslAid. Die Daten werden an Dritte nur weitergegeben oder sonst übermittelt, wenn diese zum Zwecke des Dolmetsching-Einsatzes erforderlich ist oder die Klient*innen zuvor eingewilligt haben. Es erfolgt keine Übermittlung von Daten an Behörden. Die Klient*innen haben das Recht, eine erteilte Einwilligung mit Wirkung für die Zukunft jederzeit zu widerrufen. Der Widerruf ist an datenschutz@arrivalaid.org zu richten. Die Löschung der gespeicherten personenbezogenen Daten erfolgt, wenn sie ihre Einwilligung zur Speicherung widerrufen, wenn ihre Kenntnis zur Erfüllung des mit der Speicherung verfolgten Zwecks nicht mehr erforderlich ist oder wenn ihre Speicherung aus sonstigen gesetzlichen Gründen unzulässig ist. Im Falle des Widerrufs, werden schnellstmöglich alle Daten aus der TranslAid-Datenbank gelöscht. Zudem wird TranslAid veranlassen, dass alle, die die Daten von TranslAid bekommen haben, die Daten ebenso unverzüglich löschen. Bitte beachten Sie, dass TranslAid danach keine weiteren Dienstleistungen für die Klient*innen durchführen kann. Hiermit bestätigen wir die betroffenen Klient*innen über die Verarbeitung von personenbezogenen Daten (wie Name, Vorname, Sprache) und die Möglichkeit auf Widerruf aufgeklärt, eine Zustimmung zur Verarbeitung der personenbezogenen Daten eingeholt zu haben sowie sorgsam mit den von den Klient*innen anvertrauten Daten umzugehen. Darüber hinaus verpflichtet wir uns dazu, die Kontaktdaten der Ehrenamtlichen von TranslAid nicht an Dritte weiterzugeben, sowie sie nur im Rahmen des jeweiligen Einsatzes und nur zur Detailabsprache zu kontaktieren. Eine Speicherung der Daten oder eigenständige Kontaktaufnahme unabhängig vom jeweiligen Fall ist nicht gestattet.</div>
+          <div class="description">
+            Soweit Sie uns personenbezogene Daten zur Verfügung gestellt haben,
+            verwenden wir diese nur zur Beantwortung Ihrer Anfragen oder zur
+            Abwicklung einer Anhörungsbegleitung. Ihre personenbezogenen Daten
+            verbleiben bei ArrivalAid. Ihre Daten werden an Dritte nur
+            weitergegeben oder sonst übermittelt, wenn dies zum Zwecke der
+            Anhörungsbegleitung erforderlich ist oder Sie zuvor eingewilligt
+            haben. Es erfolgt keine Übermittlung von Daten an Behörden. Sie
+            haben das Recht, eine erteilte Einwilligung mit Wirkung für die
+            Zukunft jederzeit zu widerrufen. Die Löschung der gespeicherten
+            personenbezogenen Daten erfolgt, wenn Sie Ihre Einwilligung zur
+            Speicherung widerrufen, wenn ihre Kenntnis zur Erfüllung des mit der
+            Speicherung verfolgten Zwecks nicht mehr erforderlich ist oder wenn
+            ihre Speicherung aus sonstigen gesetzlichen Gründen unzulässig ist.
+          </div>
           <div class="option">
             <label
               ><input
@@ -572,23 +577,11 @@
                 value="1"
                 required
               />
-              Ich stimme der Datenschutzerklärung zu.</label
+              Mit den Richtlinien zum Datenschutz bin ich einverstanden.</label
             >
           </div>
         </div>
-        <div id="00N1p00000JMZdG-div" class="text">
-          <div class="option">
-            <label
-              ><input
-                type="checkbox"
-                id="00N1p00000JMZdG"
-                name="00N1p00000JMZdG"
-                value="1"
-              />
-              Eine Kopie meiner Antworten an mich senden.</label
-            >
-          </div>
-        </div>
+
         <div class="form-button-wrapper form-button-wrapper--align-left">
           <input
             class="button sqs-system-button sqs-editable-button"
