@@ -54,6 +54,18 @@ public with sharing class Test_MeineAnfragen {
       Einsatzradius_km__c = 100
     );
     insert dolmetscher;
+    Date urlaub1Datum = date.newInstance(2020, 1, 30);
+    Date urlaub2Datum = date.newInstance(2020, 1, 31);
+    Urlaub__c urlaub1 = new Urlaub__c(
+      Contact__c = dolmetscher.Id,
+      Datum__c = urlaub1Datum
+    );
+    insert urlaub1;
+    Urlaub__c urlaub2 = new Urlaub__c(
+      Contact__c = dolmetscher.Id,
+      Datum__c = urlaub2Datum
+    );
+    insert urlaub2;
     String uniqueUserName = 'dolmetscher@community.com';
     Profile p = [
       SELECT Id

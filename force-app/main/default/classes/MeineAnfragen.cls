@@ -16,6 +16,7 @@ global with sharing class MeineAnfragen {
     Boolean filterByFormat = false;
     Boolean filterByStandort = false;
     Boolean filterByZugewiesen = false;
+    Boolean filterByUrlaub = false;
     // define Format combinations to allow multiselect picklist matches
     List<String> formatPersoenlich = new List<String>{
       'persönlich;telefonisch;schriftlich;per Video',
@@ -67,6 +68,7 @@ global with sharing class MeineAnfragen {
       filterByFormat = filter.contains('TranslAid_Einsatz_Format__c');
       filterByStandort = filter.contains('Termin_Standort__c');
       filterByZugewiesen = filter.contains('Zugewiesen__c');
+      filterByUrlaub = filter.contains('Urlaub__c');
     } catch (Exception ex) {
       res.statusCode = 400;
       MeineAnfragenError[] errs = new List<MeineAnfragenError>{
@@ -230,8 +232,35 @@ global with sharing class MeineAnfragen {
       orderByClause;
     System.debug('#### query: ' + query);
     result = Database.query(query);
-    res.statusCode = 200;
-    res.headers.put('Content-Type', 'application/json');
-    res.responseBody = Blob.valueOf(JSON.serialize(result));
+
+    // Urlaub Filter
+    if (filterByAll || filterByUrlaub) {
+      // query all Urlaub__c records in a Set of dates
+      List<TranslAid_Anfrage__c> resultWithoutUrlaub = new List<TransLaid_Anfrage__c>();
+      Set<Date> urlaubSet = new Set<Date>();
+      List<Urlaub__c> urlaubList = [
+        SELECT Datum__c
+        FROM Urlaub__c
+        WHERE Contact__c = :u.ContactId
+        WITH SECURITY_ENFORCED
+      ];
+      for (Urlaub__c currentUrlaub : urlaubList) {
+        urlaubSet.add(currentUrlaub.Datum__c);
+      }
+
+      // iterate for each Anfrage and check if date is a match with Urlaub
+      for (TranslAid_Anfrage__c currentAnfrage : result) {
+        if (!urlaubSet.contains(currentAnfrage.Termin_Datum__c)) {
+          resultWithoutUrlaub.add(currentAnfrage);
+        }
+      }
+      res.statusCode = 200;
+      res.headers.put('Content-Type', 'application/json');
+      res.responseBody = Blob.valueOf(JSON.serialize(resultWithoutUrlaub));
+    } else {
+      res.statusCode = 200;
+      res.headers.put('Content-Type', 'application/json');
+      res.responseBody = Blob.valueOf(JSON.serialize(result));
+    }
   }
 }
