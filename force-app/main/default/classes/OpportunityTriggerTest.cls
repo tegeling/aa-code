@@ -47,12 +47,15 @@ public class OpportunityTriggerTest {
     );
     insert standort;
     date myCloseDate = date.newInstance(2020, 1, 30);
+    Time myTime = Time.newInstance(10, 0, 0, 0);
     Opportunity vermittlung = new Opportunity(
       Name = 'Vermittlung',
       AccountId = klient.Id,
       RecordTypeId = vermittlungRecordTypeId,
       StageName = 'Open',
       CloseDate = myCloseDate,
+      Termin_Beginn__c = myTime,
+      Termin_Dauer_min__c = 60,
       Datenschutz__c = true,
       Termin_Standort__c = standort.Id
     );
@@ -60,9 +63,9 @@ public class OpportunityTriggerTest {
 
     vermittlung.Fallnummer2__c = '1';
     vermittlung.Sprachen__c = 'Arabisch';
-    vermittlung.Termin_Datum__c = myCloseDate;
-    vermittlung.Uhrzeit__c = '10:00 Uhr';
-    vermittlung.Termin_Dauer__c = '1 Stunde';
+    vermittlung.CloseDate = myCloseDate;
+    vermittlung.Termin_Beginn__c = Time.newInstance(11, 0, 0, 0);
+    vermittlung.Termin_Dauer_min__c = 90;
     vermittlung.Termin_Details__c = 'Details';
     vermittlung.Termin_Adresse__c = 'Adresse';
     Test.startTest();
@@ -74,7 +77,7 @@ public class OpportunityTriggerTest {
       WHERE Id = :vermittlung.Id
     ];
     System.assertEquals(
-      'Fall: 1<br>Arabisch<br><b>am 30.01.2020 um 10:00 Uhr (1 Stunde)</b><br>Details<br>Strasse 1<br>12345 Stadt<br>',
+      'Fall: 1<br>Arabisch<br><b>am 30.01.2020 um 11:00 Uhr (90 Min)</b><br>Details<br>Strasse 1<br>12345 Stadt<br>',
       o.Dolmetscher_Email__c
     );
   }

@@ -10,22 +10,28 @@ public without sharing class OpportunityActions {
       if (o.RecordTypeId == translaidRecordTypeId) {
         o.Dolmetscher_Email__c = 'Fall: ' + o.Fallnummer2__c + '<br>';
         o.Dolmetscher_Email__c += o.Sprachen__c + '<br>';
-        if (o.Termin_Datum__c != null) {
+        String beginn = '';
+        if (o.Termin_Beginn__c != null) {
+          // 10:00:00.000
+          beginn += o.Termin_Beginn__c;
+          beginn = beginn.left(beginn.lastIndexOf(':'));
+        }
+        if (o.CloseDate != null) {
           o.Dolmetscher_Email__c +=
             '<b>am ' +
-            o.Termin_Datum__c.format() +
+            o.CloseDate.format() +
             ' um ' +
-            o.Uhrzeit__c +
-            ' (' +
-            o.Termin_Dauer__c +
-            ')</b><br>';
+            beginn +
+            ' Uhr (' +
+            o.Termin_Dauer_min__c +
+            ' Min)</b><br>';
         } else {
           o.Dolmetscher_Email__c +=
             '<b>um ' +
-            o.Uhrzeit__c +
-            ' (' +
-            o.Termin_Dauer__c +
-            ')</b><br>';
+            beginn +
+            ' Uhr (' +
+            o.Termin_Dauer_min__c +
+            ' Min)</b><br>';
         }
         o.Dolmetscher_Email__c += o.Termin_Details__c + '<br>';
         String adresse = '';
