@@ -16,6 +16,7 @@ global with sharing class MeineAnfragen {
     Boolean filterByFormat = false;
     Boolean filterByStandort = false;
     Boolean filterByZugewiesen = false;
+    Boolean filterByVerf_gbarkeit = false;
     Boolean filterByUrlaub = false;
     // define Format combinations to allow multiselect picklist matches
     List<String> formatPersoenlich = new List<String>{
@@ -69,6 +70,7 @@ global with sharing class MeineAnfragen {
       filterByStandort = filter.contains('Termin_Standort__c');
       filterByZugewiesen = filter.contains('Zugewiesen__c');
       filterByUrlaub = filter.contains('Urlaub__c');
+      filterByVerf_gbarkeit = filter.contains('Termin_Verf_gbarkeit__c');
     } catch (Exception ex) {
       res.statusCode = 400;
       MeineAnfragenError[] errs = new List<MeineAnfragenError>{
@@ -97,7 +99,8 @@ global with sharing class MeineAnfragen {
         Individueller_Einsatz_Standort__c,
         Einsatz_Standort__Latitude__s,
         Einsatz_Standort__Longitude__s,
-        Einsatzradius_km__c
+        Einsatzradius_km__c,
+        Verf_gbarkeit__c
       FROM Contact
       WHERE Id = :u.ContactId
       WITH SECURITY_ENFORCED
@@ -177,6 +180,28 @@ global with sharing class MeineAnfragen {
       formateFilter += ')';
       criteria.add(formateFilter);
     }
+
+    // Verf_gbarkeit Filter Filter
+    if (
+      (c.Verf_gbarkeit__c != null) && (filterByAll || filterByVerf_gbarkeit)
+    ) {
+      String verf_gbarkeitFilter = '';
+      List<String> verf_ugbarkeit = c.Verf_gbarkeit__c.split(';');
+      integer count = 0;
+      if (verf_ugbarkeit.size() > 0) {
+        verf_gbarkeitFilter = 'Termin_Verf_gbarkeit__c IN (';
+        while (count < verf_ugbarkeit.size()) {
+          verf_gbarkeitFilter += '\'' + verf_ugbarkeit.get(count) + '\'';
+          count++;
+          if (count < verf_ugbarkeit.size()) {
+            verf_gbarkeitFilter += ',';
+          }
+        }
+        verf_gbarkeitFilter += ')';
+        criteria.add(verf_gbarkeitFilter);
+      }
+    }
+
     // Standort Filter
     // WHERE+DISTANCE(Termin_Standort__c,+GEOLOCATION(48.14294,11.541777),'km')<50
 
@@ -226,7 +251,8 @@ global with sharing class MeineAnfragen {
       'Termin_Datum__c, ' +
       'Termin_Dauer__c, ' +
       'Termin_Dauer_min__c, ' +
-      'Uhrzeit__c ' +
+      'Uhrzeit__c, ' +
+      'Termin_Verf_gbarkeit__c ' +
       'FROM TranslAid_Anfrage__c ' +
       whereClause +
       orderByClause;
