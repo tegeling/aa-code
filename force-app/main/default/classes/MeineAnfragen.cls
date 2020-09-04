@@ -252,6 +252,7 @@ global with sharing class MeineAnfragen {
       'Termin_Dauer__c, ' +
       'Termin_Dauer_min__c, ' +
       'Uhrzeit__c, ' +
+      'Termin_Beginn__c, ' +
       'Termin_Verf_gbarkeit__c ' +
       'FROM TranslAid_Anfrage__c ' +
       whereClause +
