@@ -31,13 +31,6 @@ public without sharing class OpportunityActions {
             ' Uhr (' +
             o.Termin_Dauer_min__c +
             ' Min)</b><br>';
-        } else {
-          o.Dolmetscher_Email__c +=
-            '<b>um ' +
-            beginn +
-            ' Uhr (' +
-            o.Termin_Dauer_min__c +
-            ' Min)</b><br>';
         }
         o.Dolmetscher_Email__c += o.Termin_Details__c + '<br>';
         String adresse = '';
@@ -184,22 +177,10 @@ public without sharing class OpportunityActions {
         (curOpportunity.TranslAid_Kategorie__c != null) && (r.filterByKategorie)
       ) {
         String kategorienFilter = '';
-        List<String> kategorien = curOpportunity.TranslAid_Kategorie__c.split(
-          ';'
-        );
-        integer count = 0;
-        if (kategorien.size() > 0) {
-          kategorienFilter = 'TranslAid_Kategorie__c INCLUDES (';
-          while (count < kategorien.size()) {
-            kategorienFilter += '\'' + kategorien.get(count) + '\'';
-            count++;
-            if (count < kategorien.size()) {
-              kategorienFilter += ',';
-            }
-          }
-          kategorienFilter += ')';
-          criteria.add(kategorienFilter);
-        }
+        kategorienFilter = 'TranslAid_Kategorie__c INCLUDES (';
+        kategorienFilter += '\'' + curOpportunity.TranslAid_Kategorie__c + '\'';
+        kategorienFilter += ')';
+        criteria.add(kategorienFilter);
       }
 
       // Format Filter
