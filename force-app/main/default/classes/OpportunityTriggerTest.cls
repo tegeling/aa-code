@@ -47,22 +47,25 @@ public class OpportunityTriggerTest {
     );
     insert standort;
     date myCloseDate = date.newInstance(2020, 1, 30);
+    Time myTime = Time.newInstance(10, 0, 0, 0);
     Opportunity vermittlung = new Opportunity(
       Name = 'Vermittlung',
       AccountId = klient.Id,
       RecordTypeId = vermittlungRecordTypeId,
       StageName = 'Open',
       CloseDate = myCloseDate,
+      Termin_Beginn__c = myTime,
+      Termin_Dauer_min__c = 60,
       Datenschutz__c = true,
       Termin_Standort__c = standort.Id
     );
     insert vermittlung;
 
+    vermittlung.CloseDate = myCloseDate;
     vermittlung.Fallnummer2__c = '1';
     vermittlung.Sprachen__c = 'Arabisch';
-    vermittlung.Termin_Datum__c = myCloseDate;
-    vermittlung.Uhrzeit__c = '10:00 Uhr';
-    vermittlung.Termin_Dauer__c = '1 Stunde';
+    vermittlung.Termin_Beginn__c = Time.newInstance(11, 0, 0, 0);
+    vermittlung.Termin_Dauer_min__c = 90;
     vermittlung.Termin_Details__c = 'Details';
     vermittlung.Termin_Adresse__c = 'Adresse';
     Test.startTest();
@@ -74,13 +77,13 @@ public class OpportunityTriggerTest {
       WHERE Id = :vermittlung.Id
     ];
     System.assertEquals(
-      'Fall: 1<br>Arabisch<br><b>am 30.01.2020 um 10:00 Uhr (1 Stunde)</b><br>Details<br>Strasse 1<br>12345 Stadt<br>',
+      'Fall: 1<br>Arabisch<br><b>am 30.01.2020 um 11:00 Uhr (90 Min)</b><br>Details<br>Strasse 1<br>12345 Stadt<br>',
       o.Dolmetscher_Email__c
     );
   }
 
   @isTest
-  static void testCreateTranslAidCampaign() {
+  static void testCreateTranslAidCampaignWithFilters() {
     // Get Record Type Ids
     Id helferkreisRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName()
       .get('Helferkreis')
@@ -94,6 +97,9 @@ public class OpportunityTriggerTest {
     Id klientRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName()
       .get('Fluchtling')
       .getRecordTypeId();
+    Id standortRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName()
+      .get('Standort')
+      .getRecordTypeId();
 
     // create test records
     Account helferkreis = new Account(
@@ -106,10 +112,29 @@ public class OpportunityTriggerTest {
       FirstName = 'VornameSprachmittler1',
       LastName = 'NachnameSprachmittler1',
       RecordTypeId = ehrenamtRecordTypeId,
-      Sprachen__c = 'Arabisch;Bulgarisch',
-      Status_TranslAid__c = 'aktiv'
+      Sprachen__c = 'Arabisch;Englisch;Bulgarisch',
+      Status_TranslAid__c = 'aktiv',
+      Verf_gbarkeit__c = 'Do vormittags (8-12);Do sonst',
+      TranslAid_Kategorie__c = 'Amtstermine;sonstiges;medizinische Termine',
+      TranslAid_Einsatz_Format__c = 'persönlich;telefonisch;schriftlich;per Video',
+      Individueller_Einsatz_Standort__c = true,
+      Einsatz_Standort__Latitude__s = 48.14294,
+      Einsatz_Standort__Longitude__s = 11.541777,
+      Einsatzradius_km__c = 100
     );
     insert sprachmittler1;
+
+    Urlaub__c urlaub1 = new Urlaub__c(
+      Contact__c = sprachmittler1.Id,
+      Datum__c = date.newInstance(2020, 1, 1)
+    );
+    insert urlaub1;
+    Urlaub__c urlaub2 = new Urlaub__c(
+      Contact__c = sprachmittler1.Id,
+      Datum__c = date.newInstance(2020, 1, 2)
+    );
+    insert urlaub2;
+
     Contact sprachmittler2 = new Contact(
       AccountId = helferkreis.Id,
       FirstName = 'FirstSprachmittler2',
@@ -119,12 +144,44 @@ public class OpportunityTriggerTest {
       Status_TranslAid__c = 'kommt zur Einführung'
     );
     insert sprachmittler2;
+
+    Contact sprachmittler3 = new Contact(
+      AccountId = helferkreis.Id,
+      FirstName = 'VorSprach3',
+      LastName = 'NachSprachmittler3',
+      RecordTypeId = ehrenamtRecordTypeId,
+      Sprachen__c = 'Arabisch;Englisch;Bulgarisch',
+      Status_TranslAid__c = 'aktiv',
+      Verf_gbarkeit__c = 'Do vormittags (8-12);Do sonst',
+      TranslAid_Kategorie__c = 'Amtstermine;sonstiges;medizinische Termine',
+      TranslAid_Einsatz_Format__c = 'persönlich;telefonisch;schriftlich;per Video',
+      Individueller_Einsatz_Standort__c = true,
+      Einsatz_Standort__Latitude__s = 48.14294,
+      Einsatz_Standort__Longitude__s = 11.541777,
+      Einsatzradius_km__c = 100
+    );
+    insert sprachmittler3;
+
+    Urlaub__c urlaub3 = new Urlaub__c(
+      Contact__c = sprachmittler3.Id,
+      Datum__c = date.newInstance(2020, 1, 30)
+    );
+    insert urlaub3;
+
     Account klient = new Account(
       FirstName = 'VornameKlient',
       LastName = 'NachnameKlient',
       RecordTypeId = klientRecordTypeId
     );
     insert klient;
+
+    Account standort = new Account(
+      Name = '001',
+      RecordTypeId = standortRecordTypeId,
+      BillingLatitude = 48.14294,
+      BillingLongitude = 11.541777
+    );
+    insert standort;
 
     date myCloseDate = date.newInstance(2020, 1, 30);
     Opportunity vermittlung = new Opportunity(
@@ -134,14 +191,27 @@ public class OpportunityTriggerTest {
       StageName = 'Open',
       CloseDate = myCloseDate,
       Sprachen__c = 'Arabisch',
-      Datenschutz__c = true
+      Datenschutz__c = true,
+      TranslAid_Kategorie__c = 'Amtstermine',
+      TranslAid_Einsatz_Format__c = 'persönlich;telefonisch;schriftlich;per Video',
+      Termin_Standort__c = standort.Id
     );
     insert vermittlung;
-    List<Opportunity> opportunityList = new List<Opportunity>();
-    opportunityList.add(vermittlung);
+    TranslAidCampaignRequest requestItem = new TranslAidCampaignRequest();
+    requestItem.opportunityId = vermittlung.Id;
+    requestItem.notificationTitle = 'Title';
+    requestItem.notificationBody = 'Body';
+    requestItem.filterBySprachen = true;
+    requestItem.filterByKategorie = true;
+    requestItem.filterByFormat = true;
+    requestItem.filterByVerf_gbarkeit = true;
+    requestItem.filterByStandort = true;
+    requestItem.filterByUrlaub = true;
+    List<TranslAidCampaignRequest> request = new List<TranslAidCampaignRequest>();
+    request.add(requestItem);
     Test.startTest();
-    List<ID> campaigns = OpportunityActions.createTranslAidCampaign(
-      opportunityList
+    List<ID> campaigns = OpportunityActions.createTranslAidCampaignWithFilters(
+      request
     );
     Test.stopTest();
     List<Campaign> campaignsResult = [SELECT id FROM Campaign];
