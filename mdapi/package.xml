@@ -43,6 +43,7 @@
     <members>Test_MeineAnfragen</members>
     <members>Test_MeinUrlaub</members>
     <members>Test_SearchBoxController</members>
+    <members>TranslAidCampaignRequest</members>
     <members>TranslAidMapController</members>
     <members>TranslAidMapControllerTest</members>
     <members>jobMatcherController</members>
