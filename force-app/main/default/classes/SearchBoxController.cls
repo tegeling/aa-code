@@ -120,13 +120,32 @@ public with sharing class SearchBoxController {
       )
         return new Set<Id>();
 
+      // Get TranslAid Opportunity record id
+      Id vermittlungRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName()
+        .get('TranslAid_Vermittlung')
+        .getRecordTypeId();
+
       // Find records by keyword
-      String findRecordsByKeywordQuery =
-        'FIND \'' +
-        String.escapeSingleQuotes(keyword) +
-        '\' IN ALL FIELDS RETURNING ' +
-        objectName +
-        ' (Id ORDER BY Id)';
+      String findRecordsByKeywordQuery = '';
+      if (objectName == 'Opportunity') {
+        findRecordsByKeywordQuery =
+          'FIND \'' +
+          String.escapeSingleQuotes(keyword) +
+          '\' IN ALL FIELDS RETURNING ' +
+          objectName +
+          ' (Id WHERE RecordTypeId = \'' +
+          vermittlungRecordTypeId +
+          '\')';
+      } else {
+        findRecordsByKeywordQuery =
+          'FIND \'' +
+          String.escapeSingleQuotes(keyword) +
+          '\' IN ALL FIELDS RETURNING ' +
+          objectName +
+          ' (Id ORDER BY Id)';
+      }
+      //System.debug('#### SOSL query: ' + findRecordsByKeywordQuery);
+
       List<Id> findRecordsByKeywordResult = String.isNotBlank(keyword)
         ? new List<Id>(
             new Map<Id, SObject>(search.query(findRecordsByKeywordQuery)[0])
@@ -170,7 +189,14 @@ public with sharing class SearchBoxController {
       // Find records by conditions
       String query = 'SELECT Id FROM ' + objectName;
       query += String.isNotEmpty(conditions) ? ' WHERE ' + conditions : '';
-      //System.debug(query);
+      if (objectName == 'Opportunity') {
+        if (String.isNotEmpty(conditions)) {
+          query += ' AND RecordTypeId = \'' + vermittlungRecordTypeId + '\'';
+        } else {
+          query += ' WHERE RecordTypeId = \'' + vermittlungRecordTypeId + '\'';
+        }
+      }
+      //System.debug('#### SOQL query: ' + query);
 
       return (new Map<Id, SObject>(Database.query(query))).keySet();
     } catch (Exception e) {
