@@ -230,7 +230,7 @@ public with sharing class Test_MeinUrlaub {
     request.httpMethod = 'POST';
     // Set other properties, such as parameters
     request.requestBody = Blob.valueOf(
-      '{"startDate" : "2020-01-01","endDate" : "2020-01-15"}'
+      '{"urlaub": [{"startDate" : "2020-01-01","endDate" : "2020-01-15"}]}'
     );
     // Finally, assign the request to RestContext if used
     RestContext.request = request;
@@ -290,8 +290,14 @@ public with sharing class Test_MeinUrlaub {
 
     // invoke test
     Test.startTest();
+    List<MeinUrlaubParameter> meinUrlaubParams = new List<MeinUrlaubParameter>();
+    MeinUrlaubParameter meinUrlaub1 = new MeinUrlaubParameter();
+    meinUrlaub1.startDate = '2020-01-01';
+    meinUrlaub1.endDate = '2020-01-15';
+    meinUrlaubParams.add(meinUrlaub1);
+
     System.runAs(userA) {
-      MeinUrlaub.doPost('2020-01-01', '2020-01-15');
+      MeinUrlaub.doPost(meinUrlaubParams);
     }
     Test.stopTest();
     List<Urlaub__c> urlaub = [SELECT Id FROM Urlaub__c];
@@ -308,7 +314,7 @@ public with sharing class Test_MeinUrlaub {
     request.httpMethod = 'POST';
     // Set other properties, such as parameters
     request.requestBody = Blob.valueOf(
-      '{"startDate" : "2020-01-01","endDate" : "invalid"}'
+      '{"urlaub": [{"startDate" : "2020-01-01","endDate" : "invalid"}]}'
     );
     // Finally, assign the request to RestContext if used
     RestContext.request = request;
@@ -368,8 +374,14 @@ public with sharing class Test_MeinUrlaub {
 
     // invoke test
     Test.startTest();
+    List<MeinUrlaubParameter> meinUrlaubParams = new List<MeinUrlaubParameter>();
+    MeinUrlaubParameter meinUrlaub1 = new MeinUrlaubParameter();
+    meinUrlaub1.startDate = '2020-01-01';
+    meinUrlaub1.endDate = 'invalid';
+    meinUrlaubParams.add(meinUrlaub1);
+
     System.runAs(userA) {
-      MeinUrlaub.doPost('2020-01-01', 'invalid');
+      MeinUrlaub.doPost(meinUrlaubParams);
     }
     Test.stopTest();
   }
@@ -384,7 +396,7 @@ public with sharing class Test_MeinUrlaub {
     request.httpMethod = 'POST';
     // Set other properties, such as parameters
     request.requestBody = Blob.valueOf(
-      '{"startDate" : "2020-01-15","endDate" : "2020-01-01"}'
+      '{"urlaub": [{"startDate" : "2020-01-15","endDate" : "2020-01-01"}]}'
     );
     // Finally, assign the request to RestContext if used
     RestContext.request = request;
@@ -444,8 +456,13 @@ public with sharing class Test_MeinUrlaub {
 
     // invoke test
     Test.startTest();
+    List<MeinUrlaubParameter> meinUrlaubParams = new List<MeinUrlaubParameter>();
+    MeinUrlaubParameter meinUrlaub1 = new MeinUrlaubParameter();
+    meinUrlaub1.startDate = '2020-01-15';
+    meinUrlaub1.endDate = '2020-01-01';
+    meinUrlaubParams.add(meinUrlaub1);
     System.runAs(userA) {
-      MeinUrlaub.doPost('2020-01-15', '2020-01-01');
+      MeinUrlaub.doPost(meinUrlaubParams);
     }
     Test.stopTest();
   }

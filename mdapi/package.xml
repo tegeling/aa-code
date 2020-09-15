@@ -31,7 +31,8 @@
     <members>Lexer</members>
     <members>MeineAnfragen</members>
     <members>MeineAnfragenError</members>
-    <members>MeineUrlaub</members>
+    <members>MeinUrlaub</members>
+    <members>MeinUrlaubParameter</members>
     <members>OpportunityActions</members>
     <members>OpportunityTriggerHandler</members>
     <members>OpportunityTriggerTest</members>

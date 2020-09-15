@@ -59,11 +59,14 @@ global with sharing class MeinUrlaub {
   }
 
   @HttpPost
-  global static void doPost(String startDate, String endDate) {
+  global static void doPost(List<MeinUrlaubParameter> urlaub) {
     RestRequest req = RestContext.request;
     RestResponse res = RestContext.response;
+    System.debug('#### urlaub records: ' + urlaub.size());
     Date startDt;
     Date endDt;
+    List<Urlaub__c> insertInterval = new List<Urlaub__c>();
+
     // get contact
     String userId = UserInfo.getUserId();
     User u = [
@@ -73,51 +76,53 @@ global with sharing class MeinUrlaub {
       WITH SECURITY_ENFORCED
     ];
 
-    // check date formats and if end is greater than start
-    try {
-      startDt = Date.valueOf(startDate);
-      endDt = Date.valueOf(endDate);
-    } catch (Exception ex) {
-      res.statusCode = 400;
-      MeineAnfragenError[] errs = new List<MeineAnfragenError>{
-        new MeineAnfragenError(
-          'BAD_REQUEST',
-          'Values or format for startDate or endDate are invalid.'
-        )
-      };
-      res.responseBody = Blob.valueOf(JSON.serializePretty(errs));
-      return;
-    }
-    if (startDt > endDt) {
-      res.statusCode = 400;
-      MeineAnfragenError[] errs = new List<MeineAnfragenError>{
-        new MeineAnfragenError(
-          'INVALID_DATES',
-          'startDate and endDate are in wrong order.'
-        )
-      };
-      res.responseBody = Blob.valueOf(JSON.serializePretty(errs));
-      return;
-    }
-    // remove existing record within interval
-    List<Urlaub__c> removeInterval = [
-      SELECT Id, Datum__c
-      FROM Urlaub__c
-      WHERE Datum__c >= :startDt AND Datum__c <= :endDt
-      WITH SECURITY_ENFORCED
-    ];
-    delete removeInterval;
+    //iterate through list of Urlaub parameters
+    for (MeinUrlaubParameter curUrlaub : urlaub) {
+      // check date formats and if end is greater than start
+      try {
+        startDt = Date.valueOf(curUrlaub.startDate);
+        endDt = Date.valueOf(curUrlaub.endDate);
+      } catch (Exception ex) {
+        res.statusCode = 400;
+        MeineAnfragenError[] errs = new List<MeineAnfragenError>{
+          new MeineAnfragenError(
+            'BAD_REQUEST',
+            'Values or format for startDate or endDate are invalid.'
+          )
+        };
+        res.responseBody = Blob.valueOf(JSON.serializePretty(errs));
+        return;
+      }
+      if (startDt > endDt) {
+        res.statusCode = 400;
+        MeineAnfragenError[] errs = new List<MeineAnfragenError>{
+          new MeineAnfragenError(
+            'INVALID_DATES',
+            'startDate and endDate are in wrong order.'
+          )
+        };
+        res.responseBody = Blob.valueOf(JSON.serializePretty(errs));
+        return;
+      }
+      // remove existing record within interval
+      List<Urlaub__c> removeInterval = [
+        SELECT Id, Datum__c
+        FROM Urlaub__c
+        WHERE Datum__c >= :startDt AND Datum__c <= :endDt
+        WITH SECURITY_ENFORCED
+      ];
+      delete removeInterval;
 
-    // add new record for interval
-    Date currentDt = startdt;
-    List<Urlaub__c> insertInterval = new List<Urlaub__c>();
-    while (currentDt <= endDt) {
-      Urlaub__c urlaub = new Urlaub__c(
-        Contact__c = u.ContactId,
-        Datum__c = currentDt
-      );
-      insertInterval.add(urlaub);
-      currentDt = currentDt.addDays(1);
+      // add new record for interval
+      Date currentDt = startdt;
+      while (currentDt <= endDt) {
+        Urlaub__c newUrlaub = new Urlaub__c(
+          Contact__c = u.ContactId,
+          Datum__c = currentDt
+        );
+        insertInterval.add(newUrlaub);
+        currentDt = currentDt.addDays(1);
+      }
     }
     insert insertInterval;
     res.responseBody = Blob.valueOf(JSON.serializePretty(insertInterval));
