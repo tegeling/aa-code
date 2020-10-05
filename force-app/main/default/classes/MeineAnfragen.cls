@@ -212,13 +212,14 @@ global with sharing class MeineAnfragen {
         (c.Einsatz_Standort__Longitude__s != null) &&
         (c.Einsatzradius_km__c != null)
       ) {
-        String standortFilter = 'DISTANCE(Termin_Standort__c, GEOLOCATION(';
+        String standortFilter = '(DISTANCE(Termin_Standort__c, GEOLOCATION(';
         standortFilter +=
           c.Einsatz_Standort__Latitude__s +
           ',' +
           c.Einsatz_Standort__Longitude__s +
           '), \'km\')<' +
           c.Einsatzradius_km__c;
+        standortFilter += ' OR Termin_Standort__latitude__s = null)';
         criteria.add(standortFilter);
       }
     }
