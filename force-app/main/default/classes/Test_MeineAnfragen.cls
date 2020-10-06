@@ -48,7 +48,7 @@ public with sharing class Test_MeineAnfragen {
       TranslAid_Kategorie__c = 'allgemeine Beratung;juristische Beratung;medizinische Termine;sonstiges',
       TranslAid_Einsatz_Format__c = 'persönlich;telefonisch;schriftlich;per Video',
       Sprachen__c = 'Arabisch;Englisch',
-      Verf_gbarkeit__c = 'Do vormittags (8-12);Do nachmittags (12-18)',
+      Verf_gbarkeit__c = 'Do vormittags (bis 12 Uhr);Do nachmittags (12 bis 18 Uhr)',
       Individueller_Einsatz_Standort__c = true,
       Einsatz_Standort__Latitude__s = 47.884974,
       Einsatz_Standort__Longitude__s = 11.701570,
