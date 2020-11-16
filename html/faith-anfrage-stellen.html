@@ -91,20 +91,21 @@
         <input
           type="hidden"
           name="captcha_settings"
-          value='{"keyname":"TranslAid","fallback":"true","orgId":"00D24000000j9IC","ts":""}'
+          value='{"keyname":"ArrivalAidOrg","fallback":"true","orgId":"00D24000000j9IC","ts":""}'
         />
         <input type="hidden" name="oid" value="00D24000000j9IC" />
         <input
           type="hidden"
           name="retURL"
-          value="https://www.translaid.org/anfrage-besttigung"
+          value="https://www.arrivalaid.org/faith-antwort-anfrage"
         />
+        <input type="hidden" name="lead_source" value="FAITH Website" />
         <input
           type="hidden"
-          name="lead_source"
-          value="TranslAid Webformular Anfrage Vermittlung"
+          name="recordType"
+          id="recordType"
+          value="01208000000oZ3D"
         />
-        <input type="hidden" name="recordType" value="0121p0000006yF0" />
         <input type="hidden" name="00N2400000JC8Ev" value="0" />
 
         <div id="00N1p00000JlMFx-div" class="select">
@@ -115,6 +116,7 @@
             <option value=""></option>
             <option value="Herr">Herr</option>
             <option value="Frau">Frau</option>
+            <option value="Divers">Divers</option>
           </select>
         </div>
         <div id="00N1p00000JDbGs-div" class="text">
@@ -192,6 +194,7 @@
             <option value=""></option>
             <option value="Herr">Herr</option>
             <option value="Frau">Frau</option>
+            <option value="Divers">Divers</option>
           </select>
         </div>
         <div id="first_name-div" class="text">
@@ -211,6 +214,12 @@
           <label class="title" for="last_name"
             >Nachname Klient*in<span class="required">*</span></label
           >
+          <div class="description">
+            Die Auskunft ist nötig für die Zuordnung und die Kontaktaufnahme.
+            Personenbezogene Daten der Klient*innen werden höchst vertraulich
+            behandelt und werden innerhalb von 6 Monaten anonymisiert, nachdem
+            die Begleitung abgeschlossen ist.
+          </div>
           <input
             class="text"
             type="text"
@@ -226,7 +235,7 @@
           >
           <div class="description">
             Die Auskunft ist nötig für die Vermittlung passender ehrenamtlicher
-            Sprachmittler*innen. Andere Angaben bitte unter
+            Trauma-Ersthelfer*innen. Andere Angaben bitte unter
             <b>Haben Sie sonst noch Fragen?</b> eintragen
           </div>
           <select name="00N1p00000JDbEr" id="00N1p00000JDbEr" required>
@@ -500,58 +509,38 @@
             required
           />
         </div>
-        <div id="00N1p00000JDbGd-div" class="text">
-          <label class="title" for="00N1p00000JDbGd"
-            >Datum des Termins<span class="required">*</span></label
-          >
-          <div class="description">
-            Bei den meisten Sprachen können wir wesentlich einfacher helfen,
-            wenn der Termin am späten Nachmittag/Abend ist. Bitte versuchen Sie
-            nach Möglichkeit die Termine entsprechend zu legen!
-          </div>
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JDbGd"
-            name="00N1p00000JDbGd"
-            placeholder="TT.MM.JJJJ"
-            pattern="\d{2}.\d{2}.\d{4}"
-            required
-          />
-        </div>
-        <div id="00N1p00000JMCBr-div" class="text">
-          <label class="title" for="00N1p00000JMCBr"
-            >Uhrzeit des Termins<span class="required">*</span></label
-          >
-          <input
-            class="text"
-            type="time"
-            id="00N1p00000JMCBr"
-            name="00N1p00000JMCBr"
-            maxlength="255"
-            required
-          />
-        </div>
-        <div id="00N1p00000JMCBw-div" class="text">
-          <label class="title" for="00N1p00000JMCBw"
-            >Um was genau geht es bei dem Termin?<span class="required"
+        <div id="00N0800000JRKwg-div" class="select">
+          <label class="title" for="00N0800000JRKwg"
+            >Ist eine Durchführung in deutscher Sprache möglich?<span
+              class="required"
               >*</span
             ></label
           >
           <div class="description">
-            Bitte beschreiben Sie möglichst genau, um was es geht und was
-            passieren wird, damit der*die Sprachmittler*in sich auf den Termin
-            einstellen und vorbereiten kann. (Nur "Arzttermin" oder "Termin beim
-            Orthopäden" ist nicht ausreichend!)
+            Ab B1-Deutschkenntnissen ist FAITH Trauma Erste Hilfe auch auf
+            Deutsch möglich. Wir bemühen uns immer, zunächst eine Person der
+            jeweiligen Muttersprache zu finden.
           </div>
-          <textarea
-            class="text"
-            type="text"
-            id="00N1p00000JMCBw"
-            name="00N1p00000JMCBw"
-            required
-            minlength="140"
-          ></textarea>
+          <select name="00N0800000JRKwg" id="00N0800000JRKwg" required>
+            <option value="0">Nein</option>
+            <option value="1">Ja</option>
+          </select>
+        </div>
+        <div id="00N0800000JRKwl-div" class="select">
+          <label class="title" for="00N0800000JRKwl"
+            >Verfügen Sie über Räumlichkeiten, in denen ein Termin stattfinden
+            kann?<span class="required">*</span></label
+          >
+          <div class="description">
+            Voraussetzungen: Raum, der akustisch und visuell möglichst viel
+            Privatsphäre bietet, Möglichkeit eines Sitzkreises, ausreichend
+            Platz, um frei umherzulaufen, ideal ist ein freundlicher, heller
+            Raum).
+          </div>
+          <select name="00N0800000JRKwl" id="00N0800000JRKwl" required>
+            <option value="0">Nein</option>
+            <option value="1">Ja</option>
+          </select>
         </div>
         <div id="00N1p00000JMCC1-div" class="text">
           <label class="title" for="00N1p00000JMCC1"
@@ -559,8 +548,8 @@
           >
           <div class="description">
             Bitte nennen Sie die Adresse und auch einen genauen Treffpunkt vor
-            Ort, an dem der*die ehrenamtliche Sprachmittler*in den*die Klient*in
-            treffen kann.
+            Ort, an dem der*die muttersprachliche Trauma-Ersthelfer*in den*die
+            Klient*in treffen kann.
           </div>
           <input
             class="text"
@@ -591,27 +580,6 @@
             required
           />
         </div>
-        <div id="00N1p00000JMCC6-div" class="text">
-          <label class="title" for="00N1p00000JMCC6"
-            >Wie lange dauert der Termin in etwa?<span class="required"
-              >*</span
-            ></label
-          >
-          <div class="description">
-            Bitte beachten Sie, dass lange Termine seltener übernommen werden.
-            Außerdem ist wichtig, dass die Ehrenamtlichen nur für die hier
-            angegebene Zeit zur Verfügung stehen und oft im Anschluss weitere
-            Termine haben.
-          </div>
-          <input
-            class="text"
-            type="text"
-            id="00N1p00000JMCC6"
-            name="00N1p00000JMCC6"
-            maxlength="255"
-            required
-          />
-        </div>
         <div id="00N1p00000JMCCB-div" class="select">
           <label class="title" for="00N1p00000JMCCB"
             >Suchen Sie speziell eine Frau oder einen Mann?<span
@@ -620,7 +588,7 @@
             ></label
           >
           <div class="description">
-            Die Wahrscheinlichkeit, dass wir eine passende Person finden
+            Die Wahrscheinlichkeit eine*n passende*n Ersthelfer*in zu finden,
             verringert sich leider durch diese Auswahl.
           </div>
           <select name="00N1p00000JMCCB" id="00N1p00000JMCCB" required>
@@ -647,11 +615,11 @@
             ></label
           >
           <div class="description">
-            Soweit Sie TranslAid personenbezogene Daten von Klient*innen zur
-            Verfügung stellen, verwendet TranslAid diese nur zur Beantwortung
+            Soweit Sie ArrivalAid personenbezogene Daten von Klient*innen zur
+            Verfügung stellen, verwendet ArrivalAid diese nur zur Beantwortung
             der Anfragen oder zur Abwicklung einer Begleitung durch eine*n
             ehrenamtliche*n Sprachmittler*in. Die personenbezogenen Daten der
-            Klient*innen verbleiben bei TranslAid. Die Daten werden an Dritte
+            Klient*innen verbleiben bei ArrivalAid. Die Daten werden an Dritte
             nur weitergegeben oder sonst übermittelt, wenn diese zum Zwecke des
             Dolmetsching-Einsatzes erforderlich ist oder die Klient*innen zuvor
             eingewilligt haben. Es erfolgt keine Übermittlung von Daten an
@@ -663,10 +631,10 @@
             Erfüllung des mit der Speicherung verfolgten Zwecks nicht mehr
             erforderlich ist oder wenn ihre Speicherung aus sonstigen
             gesetzlichen Gründen unzulässig ist. Im Falle des Widerrufs, werden
-            schnellstmöglich alle Daten aus der TranslAid-Datenbank gelöscht.
-            Zudem wird TranslAid veranlassen, dass alle, die die Daten von
-            TranslAid bekommen haben, die Daten ebenso unverzüglich löschen.
-            Bitte beachten Sie, dass TranslAid danach keine weiteren
+            schnellstmöglich alle Daten aus der ArrivalAid-Datenbank gelöscht.
+            Zudem wird ArrivalAid veranlassen, dass alle, die die Daten von
+            ArrivalAid bekommen haben, die Daten ebenso unverzüglich löschen.
+            Bitte beachten Sie, dass ArrivalAid danach keine weiteren
             Dienstleistungen für die Klient*innen durchführen kann. Hiermit
             bestätigen wir die betroffenen Klient*innen über die Verarbeitung
             von personenbezogenen Daten (wie Name, Vorname, Sprache) und die
@@ -674,7 +642,7 @@
             Verarbeitung der personenbezogenen Daten eingeholt zu haben sowie
             sorgsam mit den von den Klient*innen anvertrauten Daten umzugehen.
             Darüber hinaus verpflichtet wir uns dazu, die Kontaktdaten der
-            Ehrenamtlichen von TranslAid nicht an Dritte weiterzugeben, sowie
+            Ehrenamtlichen von ArrivalAid nicht an Dritte weiterzugeben, sowie
             sie nur im Rahmen des jeweiligen Einsatzes und nur zur
             Detailabsprache zu kontaktieren. Eine Speicherung der Daten oder
             eigenständige Kontaktaufnahme unabhängig vom jeweiligen Fall ist
@@ -708,7 +676,7 @@
         </div>
         <div
           class="g-recaptcha"
-          data-sitekey="6LcFksIZAAAAAOZLqCAWv9coxSivQHxRZAk9-2vG"
+          data-sitekey="6LcC89MZAAAAAHmuAVjPa-7vewIiQ6Y9iyDRSJ9T"
           data-callback="recaptcha_callback"
         ></div>
         <br />
