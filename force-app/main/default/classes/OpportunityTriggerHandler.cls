@@ -9,6 +9,7 @@ public with sharing class OpportunityTriggerHandler {
 
   public void onBeforeInsert(List<Opportunity> newOpportunity) {
     OpportunityActions.translaidSetEmailTemplate(newOpportunity);
+    OpportunityActions.faithSetEmailTemplate(newOpportunity);
   }
   public void onBeforeUpdate(
     List<Opportunity> newOpportunity,
@@ -17,5 +18,6 @@ public with sharing class OpportunityTriggerHandler {
     Map<ID, Opportunity> oldOpportunityMap
   ) {
     OpportunityActions.translaidSetEmailTemplate(newOpportunity);
+    OpportunityActions.faithSetEmailTemplate(newOpportunity);
   }
 }

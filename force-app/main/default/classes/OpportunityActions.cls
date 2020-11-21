@@ -55,6 +55,41 @@ public without sharing class OpportunityActions {
     }
   }
 
+  public static void faithSetEmailTemplate(List<Opportunity> newOpportunity) {
+    // Set email template for FAITH contacts
+    Id faithRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName()
+      .get('FAITH_Vermittlung')
+      .getRecordTypeId();
+    for (Opportunity o : newOpportunity) {
+      if (o.RecordTypeId == faithRecordTypeId) {
+        // flatten multiselect picklists and others as text
+        o.Sprachen_As_Text__c = o.Sprachen__c;
+        o.TranslAid_Einsatz_Format_As_Text__c = o.TranslAid_Einsatz_Format__c;
+        // set default email text
+        o.Dolmetscher_Email__c = 'Fall: ' + o.Fallnummer2__c + '<br>';
+        o.Dolmetscher_Email__c += o.Sprachen__c + '<br>';
+        String adresse = '';
+        List<Account> adressAccount = [
+          SELECT BillingStreet, BillingPostalCode, BillingCity
+          FROM Account
+          WHERE Id = :o.Termin_Standort__c
+        ];
+        if (adressAccount.size() > 0) {
+          if (adressAccount[0].BillingStreet != null) {
+            adresse += adressAccount[0].BillingStreet + '<br>';
+          }
+          if (adressAccount[0].BillingPostalCode != null) {
+            adresse += adressAccount[0].BillingPostalCode + ' ';
+          }
+          if (adressAccount[0].BillingCity != null) {
+            adresse += adressAccount[0].BillingCity + '<br>';
+          }
+        }
+        o.Dolmetscher_Email__c += adresse;
+      }
+    }
+  }
+
   @InvocableMethod(
     label='Create TranslAid Campaign with Filters'
     description='Create a campaign for a TranslAid Opportunity and apply filters.'
