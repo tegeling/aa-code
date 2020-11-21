@@ -18,6 +18,9 @@ public class OpportunityTriggerTest {
     Id vermittlungRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName()
       .get('TranslAid_Vermittlung')
       .getRecordTypeId();
+    Id faithRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName()
+      .get('FAITH_Vermittlung')
+      .getRecordTypeId();
 
     // create test records
     Account helferkreis = new Account(
@@ -61,6 +64,17 @@ public class OpportunityTriggerTest {
     );
     insert vermittlung;
 
+    Opportunity faith = new Opportunity(
+      Name = 'Faith',
+      AccountId = klient.Id,
+      RecordTypeId = faithRecordTypeId,
+      StageName = 'Open',
+      CloseDate = myCloseDate,
+      Datenschutz__c = true,
+      Termin_Standort__c = standort.Id
+    );
+    insert faith;
+
     vermittlung.CloseDate = myCloseDate;
     vermittlung.Fallnummer2__c = '1';
     vermittlung.Sprachen__c = 'Arabisch';
@@ -68,17 +82,29 @@ public class OpportunityTriggerTest {
     vermittlung.Termin_Dauer_min__c = 90;
     vermittlung.Termin_Details__c = 'Details';
     vermittlung.Termin_Adresse__c = 'Adresse';
+    faith.Fallnummer2__c = '2';
+    faith.Sprachen__c = 'Arabisch';
     Test.startTest();
     update vermittlung;
+    update faith;
     Test.stopTest();
-    Opportunity o = [
+    Opportunity o1 = [
       SELECT id, Dolmetscher_Email__c
       FROM Opportunity
       WHERE Id = :vermittlung.Id
     ];
+    Opportunity o2 = [
+      SELECT id, Dolmetscher_Email__c
+      FROM Opportunity
+      WHERE Id = :faith.Id
+    ];
     System.assertEquals(
       'Fall: 1<br>Arabisch<br><b>am 30.01.2020 um 11:00 Uhr (90 Min)</b><br>Details<br>Strasse 1<br>12345 Stadt<br>',
-      o.Dolmetscher_Email__c
+      o1.Dolmetscher_Email__c
+    );
+    System.assertEquals(
+      'Fall: 2<br>Arabisch<br>Strasse 1<br>12345 Stadt<br>',
+      o2.Dolmetscher_Email__c
     );
   }
 
