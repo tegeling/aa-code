@@ -187,6 +187,7 @@ global with sharing class MeineAnfragen {
     ) {
       String verf_gbarkeitFilter = '';
       List<String> verf_ugbarkeit = c.Verf_gbarkeit__c.split(';');
+      verf_ugbarkeit.add('ohne Datum');
       integer count = 0;
       if (verf_ugbarkeit.size() > 0) {
         verf_gbarkeitFilter = 'Termin_Verf_gbarkeit__c IN (';
