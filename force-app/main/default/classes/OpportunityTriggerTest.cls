@@ -183,18 +183,9 @@ public class OpportunityTriggerTest {
       Verf_gbarkeit__c = 'Do vormittags (bis 12 Uhr);Do nachmittags (12 bis 18 Uhr);Do abends (ab 18 Uhr)',
       TranslAid_Kategorie__c = 'Amtstermine;sonstiges;medizinische Termine',
       TranslAid_Einsatz_Format__c = 'persönlich;telefonisch;schriftlich;per Video',
-      Individueller_Einsatz_Standort__c = true,
-      Einsatz_Standort__Latitude__s = 48.14294,
-      Einsatz_Standort__Longitude__s = 11.541777,
       Einsatzradius_km__c = 100
     );
     insert sprachmittler3;
-
-    Urlaub__c urlaub3 = new Urlaub__c(
-      Contact__c = sprachmittler3.Id,
-      Datum__c = date.newInstance(2020, 1, 30)
-    );
-    insert urlaub3;
 
     Account klient = new Account(
       FirstName = 'VornameKlient',
@@ -218,6 +209,7 @@ public class OpportunityTriggerTest {
       RecordTypeId = vermittlungRecordTypeId,
       StageName = 'Open',
       CloseDate = myCloseDate,
+      Termin_Datum__c = myCloseDate,
       Sprachen__c = 'Arabisch',
       Datenschutz__c = true,
       TranslAid_Kategorie__c = 'Amtstermine',
