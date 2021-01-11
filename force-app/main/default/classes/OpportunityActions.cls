@@ -66,8 +66,6 @@ public without sharing class OpportunityActions {
         o.Sprachen_As_Text__c = o.Sprachen__c;
         o.TranslAid_Einsatz_Format_As_Text__c = o.TranslAid_Einsatz_Format__c;
         // set default email text
-        o.Dolmetscher_Email__c = 'Fall: ' + o.Fallnummer2__c + '<br>';
-        o.Dolmetscher_Email__c += o.Sprachen__c + '<br>';
         String adresse = '';
         List<Account> adressAccount = [
           SELECT BillingStreet, BillingPostalCode, BillingCity
@@ -76,16 +74,42 @@ public without sharing class OpportunityActions {
         ];
         if (adressAccount.size() > 0) {
           if (adressAccount[0].BillingStreet != null) {
-            adresse += adressAccount[0].BillingStreet + '<br>';
+            adresse += adressAccount[0].BillingStreet + ', ';
           }
           if (adressAccount[0].BillingPostalCode != null) {
             adresse += adressAccount[0].BillingPostalCode + ' ';
           }
           if (adressAccount[0].BillingCity != null) {
-            adresse += adressAccount[0].BillingCity + '<br>';
+            adresse += adressAccount[0].BillingCity;
           }
         }
-        o.Dolmetscher_Email__c += adresse;
+        Account klient = [
+          SELECT Herkunftsland__c
+          FROM Account
+          WHERE Id = :o.AccountId
+          LIMIT 1
+        ];
+        /*
+        Einsatzort: Straße, Hausnr. PLZ
+        Geschlecht:
+        Herkunftsland/Ethnie:
+        Sprache(n):
+        */
+        o.Dolmetscher_Email__c = 'Fall: ' + o.Fallnummer2__c + '<br>';
+        o.Dolmetscher_Email__c += 'Einsatzort: ' + adresse + '<br>';
+        if (o.Geschlecht_Dolmetscherwunsch__c != null) {
+          o.Dolmetscher_Email__c +=
+            'Geschlecht: ' +
+            o.Geschlecht_Dolmetscherwunsch__c +
+            '<br>';
+        }
+        if (klient.Herkunftsland__c != null) {
+          o.Dolmetscher_Email__c +=
+            'Herkunftsland/Ethnie: ' +
+            klient.Herkunftsland__c +
+            '<br>';
+        }
+        o.Dolmetscher_Email__c += 'Sprache(n): ' + o.Sprachen__c;
       }
     }
   }

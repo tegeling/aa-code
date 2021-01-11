@@ -38,7 +38,8 @@ public class OpportunityTriggerTest {
     Account klient = new Account(
       FirstName = 'FirstKlient',
       LastName = 'LastKlient',
-      RecordTypeId = klientRecordTypeId
+      RecordTypeId = klientRecordTypeId,
+      Herkunftsland__c = 'Afghanistan'
     );
     insert klient;
     Account standort = new Account(
@@ -71,7 +72,8 @@ public class OpportunityTriggerTest {
       StageName = 'Open',
       CloseDate = myCloseDate,
       Datenschutz__c = true,
-      Termin_Standort__c = standort.Id
+      Termin_Standort__c = standort.Id,
+      Geschlecht_Dolmetscherwunsch__c = 'Egal'
     );
     insert faith;
 
@@ -103,7 +105,7 @@ public class OpportunityTriggerTest {
       o1.Dolmetscher_Email__c
     );
     System.assertEquals(
-      'Fall: 2<br>Arabisch<br>Strasse 1<br>12345 Stadt<br>',
+      'Fall: 2<br>Einsatzort: Strasse 1, 12345 Stadt<br>Geschlecht: Egal<br>Herkunftsland/Ethnie: Afghanistan<br>Sprache(n): Arabisch',
       o2.Dolmetscher_Email__c
     );
   }
