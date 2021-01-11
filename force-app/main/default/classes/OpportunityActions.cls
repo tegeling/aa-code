@@ -186,7 +186,8 @@ public without sharing class OpportunityActions {
           TranslAid_Einsatz_Format__c,
           Termin_Verf_gbarkeit__c,
           Termin_Standort__r.BillingLatitude,
-          Termin_Standort__r.BillingLongitude
+          Termin_Standort__r.BillingLongitude,
+          Geschlecht_Dolmetscherwunsch__c
         FROM Opportunity
         WHERE Id = :r.opportunityId
       ];
@@ -240,6 +241,21 @@ public without sharing class OpportunityActions {
         kategorienFilter += '\'' + curOpportunity.TranslAid_Kategorie__c + '\'';
         kategorienFilter += ')';
         criteria.add(kategorienFilter);
+      }
+
+      // Gender Filter
+      if (
+        (curOpportunity.Geschlecht_Dolmetscherwunsch__c != null) &&
+        (r.filterByGender)
+      ) {
+        String genderFilter = '';
+        // check Contact Salutation
+        if (curOpportunity.Geschlecht_Dolmetscherwunsch__c == 'Frau') {
+          genderFilter = 'Salutation = \'Frau\'';
+        } else if (curOpportunity.Geschlecht_Dolmetscherwunsch__c == 'Mann') {
+          genderFilter = 'Salutation = \'Herr\'';
+        }
+        criteria.add(genderFilter);
       }
 
       // Format Filter

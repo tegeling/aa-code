@@ -49,6 +49,13 @@ public class TranslAidCampaignRequest {
   public Boolean filterByUrlaub;
 
   @InvocableVariable(
+    label='Genderfilter'
+    description='True if Gender is used'
+    required=true
+  )
+  public Boolean filterByGender;
+
+  @InvocableVariable(
     label='Push Notification Title'
     description='String to set notification title'
     required=true
