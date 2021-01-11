@@ -61,7 +61,8 @@ public class OpportunityTriggerTest {
       Termin_Beginn__c = myTime,
       Termin_Dauer_min__c = 60,
       Datenschutz__c = true,
-      Termin_Standort__c = standort.Id
+      Termin_Standort__c = standort.Id,
+      TranslAid_Einsatz_Format__c = 'persönlich'
     );
     insert vermittlung;
 
@@ -101,7 +102,7 @@ public class OpportunityTriggerTest {
       WHERE Id = :faith.Id
     ];
     System.assertEquals(
-      'Fall: 1<br>Arabisch<br><b>am 30.01.2020 um 11:00 Uhr (90 Min)</b><br>Details<br>Strasse 1<br>12345 Stadt<br>',
+      'Fall: 1<br>Sprache: Arabisch<br><b>am 30.01.2020 um 11:00 Uhr (90 Min)</b><br>Details:<br>Details<br>Einsatzort: Strasse 1, 12345 Stadt<br>Einsatzformat: persönlich',
       o1.Dolmetscher_Email__c
     );
     System.assertEquals(

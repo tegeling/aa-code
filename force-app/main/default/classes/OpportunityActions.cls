@@ -10,11 +10,12 @@ public without sharing class OpportunityActions {
       if (o.RecordTypeId == translaidRecordTypeId) {
         // flatten multiselect picklists and others as text
         o.Sprachen_As_Text__c = o.Sprachen__c;
-        o.TranslAid_Einsatz_Format_As_Text__c = o.TranslAid_Einsatz_Format__c;
+        String TranslAidEinsatzFormat = o.TranslAid_Einsatz_Format__c;
+        //o.TranslAid_Einsatz_Format_As_Text__c = o.TranslAid_Einsatz_Format__c;
         o.CloseDate_As_Text__c = o.CloseDate.format();
         // set default email text
         o.Dolmetscher_Email__c = 'Fall: ' + o.Fallnummer2__c + '<br>';
-        o.Dolmetscher_Email__c += o.Sprachen__c + '<br>';
+        o.Dolmetscher_Email__c += 'Sprache: ' + o.Sprachen__c + '<br>';
         String beginn = '';
         if (o.Termin_Beginn__c != null) {
           // 10:00:00.000
@@ -32,7 +33,7 @@ public without sharing class OpportunityActions {
             o.Termin_Dauer_min__c +
             ' Min)</b><br>';
         }
-        o.Dolmetscher_Email__c += o.Termin_Details__c + '<br>';
+        o.Dolmetscher_Email__c += 'Details:<br>' + o.Termin_Details__c + '<br>';
         String adresse = '';
         List<Account> adressAccount = [
           SELECT BillingStreet, BillingPostalCode, BillingCity
@@ -41,16 +42,23 @@ public without sharing class OpportunityActions {
         ];
         if (adressAccount.size() > 0) {
           if (adressAccount[0].BillingStreet != null) {
-            adresse += adressAccount[0].BillingStreet + '<br>';
+            adresse += adressAccount[0].BillingStreet + ', ';
           }
           if (adressAccount[0].BillingPostalCode != null) {
             adresse += adressAccount[0].BillingPostalCode + ' ';
           }
           if (adressAccount[0].BillingCity != null) {
-            adresse += adressAccount[0].BillingCity + '<br>';
+            adresse += adressAccount[0].BillingCity;
           }
         }
-        o.Dolmetscher_Email__c += adresse;
+        if (o.Geschlecht_Dolmetscherwunsch__c != null) {
+          o.Dolmetscher_Email__c +=
+            'Geschlecht Sprachmittler*in: ' +
+            o.Geschlecht_Dolmetscherwunsch__c +
+            '<br>';
+        }
+        o.Dolmetscher_Email__c += 'Einsatzort: ' + adresse + '<br>';
+        o.Dolmetscher_Email__c += 'Einsatzformat: ' + TranslAidEinsatzFormat;
       }
     }
   }
