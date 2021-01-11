@@ -302,13 +302,15 @@ public without sharing class OpportunityActions {
         'SELECT ' +
         'Id, ' +
         'Name, ' +
-        'Einsatz_Standort__c, ' +
+        'Einsatz_Standort__Latitude__s, ' +
+        'Einsatz_Standort__Longitude__s, ' +
         'Einsatzradius_km__c ' +
         'FROM Contact ' +
         whereClause +
         orderByClause;
       System.debug('#### query: ' + query);
       sprachmittler = Database.query(query);
+      System.debug('#### sprachmittler.size(): ' + sprachmittler.size());
 
       // Urlaub Filter
       if (r.filterByUrlaub) {
@@ -350,15 +352,26 @@ public without sharing class OpportunityActions {
           Double currentDistance = 0;
           // for each contact check the distance between their location and opportunity
           for (Contact currentContact : sprachmittler) {
-            if (currentContact.Einsatzradius_km__c != null) {
+            if (
+              currentContact.Einsatzradius_km__c != null &&
+              currentContact.Einsatz_Standort__Latitude__s != null &&
+              currentContact.Einsatz_Standort__Longitude__s != null
+            ) {
+              Location standortContact = Location.newInstance(
+                currentContact.Einsatz_Standort__Latitude__s,
+                currentContact.Einsatz_Standort__Longitude__s
+              );
+
               currentDistance = Location.getDistance(
                 standortTermin,
-                currentContact.Einsatz_Standort__c,
+                standortContact,
                 'km'
               );
               if (currentDistance <= currentContact.Einsatzradius_km__c) {
                 contactsWithinDistance.add(currentContact);
               }
+            } else {
+              contactsWithinDistance.add(currentContact);
             }
           }
           sprachmittler = contactsWithinDistance;
