@@ -1,0 +1,638 @@
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+  function timestamp() {
+    var response = document.getElementById("g-recaptcha-response");
+    if (response == null || response.value.trim() == "") {
+      var elems = JSON.parse(
+        document.getElementsByName("captcha_settings")[0].value
+      );
+      elems["ts"] = JSON.stringify(new Date().getTime());
+      document.getElementsByName("captcha_settings")[0].value = JSON.stringify(
+        elems
+      );
+    }
+  }
+  setInterval(timestamp, 500);
+</script>
+<script type="text/javascript">
+  function recaptcha_callback() {
+    var submitbutton = document.getElementById("submit");
+    submitbutton.removeAttribute("disabled");
+  }
+</script>
+
+<style>
+  div.select {
+    position: relative;
+    margin: 0 0 16px;
+  }
+  div.text {
+    position: relative;
+    margin: 0 0 16px;
+  }
+  div.option {
+    margin: 6px 0 4px;
+    font-size: 13px;
+  }
+  input.text {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 4px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: normal;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
+  div.description {
+    padding: 0.5em 0 0.5em;
+    font-size: 12px;
+    opacity: 0.7;
+    display: block;
+    white-space: normal;
+  }
+  textarea.text {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 4px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: normal;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
+  label.title {
+    display: block;
+    font-size: 20px;
+  }
+  select {
+    margin: 6px 0 4px;
+    max-width: 100%;
+    font-size: 18px;
+  }
+  .button:disabled {
+    background: #ccc !important;
+  }
+</style>
+
+<div class="field-list clear">
+  <div class="form-wrapper">
+    <div class="form-inner-wrapper">
+      <form
+        action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="captcha_settings"
+          value='{"keyname":"TranslAid","fallback":"true","orgId":"00D24000000j9IC","ts":""}'
+        />
+        <input type="hidden" name="oid" value="00D24000000j9IC" />
+        <input
+          type="hidden"
+          name="retURL"
+          value="https://www.translaid.org/anfrage-besttigung"
+        />
+        <input
+          type="hidden"
+          name="lead_source"
+          value="TranslAid Webformular English Request"
+        />
+        <input type="hidden" name="recordType" value="0121p0000006yF0" />
+        <input type="hidden" name="00N2400000JC8Ev" value="0" />
+        <div id="salutation-div" class="select">
+          <label class="title" for="salutation"
+            >Title<span class="required">*</span></label
+          >
+          <select name="salutation" id="salutation" required>
+            <option value=""></option>
+            <option value="Herr">Mr.</option>
+            <option value="Frau">Mrs.</option>
+            <option value="Frau">Ms.</option>
+            <option value="Divers">Mx</option>
+          </select>
+        </div>
+        <div id="first_name-div" class="text">
+          <label class="title" for="first_name"
+            >Firstname<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="first_name"
+            name="first_name"
+            maxlength="40"
+            required
+          />
+        </div>
+        <div id="last_name-div" class="text">
+          <label class="title" for="last_name"
+            >Surname<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="last_name"
+            name="last_name"
+            maxlength="80"
+            required
+          />
+        </div>
+        <div id="00N1p00000JDbEr-div" class="select">
+          <label class="title" for="00N1p00000JDbEr"
+            >Country of origin / Ethnicity<span class="required">*</span></label
+          >
+          <div class="description">
+            This information is necessary to help us choose a suitable volunteer
+            translator. If you would like to share any additional information,
+            please submit it in our
+            <b>Do you have any questions?</b> section.
+          </div>
+          <select name="00N1p00000JDbEr" id="00N1p00000JDbEr" required>
+            <option value=""></option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Albanien">Albania</option>
+            <option value="Algerien">Algeria</option>
+            <option value="Andorra">Andorra</option>
+            <option value="Angola">Angola</option>
+            <option value="Antigua und Barbuda">Antigua and Barbuda</option>
+            <option value="Argentinien">Argentina</option>
+            <option value="Armenien">Armenia</option>
+            <option value="Australien">Australia</option>
+            <option value="Österreich">Austria</option>
+            <option value="Aserbaidschan">Azerbaijan</option>
+            <option value="Bahamas">Bahamas</option>
+            <option value="Bahrain">Bahrain</option>
+            <option value="Bangladesch">Bangladesh</option>
+            <option value="Barbados">Barbados</option>
+            <option value="Weißrussland">Belarus</option>
+            <option value="Belgien">Belgium</option>
+            <option value="Belize">Belize</option>
+            <option value="Benin">Benin</option>
+            <option value="Bhutan">Bhutan</option>
+            <option value="Bolivien">Bolivia</option>
+            <option value="Bosnien und Herzegowina">
+              Bosnia and Herzegovina
+            </option>
+            <option value="Botsuana">Botswana</option>
+            <option value="Brasilien">Brazil</option>
+            <option value="Brunei Darussalam">Brunei</option>
+            <option value="Bulgarien">Bulgaria</option>
+            <option value="Burkina Faso">Burkina Faso</option>
+            <option value="Burundi">Burundi</option>
+            <option value="Cabo Verde">Cabo Verde</option>
+            <option value="Kambodscha">Cambodia</option>
+            <option value="Kamerun">Cameroon</option>
+            <option value="Kanada">Canada</option>
+            <option value="Zentralafrikanische Republik">
+              Central African Republic
+            </option>
+            <option value="Tschad">Chad</option>
+            <option value="Chile">Chile</option>
+            <option value="China">China</option>
+            <option value="Kolumbien">Columbia</option>
+            <option value="Komoren">Comoro Islands</option>
+            <option value="Kongo">Congo (Congo-Brazzaville)</option>
+            <option value="Cookinseln">Cook Islands</option>
+            <option value="Costa Rica">Costa Rica</option>
+            <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+            <option value="Kroatien">Croatia</option>
+            <option value="Kuba">Cuba</option>
+            <option value="Zypern">Cyprus</option>
+            <option value="Tschechische Republik">Czech Republic</option>
+            <option value="Kongo, Demokratische Republik">
+              Democratic Republic of the Congo
+            </option>
+            <option value="Dänemark">Denmark</option>
+            <option value="Dschibuti">Djibouti</option>
+            <option value="Dominica">Dominica</option>
+            <option value="Dominikanische Republik">Dominican Republic</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Ägypten">Egypt</option>
+            <option value="El Salvador">El Salvador</option>
+            <option value="Äquatorialguinea">Equitorial Guinea</option>
+            <option value="Eritrea">Eritrea</option>
+            <option value="Estland">Estonia</option>
+            <option value="Äthiopien">Ethiopia</option>
+            <option value="Fidschi">Fiji</option>
+            <option value="Finnland">Finland</option>
+            <option value="Frankreich">France</option>
+            <option value="Gabun">Gabon</option>
+            <option value="Gambia">Gambia</option>
+            <option value="Georgien">Georgia</option>
+            <option value="Deutschland">Germany</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Griechenland">Greece</option>
+            <option value="Grenada">Grenada</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Guinea">Guinea</option>
+            <option value="Guinea-Bissau">Guinea-Bissau</option>
+            <option value="Guyana">Guyana</option>
+            <option value="Haiti">Haiti</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Ungarn">Hungary</option>
+            <option value="Island">Iceland</option>
+            <option value="Indien">India</option>
+            <option value="Indonesien">Indonesia</option>
+            <option value="Iran">Iran</option>
+            <option value="Irak">Iraq</option>
+            <option value="Irland">Ireland</option>
+            <option value="Israel">Israel</option>
+            <option value="Italien">Italy</option>
+            <option value="Jamaika">Jamaica</option>
+            <option value="Japan">Japan</option>
+            <option value="Jordanien">Jordan</option>
+            <option value="Kasachstan">Kazakhstan</option>
+            <option value="Kenia">Kenya</option>
+            <option value="Kiribati">Kiribati</option>
+            <option value="Kosovo">Kosovo</option>
+            <option value="Kuwait">Kuwait</option>
+            <option value="Kirgisistan">Kyrgyzstan</option>
+            <option value="Laos">Laos</option>
+            <option value="Lettland">Lapland</option>
+            <option value="Libanon">Lebanon</option>
+            <option value="Lesotho">Lesotho</option>
+            <option value="Liberia">Liberia</option>
+            <option value="Libyen">Libya</option>
+            <option value="Liechtenstein">Liechtenstein</option>
+            <option value="Litauen">Lithuania</option>
+            <option value="Luxemburg">Luxembourg</option>
+            <option value="Mazedonien">Macedonia</option>
+            <option value="Madgaskar">Madagascar</option>
+            <option value="Malawi">Malawi</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Malediven">Maldives</option>
+            <option value="Mali">Mali</option>
+            <option value="malta">Malta</option>
+            <option value="Marshallinseln">Marshall Islands</option>
+            <option value="Mauretanien">Mauritania</option>
+            <option value="Mauritius">Mauritius</option>
+            <option value="Mexiko">Mexico</option>
+            <option value="Mikronesien">Micronesia</option>
+            <option value="Moldau">Moldova</option>
+            <option value="Monaco">Monaco</option>
+            <option value="Mongolei">Mongolia</option>
+            <option value="Montenegro">Montenegro</option>
+            <option value="Marokko">Morocco</option>
+            <option value="Mosambik">Mozambique</option>
+            <option value="Myanmar">Myanmar</option>
+            <option value="Namibia">Namibia</option>
+            <option value="Nauru">Nauru</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Neuseeland">New Zealand</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Niger">Niger</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="Niue">Niue</option>
+            <option value="Korea, Demokratische Volksrepublik">
+              North Korea (The Democratic People's Republic of Korea)
+            </option>
+            <option value="Norwegen">Norway</option>
+            <option value="Oman">Oman</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Palau">Palau</option>
+            <option value="Panama">Panama</option>
+            <option value="Papua-Neuguinea">Papua New Guinea</option>
+            <option value="Paraguay">Paraguay</option>
+            <option value="Peru">Peru</option>
+            <option value="Philippinen">Philippines</option>
+            <option value="Polen">Poland</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Katar">Qatar</option>
+            <option value="Rumänien">Romania</option>
+            <option value="Russische Föderation">Russia</option>
+            <option value="Ruanda">Rwanda</option>
+            <option value="Samoa">Samoa</option>
+            <option value="San Marino">San Marino</option>
+            <option value="São Tomé und Príncipe">Sao Tome and Principe</option>
+            <option value="Saudi-Arabien">Saudi Arabia</option>
+            <option value="Senegal">Senegal</option>
+            <option value="Serbien">Serbia</option>
+            <option value="Seychellen">Seychelles</option>
+            <option value="Sierra Leone">Sierra Leone</option>
+            <option value="Singapur">Singapore</option>
+            <option value="Slowakei">Slovakia</option>
+            <option value="Slowenien">Slovenia</option>
+            <option value="Salomonen">Solomon Islands</option>
+            <option value="Somalia">Somalia</option>
+            <option value="Südafrika">South Africa</option>
+            <option value="Korea, Republik">
+              South Korea (The Republic of Korea)
+            </option>
+            <option value="Südsudan">South Sudan</option>
+            <option value="Spanien">Spain</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="St. Kitts und Nevis">St. Kitts and Nevis</option>
+            <option value="St. Lucia">St. Lucia</option>
+            <option value="St. Vincent und die Grenadinen">
+              St. Vincent and the Grenadines
+            </option>
+            <option value="Sudan">Sudan</option>
+            <option value="Suriname">Suriname</option>
+            <option value="Swasiland">Swaziland</option>
+            <option value="Schweden">Sweden</option>
+            <option value="Schweiz">Switzerland</option>
+            <option value="Syrien">Syria</option>
+            <option value="Tadschikistan">Tajikistan</option>
+            <option value="Tansania">Tanzania</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Niederlande">The Netherlands</option>
+            <option value="Timor-Leste">Timor-Leste</option>
+            <option value="Togo">Togo</option>
+            <option value="Tonga">Tonga</option>
+            <option value="Trinidad und Tobago">Trinidad and Tobago</option>
+            <option value="Tunesien">Tunisia</option>
+            <option value="Türkei">Turkey</option>
+            <option value="Turkmenistan">Turkmenistan</option>
+            <option value="Tuvalu">Tuvalu</option>
+            <option value="Uganda">Uganda</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="Vereinigte Arabische Emirate">
+              United Arab Emirates (UEA)
+            </option>
+            <option value="Vereinigtes Königreich">United Kingdom (UK)</option>
+            <option value="Vereinigte Staaten">United States (USA)</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Usbekistan">Uzbekistan</option>
+            <option value="Vanuatu">Vanuatu</option>
+            <option value="Vatikanstadt">Vatican City</option>
+            <option value="Venezuela">Venezuela</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Jemen">Yemen</option>
+            <option value="Sambia">Zambia</option>
+            <option value="Simbabwe">Zimbabwe</option>
+          </select>
+        </div>
+        <div id="email-div" class="text">
+          <label class="title" for="email">Email address</label>
+          <input
+            class="text"
+            type="email"
+            id="email"
+            name="email"
+            maxlength="80"
+          />
+        </div>
+        <div id="mobile-div" class="text">
+          <label class="title" for="mobile">Mobile number</label>
+          <div class="description">
+            (Only numers, no special characters or letters!) The phone number is
+            important so that the volunteer translator can contact the client in
+            the case that they cannot find the location of the appointment or
+            must discuss something in advance.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="mobile"
+            name="mobile"
+            maxlength="40"
+          />
+        </div>
+        <div id="00N1p00000JMCBm-div" class="select">
+          <label class="title" for="00N1p00000JMCBm"
+            >Are you under 18?<span class="required">*</span></label
+          >
+          <select name="00N1p00000JMCBm" id="00N1p00000JMCBm" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+        <div id="00N1p00000JMBkR-div" class="text">
+          <label class="title" for="00N1p00000JMBkR"
+            >Which language do you need?<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMBkR"
+            name="00N1p00000JMBkR"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JDbGd-div" class="text">
+          <label class="title" for="00N1p00000JDbGd"
+            >Date of the appointment<span class="required">*</span></label
+          >
+          <div class="description">
+            We are usually more likely to be able to find you a translator if
+            your appointment happens later in the day, i.e. late afteroon or
+            early evening. Please try to organise your appointment accordingly,
+            where possible.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JDbGd"
+            name="00N1p00000JDbGd"
+            placeholder="DD.MM.YYYY"
+            pattern="\d{2}.\d{2}.\d{4}"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMCBr-div" class="text">
+          <label class="title" for="00N1p00000JMCBr"
+            >Time of the appointment<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="time"
+            id="00N1p00000JMCBr"
+            name="00N1p00000JMCBr"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMCBw-div" class="text">
+          <label class="title" for="00N1p00000JMCBw"
+            >What exactly is the purpose of your appointment? What type of
+            appointment do you have?<span class="required">*</span></label
+          >
+          <div class="description">
+            Please describe as accurately and specifically as possible what your
+            appointment is about and what it will involve. With this information
+            the Translator can prepare in advance. (Writing, for example, just
+            "Doctor's Appointment" or "Appointment with the Orthopaedist" is
+            unfortunately insufficient).
+          </div>
+          <textarea
+            class="text"
+            type="text"
+            id="00N1p00000JMCBw"
+            name="00N1p00000JMCBw"
+            required
+            minlength="140"
+          ></textarea>
+        </div>
+        <div id="00N1p00000JMCC1-div" class="text">
+          <label class="title" for="00N1p00000JMCC1"
+            >Where is the appointment?<span class="required">*</span></label
+          >
+          <div class="description">
+            Please state an address and also an exact meeting place, where the
+            Translator can meet the you.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMCC1"
+            name="00N1p00000JMCC1"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JREAg-div" class="text">
+          <label class="title" for="00N1p00000JREAg"
+            >Is it possible to conduct the appointment either by telephone or by
+            videocall?<span class="required">*</span></label
+          >
+          <div class="description">
+            Recently, it has been easier to find suitable volunteers to help
+            translate when they do not need to be physically present at the
+            appointment.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JREAg"
+            name="00N1p00000JREAg"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMCC6-div" class="text">
+          <label class="title" for="00N1p00000JMCC6"
+            >How long should the appointment take?<span class="required"
+              >*</span
+            ></label
+          >
+          <div class="description">
+            Please note that it is harder to find translators for longer
+            appointments. It is also important to note that the translator is
+            only available for the pre-agreed duration of time and often are
+            unable to stay overtime due to other, pre-existing commitments.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMCC6"
+            name="00N1p00000JMCC6"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMCCB-div" class="select">
+          <label class="title" for="00N1p00000JMCCB"
+            >Would you prefer a male or a female translator?<span
+              class="required"
+              >*</span
+            ></label
+          >
+          <div class="description">
+            The likelihood of finding a suitable match for your request is
+            unfortunately reduced if you have a particular gender preference.
+          </div>
+          <select name="00N1p00000JMCCB" id="00N1p00000JMCCB" required>
+            <option value="Egal">Don't mind</option>
+            <option value="Frau">A woman</option>
+            <option value="Mann">A man</option>
+          </select>
+        </div>
+        <div id="00N1p00000JDbH7-div" class="text">
+          <label class="title" for="00N1p00000JDbH7"
+            >Do you have any questions?</label
+          >
+          <textarea
+            class="text"
+            type="text"
+            id="00N1p00000JDbH7"
+            name="00N1p00000JDbH7"
+          ></textarea>
+        </div>
+        <div id="00N1p00000JDbHH-div" class="text">
+          <label class="title" for="00N1p00000JDbHH"
+            >Data protection policy<span class="required">*</span></label
+          >
+          <div class="description">
+            If you provide TranslAid with personal information, TranslAid will
+            only use this data to answer your queries or to arrange a volunteer
+            translator to accompany you to your disclosed appointment(s). Our
+            clients’ personal information remains confidential. The information
+            will only be passed on to third parties or otherwise shared if it is
+            necessary for the purpose of the interpreting request or the client
+            has otherwise given prior consent. No information will be passed
+            onto the authorities. The client has the right to withdraw their
+            consent at any time. To withdraw consent to the storing of your
+            personal information, please email datenschutz@arrivalaid.org. Any
+            information which has previously been saved will be deleted if you
+            withdraw your consent, if the information is no longer required, or
+            if storing the information is not permitted for legal reasons. In
+            the case of withdrawing consent, the information will be deleted as
+            quickly as possible from the TranslAid database. In addition,
+            TranslAid will ensure that those with whom the data was shared also
+            delete the information promptly. Please note that TranslAid will not
+            be able to provide further service or support to the client once the
+            information has been erased. We hereby confirm that the client is
+            aware that: their personal data will be processed and stored in the
+            TranslAid database (such as their surname, first name, and
+            language), that they have been suitably informed about the procedure
+            for revoking their consent, and that TranslAid will treat the
+            entrusted information with care and confidentiality. Furthermore, we
+            will not disclose the contact details of TranslAid volunteers to
+            third parties, and we will only contact them with regards to the
+            assignment in question or for consultation purposes. It is not
+            permitted to save or use the personal information of our volunteers
+            for any purpose except the case to which they have been assigned.
+          </div>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N1p00000JDbHH"
+                name="00N1p00000JDbHH"
+                value="1"
+                required
+              />
+              I agree to the data protection policy as laid out above.</label
+            >
+          </div>
+        </div>
+        <div id="00N1p00000JMZdG-div" class="text">
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N1p00000JMZdG"
+                name="00N1p00000JMZdG"
+                value="1"
+              />
+              Send a copy of my answers to my email address.</label
+            >
+          </div>
+        </div>
+        <div
+          class="g-recaptcha"
+          data-sitekey="6LcFksIZAAAAAOZLqCAWv9coxSivQHxRZAk9-2vG"
+          data-callback="recaptcha_callback"
+        ></div>
+        <br />
+        <div class="form-button-wrapper form-button-wrapper--align-left">
+          <input
+            id="submit"
+            class="button sqs-system-button sqs-editable-button"
+            type="submit"
+            value="Submit"
+            disabled="true"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

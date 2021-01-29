@@ -1,0 +1,621 @@
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+  function timestamp() {
+    var response = document.getElementById("g-recaptcha-response");
+    if (response == null || response.value.trim() == "") {
+      var elems = JSON.parse(
+        document.getElementsByName("captcha_settings")[0].value
+      );
+      elems["ts"] = JSON.stringify(new Date().getTime());
+      document.getElementsByName("captcha_settings")[0].value = JSON.stringify(
+        elems
+      );
+    }
+  }
+  setInterval(timestamp, 500);
+</script>
+<script type="text/javascript">
+  function recaptcha_callback() {
+    var submitbutton = document.getElementById("submit");
+    submitbutton.removeAttribute("disabled");
+  }
+</script>
+
+<style>
+  div.select {
+    position: relative;
+    margin: 0 0 16px;
+  }
+  div.text {
+    position: relative;
+    margin: 0 0 16px;
+  }
+  div.option {
+    margin: 6px 0 4px;
+    font-size: 13px;
+  }
+  input.text {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 4px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: normal;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
+  div.description {
+    padding: 0.5em 0 0.5em;
+    font-size: 12px;
+    opacity: 0.7;
+    display: block;
+    white-space: normal;
+  }
+  textarea.text {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 4px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: normal;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
+  label.title {
+    display: block;
+    font-size: 20px;
+  }
+  select {
+    margin: 6px 0 4px;
+    max-width: 100%;
+    font-size: 18px;
+  }
+  .button:disabled {
+    background: #ccc !important;
+  }
+</style>
+
+<div class="field-list clear">
+  <div class="form-wrapper" dir="rtl">
+    <div class="form-inner-wrapper">
+      <form
+        action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="captcha_settings"
+          value='{"keyname":"TranslAid","fallback":"true","orgId":"00D24000000j9IC","ts":""}'
+        />
+        <input type="hidden" name="oid" value="00D24000000j9IC" />
+        <input
+          type="hidden"
+          name="retURL"
+          value="https://www.translaid.org/anfrage-besttigung"
+        />
+        <input
+          type="hidden"
+          name="lead_source"
+          value="TranslAid Webformular Arabic Request"
+        />
+        <input type="hidden" name="recordType" value="0121p0000006yF0" />
+        <input type="hidden" name="00N2400000JC8Ev" value="0" />
+        <div id="salutation-div" class="select">
+          <label class="title" for="salutation"
+            >صيغة المخاطبة<span class="required">*</span></label
+          >
+          <select name="salutation" id="salutation" required>
+            <option value=""></option>
+            <option value="Herr">سيد</option>
+            <option value="Frau">سيدة</option>
+            <option value="Frau">آنسة</option>
+            <option value="Divers">غير ذلك</option>
+          </select>
+        </div>
+        <div id="first_name-div" class="text">
+          <label class="title" for="first_name"
+            >الاسم الأول<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="first_name"
+            name="first_name"
+            maxlength="40"
+            required
+          />
+        </div>
+        <div id="last_name-div" class="text">
+          <label class="title" for="last_name"
+            >اسم العائلة<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="last_name"
+            name="last_name"
+            maxlength="80"
+            required
+          />
+        </div>
+        <div id="00N1p00000JDbEr-div" class="select">
+          <label class="title" for="00N1p00000JDbEr"
+            >الموطن الأصلي<span class="required">*</span></label
+          >
+          <div class="description">
+            هذه المعلومة مهمة بالنسبة لنا لنستطيع إيجاد مترجم مناسب. إذا كان
+            يوجد أية معلومات إضافية يُرجى أن كتابتها في قسم "هل توجد أي أسئلة أو
+            استفسارات؟"
+          </div>
+          <select name="00N1p00000JDbEr" id="00N1p00000JDbEr" required>
+            <option value=""></option>
+            <option value="Island">آيسلندا</option>
+            <option value="Aserbaidschan">أذربيجان</option>
+            <option value="Armenien">أرمينيا</option>
+            <option value="Afghanistan">أفغانستان</option>
+            <option value="Albanien">ألبانيا</option>
+            <option value="Deutschland">ألمانيا</option>
+            <option value="Antigua und Barbuda">أنتيغوا وبربودا</option>
+            <option value="Andorra">أندورا</option>
+            <option value="Angola">أنغولا</option>
+            <option value="Uruguay">أوروغواي</option>
+            <option value="Usbekistan">أوزبيكستان</option>
+            <option value="Uganda">أوغندا</option>
+            <option value="Ukraine">أوكراينا</option>
+            <option value="Äthiopien">إثيوبيا</option>
+            <option value="Eritrea">إرتيريا</option>
+            <option value="Spanien">إسبانيا</option>
+            <option value="Estland">إستونيا</option>
+            <option value="Israel">إسرائيل</option>
+            <option value="Ecuador">إكوادور</option>
+            <option value="El Salvador">إل سلفادور</option>
+            <option value="Indonesien">إندونيسيا</option>
+            <option value="Iran">إيران</option>
+            <option value="Irland">إيرلندا</option>
+            <option value="Italien">إيطاليا</option>
+            <option value="Australien">أستراليا</option>
+            <option value="Argentinien">الأرجنتين</option>
+            <option value="Jordanien">الأردن</option>
+            <option value="Vereinigte Arabische Emirate">
+              الإمارات العربية المتحدة
+            </option>
+            <option value="Bahamas">الباهاما</option>
+            <option value="Bahrain">البحرين</option>
+            <option value="Brasilien">البرازيل</option>
+            <option value="Portugal">البرتغال</option>
+            <option value="Bosnien und Herzegowina">البوسنة و الهرسك</option>
+            <option value="Montenegro">الجبل الأسود</option>
+            <option value="Algerien">الجزائر</option>
+            <option value="Dänemark">الدنمرك</option>
+            <option value="Saudi-Arabien">السعودية</option>
+            <option value="Senegal">السنغال</option>
+            <option value="Sudan">السودان</option>
+            <option value="Schweden">السويد</option>
+            <option value="Somalia">الصومال</option>
+            <option value="China">الصين</option>
+            <option value="Irak">العراق</option>
+            <option value="Vatikanstadt">الفاتيكان</option>
+            <option value="Philippinen">الفلبين</option>
+            <option value="Vietnam">الفيتنام</option>
+            <option value="Kamerun">الكاميرون</option>
+            <option value="Kongo">الكونغو</option>
+            <option value="Kuwait">الكويت</option>
+            <option value="Malediven">المالديف</option>
+            <option value="Marokko">المغرب</option>
+            <option value="Mexiko">المكسيك</option>
+            <option value="Vereinigtes Königreich">المملكة المتحدة</option>
+            <option value="Norwegen">النرويج</option>
+            <option value="Österreich">النمسا</option>
+            <option value="Niger">النيجر</option>
+            <option value="Indien">الهند</option>
+            <option value="Vereinigte Staaten">
+              الولايات المتحدة الأمريكية
+            </option>
+            <option value="Japan">اليابان</option>
+            <option value="Jemen">اليمن</option>
+            <option value="Griechenland">اليونان</option>
+            <option value="Papua-Neuguinea">بابوا غينيا الجديدة</option>
+            <option value="Paraguay">باراغواي</option>
+            <option value="Barbados">باربادوس</option>
+            <option value="Pakistan">باكستان</option>
+            <option value="Palau">بالاو</option>
+            <option value="Panama">باناما</option>
+            <option value="Brunei Darussalam">بروناي دار السلام</option>
+            <option value="Belgien">بلجيكا</option>
+            <option value="Bulgarien">بلغاريا</option>
+            <option value="Belize">بليز</option>
+            <option value="Bangladesch">بنغلاديش</option>
+            <option value="Bhutan">بوتان</option>
+            <option value="Botsuana">بوتسوانا</option>
+            <option value="Burkina Faso">بوركينا فاسو</option>
+            <option value="Burundi">بوروندي</option>
+            <option value="Polen">بولونيا</option>
+            <option value="Bolivien">بوليفيا</option>
+            <option value="Peru">بيرو</option>
+            <option value="Benin">بينين</option>
+            <option value="Thailand">تايلند</option>
+            <option value="Turkmenistan">تركمانستان</option>
+            <option value="Türkei">تركيا</option>
+            <option value="Trinidad und Tobago">ترينداد وتوباغو</option>
+            <option value="Tschad">تشاد</option>
+            <option value="Chile">تشيلي</option>
+            <option value="Tansania">تنزانيا</option>
+            <option value="Togo">توغو</option>
+            <option value="Tuvalu">توفالو</option>
+            <option value="Tunesien">تونس</option>
+            <option value="Tonga">تونغا</option>
+            <option value="Timor-Leste">تيمور ليشتي</option>
+            <option value="Jamaika">جامايكا</option>
+            <option value="Komoren">جزر القمر</option>
+            <option value="Salomonen">جزر سليمان</option>
+            <option value="Cookinseln">جزر كوك</option>
+            <option value="Marshallinseln">جزر مارشال</option>
+            <option value="Zentralafrikanische Republik">
+              جمهورية أفريقيا الوسطى
+            </option>
+            <option value="Tschechische Republik">جمهورية التشيك</option>
+            <option value="Dominikanische Republik">جمهورية الدومينيك</option>
+            <option value="Kongo, Demokratische Republik">
+              جمهورية الكونغو
+            </option>
+            <option value="Südafrika">جنوب أفريقيا</option>
+            <option value="Südsudan">جنوب السودان</option>
+            <option value="Georgien">جورجيا</option>
+            <option value="Dschibuti">جيبوتي</option>
+            <option value="Dominica">دومينيكا</option>
+            <option value="Ruanda">رواندا</option>
+            <option value="Russische Föderation">روسيا</option>
+            <option value="Weißrussland">روسيا البيضاء</option>
+            <option value="Rumänien">رومانيا</option>
+            <option value="Sambia">زامبيا</option>
+            <option value="Simbabwe">زمبابواي</option>
+            <option value="Côte d'Ivoire">ساحل العاج</option>
+            <option value="Samoa">ساموا</option>
+            <option value="San Marino">سان مارينو</option>
+            <option value="St. Vincent und die Grenadinen">
+              سانت فنسنت وجزر غرينادين
+            </option>
+            <option value="St. Kitts und Nevis">سانت كيتس و نيفيس</option>
+            <option value="St. Lucia">سانت لوسيا</option>
+            <option value="São Tomé und Príncipe">ساو تومي وبرينسيبي</option>
+            <option value="Sri Lanka">سريلانكا</option>
+            <option value="Slowakei">سلوفاكيا</option>
+            <option value="Slowenien">سلوفينيا</option>
+            <option value="Singapur">سنغافورة</option>
+            <option value="Swasiland">سوازي لاند</option>
+            <option value="Syrien">سوريا</option>
+            <option value="Suriname">سورينام</option>
+            <option value="Schweiz">سويسرا</option>
+            <option value="Sierra Leone">سيراليون</option>
+            <option value="Seychellen">سيشيل</option>
+            <option value="Serbien">صربيا</option>
+            <option value="Tadschikistan">طاجيكستان</option>
+            <option value="Oman">عُمان</option>
+            <option value="Gabun">غابون</option>
+            <option value="Gambia">غامبيا</option>
+            <option value="Ghana">غانا</option>
+            <option value="Grenada">غرينادا</option>
+            <option value="Guatemala">غواتيمالا</option>
+            <option value="Guyana">غيانا</option>
+            <option value="Guinea">غينيا</option>
+            <option value="Äquatorialguinea">غينيا الاستوائية</option>
+            <option value="Guinea-Bissau">غينيا بيساو</option>
+            <option value="Vanuatu">فانواتو</option>
+            <option value="Frankreich">فرنسا</option>
+            <option value="Finnland">فلندا</option>
+            <option value="Venezuela">فنزويلا</option>
+            <option value="Fidschi">فيجي</option>
+            <option value="Zypern">قبرص</option>
+            <option value="Katar">قطر</option>
+            <option value="Kirgisistan">قيرغيزستان</option>
+            <option value="Cabo Verde">كابو فيردي</option>
+            <option value="Kasachstan">كازاخستان</option>
+            <option value="Kroatien">كرواتيا</option>
+            <option value="Kambodscha">كمبوديا</option>
+            <option value="Kanada">كندا</option>
+            <option value="Kuba">كوبا</option>
+            <option value="Korea, Republik">كوريا الجنوبية</option>
+            <option value="Korea, Demokratische Volksrepublik">
+              كوريا الشمالية
+            </option>
+            <option value="Costa Rica">كوستاريكا</option>
+            <option value="Kosovo">كوسوفو</option>
+            <option value="Kolumbien">كولومبيا</option>
+            <option value="Kiribati">كيريباتي</option>
+            <option value="Kenia">كينيا</option>
+            <option value="Lettland">لاتفيا</option>
+            <option value="Laos">لاوس</option>
+            <option value="Libanon">لبنان</option>
+            <option value="Luxemburg">لوكسمبورغ</option>
+            <option value="Libyen">ليبيا</option>
+            <option value="Liberia">ليبيريا</option>
+            <option value="Litauen">ليتوانيا</option>
+            <option value="Liechtenstein">ليختنشتاين</option>
+            <option value="Lesotho">ليسوتو</option>
+            <option value="Malawi">مالاوي</option>
+            <option value="malta">مالطة</option>
+            <option value="Malaysia">ماليزيا</option>
+            <option value="Mali">ماليزيا</option>
+            <option value="Madgaskar">مدغشقر</option>
+            <option value="Ägypten">مصر</option>
+            <option value="Mazedonien">مقدونيا</option>
+            <option value="Mongolei">منغوليا</option>
+            <option value="Mauretanien">موريتانيا</option>
+            <option value="Mauritius">موريشيوس</option>
+            <option value="Mosambik">موزمبيق</option>
+            <option value="Moldau">مولدوفا</option>
+            <option value="Monaco">موناكو</option>
+            <option value="Myanmar">ميانمار</option>
+            <option value="Mikronesien">ميكرونيزيا</option>
+            <option value="Namibia">ناميبيا</option>
+            <option value="Nauru">ناورو</option>
+            <option value="Nepal">نيبال</option>
+            <option value="Nigeria">نيجيريا</option>
+            <option value="Nicaragua">نيكاراغوا</option>
+            <option value="Neuseeland">نيوزيلندا</option>
+            <option value="Niue">نيوي</option>
+            <option value="Haiti">هايتي</option>
+            <option value="Honduras">هندوراس</option>
+            <option value="Ungarn">هنغاريا</option>
+            <option value="Niederlande">هولندا</option>
+          </select>
+        </div>
+        <div id="email-div" class="text">
+          <label class="title" for="email">عنوان البريد الالكتروني</label>
+          <input
+            class="text"
+            type="email"
+            id="email"
+            name="email"
+            maxlength="80"
+          />
+        </div>
+        <div id="mobile-div" class="text">
+          <label class="title" for="mobile"
+            >رقم الهاتف المحمول (فقط أرقام ,دون إضافة أحرف أو فراغات)</label
+          >
+          <div class="description">
+            رقم الهاتف مهم حتى يتمكن المترجم المتطوع من الاتصال بالعميل في حالة
+            عدم تمكنه من العثور على موقع الموعد أوفي حال وجوب مناقشة شيء ما
+            مسبقًا.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="mobile"
+            name="mobile"
+            maxlength="40"
+          />
+        </div>
+        <div id="00N1p00000JMCBm-div" class="select">
+          <label class="title" for="00N1p00000JMCBm"
+            >هل أنت قاصر/ة؟<span class="required">*</span></label
+          >
+          <select name="00N1p00000JMCBm" id="00N1p00000JMCBm" required>
+            <option value="0">لا</option>
+            <option value="1">نعم</option>
+          </select>
+        </div>
+        <div id="00N1p00000JMBkR-div" class="text">
+          <label class="title" for="00N1p00000JMBkR"
+            >اللغة المطلوبة<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMBkR"
+            name="00N1p00000JMBkR"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JDbGd-div" class="text">
+          <label class="title" for="00N1p00000JDbGd"
+            >تاريخ الموعد<span class="required">*</span></label
+          >
+          <div class="description">
+            عادةً ما نستطيع إيجاد مترجم إذا كان الموعد في وقت متأخر بعض الشيء من
+            النهار كفترة بعد الظهيرة أو في المساء الباكر. رجاءً أخذ هذاالشيء
+            بعين الاعتبار عند ترتيب الموعد إذا كان هذا الشيء ممكناً.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JDbGd"
+            name="00N1p00000JDbGd"
+            placeholder="سنة/شهر/يوم"
+            pattern="\d{2}.\d{2}.\d{4}"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMCBr-div" class="text">
+          <label class="title" for="00N1p00000JMCBr"
+            >وقت الموعد<span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="time"
+            id="00N1p00000JMCBr"
+            name="00N1p00000JMCBr"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMCBw-div" class="text">
+          <label class="title" for="00N1p00000JMCBw"
+            >موضوع الموعد<span class="required">*</span></label
+          >
+          <div class="description">
+            يرجى إعطاء معلومات دقيقة و مفصلة عن الموعد بشكل محدد قدر الإمكان وما
+            الذي سيتضمنه. باستخدام هذه المعلومات ، يمكن للمترجم التحضير مسبقًا.
+            ( كتابة ، مجرد "موعد مع طبيب" أو "موعد مع طبيب العظام" على سبيل
+            المثال غير كافية للأسف).
+          </div>
+          <textarea
+            class="text"
+            type="text"
+            id="00N1p00000JMCBw"
+            name="00N1p00000JMCBw"
+            required
+            minlength="140"
+          ></textarea>
+        </div>
+        <div id="00N1p00000JMCC1-div" class="text">
+          <label class="title" for="00N1p00000JMCC1"
+            >عنوان الموعد<span class="required">*</span></label
+          >
+          <div class="description">
+            يرجى ذكر العنوان ومكان الاجتماع الدقيق ، وأين يمكن للمترجم مقابلة
+            العميل.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMCC1"
+            name="00N1p00000JMCC1"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JREAg-div" class="text">
+          <label class="title" for="00N1p00000JREAg"
+            >هل من الممكن ان تتم الترجمة من خلال الهاتف أو مكالمة فيديو؟<span
+              class="required"
+              >*</span
+            ></label
+          >
+          <div class="description">
+            في الآونة الأخيرة ، كان من الأسهل العثور على متطوعين مناسبين
+            للمساعدة في الترجمة عندما لا يحتاجون إلى الحضور فعليًا في الموعد.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JREAg"
+            name="00N1p00000JREAg"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMCC6-div" class="text">
+          <label class="title" for="00N1p00000JMCC6"
+            >كم من الوقت سيستغرق الموعد؟<span class="required">*</span></label
+          >
+          <div class="description">
+            يرجى ملاحظة أنه من الصعب العثور على مترجمين لمواعيد أطول. من المهم
+            أيضًا ملاحظة أن المترجم متاح فقط للمدة الزمنية المتفق عليها مسبقًا
+            وغالبًا ما يتعذر عليه البقاء لوقت إضافي بسبب التزامات أخرى موجودة
+            مسبقًا.
+          </div>
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JMCC6"
+            name="00N1p00000JMCC6"
+            maxlength="255"
+            required
+          />
+        </div>
+        <div id="00N1p00000JMCCB-div" class="select">
+          <label class="title" for="00N1p00000JMCCB"
+            >هل تفضل الذكور أو الإناث للترجمة؟<span class="required"
+              >*</span
+            ></label
+          >
+          <div class="description">
+            للأسف ، تقل احتمالية العثور على مترجم مناسب لطلبك إذا كان لديك تفضيل
+            جنس معين.
+          </div>
+          <select name="00N1p00000JMCCB" id="00N1p00000JMCCB" required>
+            <option value="Egal">لا يهم</option>
+            <option value="Frau">إمرأة</option>
+            <option value="Mann">رجل</option>
+          </select>
+        </div>
+        <div id="00N1p00000JDbH7-div" class="text">
+          <label class="title" for="00N1p00000JDbH7"
+            >هل توجد أي أسئلة أو استفسارات؟</label
+          >
+          <textarea
+            class="text"
+            type="text"
+            id="00N1p00000JDbH7"
+            name="00N1p00000JDbH7"
+          ></textarea>
+        </div>
+        <div id="00N1p00000JDbHH-div" class="text">
+          <label class="title" for="00N1p00000JDbHH"
+            >بيان حماية البيانات الشخصية<span class="required">*</span></label
+          >
+          <div class="description">
+            إذا قمت بتزويد TranslAid ببيانات شخصية للعملاء ، فلن يستخدم
+            TranslAid هذا إلا للإجابة على الاستفسارات أو للتنسيق مع المرافق
+            اللغوي المتطوع. تظل البيانات الشخصية للعملاء مع TranslAid. لن يتم
+            تمرير البيانات أو نقلها إلى أطراف ثالثة إلا إذا كان ذلك ضروريًا لغرض
+            الترجمة أو بعد منح العملاء موافقتهم المسبقة. لا يوجد نقل للبيانات
+            إلى السلطات. يحق للعملاء إلغاء موافقتهم في أي وقت مع سريان مفعولها
+            في المستقبل. يجب إرسال الإلغاء إلى datenschutz@arrivalaid.org. سيتم
+            حذف البيانات الشخصية المخزنة إذا ألغيت موافقتك على التخزين ، إذا لم
+            تعد المعرفة بها مطلوبة للوفاء بالغرض الذي تم تخزينها من أجله أو إذا
+            كان تخزينها غير مسموح به لأسباب قانونية أخرى. في حالة الإلغاء ، سيتم
+            حذف جميع البيانات من قاعدة بيانات TranslAid في أقرب وقت ممكن. نؤكد
+            بموجب هذا أن العميل على علم بما يلي: ستتم معالجة بياناته الشخصية
+            وتخزينها في قاعدة بيانات TranslAid (مثل اللقب والاسم الأول واللغة) ،
+            وأنه قد تم إبلاغه بشكل مناسب بإجراءات إلغاء موافقته ، و أن TranslAid
+            سوف يتعامل مع المعلومات المعهود بها بعناية وسرية. علاوة على ذلك ، لن
+            نكشف عن تفاصيل الاتصال بمتطوعي TranslAid لأطراف ثالثة ، وسوف نتصل
+            بهم فقط فيما يتعلق بالمهمة المعنية أو لأغراض التشاور. لا يجوز حفظ أو
+            استخدام المعلومات الشخصية لمتطوعينا لأي غرض باستثناء الحالة التي تم
+            تكليفهم بها
+          </div>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N1p00000JDbHH"
+                name="00N1p00000JDbHH"
+                value="1"
+                required
+              />
+              أوافق على سياسة الخصوصية المذكورة أعلاه</label
+            >
+          </div>
+        </div>
+        <div id="00N1p00000JMZdG-div" class="text">
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N1p00000JMZdG"
+                name="00N1p00000JMZdG"
+                value="1"
+              />
+              أرسل نسخة من إجابتي إلى بريدي الإلكتروني</label
+            >
+          </div>
+        </div>
+        <div
+          class="g-recaptcha"
+          data-sitekey="6LcFksIZAAAAAOZLqCAWv9coxSivQHxRZAk9-2vG"
+          data-callback="recaptcha_callback"
+        ></div>
+        <br />
+        <div class="form-button-wrapper form-button-wrapper--align-left">
+          <input
+            id="submit"
+            class="button sqs-system-button sqs-editable-button"
+            type="submit"
+            value="إرسال"
+            disabled="true"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
