@@ -42,6 +42,7 @@ public with sharing class Test_MeineAnfragen {
     insert helferkreis;
     Contact dolmetscher = new Contact(
       AccountId = helferkreis.Id,
+      Salutation = 'Herr',
       FirstName = 'VornameDolmetscher',
       LastName = 'NachnameDometscher',
       RecordTypeId = ehrenamtRecordTypeId,
@@ -117,7 +118,8 @@ public with sharing class Test_MeineAnfragen {
       StageName = 'Open',
       CloseDate = myCloseDate,
       Datenschutz__c = true,
-      Termin_Standort__c = standort.Id
+      Termin_Standort__c = standort.Id,
+      Geschlecht_Dolmetscherwunsch__c = 'Egal'
     );
     insert vermittlung;
 
