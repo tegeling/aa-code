@@ -18,6 +18,7 @@ global with sharing class MeineAnfragen {
     Boolean filterByZugewiesen = false;
     Boolean filterByVerf_gbarkeit = false;
     Boolean filterByUrlaub = false;
+    Boolean filterByGender = false;
     // define Format combinations to allow multiselect picklist matches
     List<String> formatPersoenlich = new List<String>{
       'persönlich;telefonisch;schriftlich;per Video',
@@ -71,6 +72,7 @@ global with sharing class MeineAnfragen {
       filterByZugewiesen = filter.contains('Zugewiesen__c');
       filterByUrlaub = filter.contains('Urlaub__c');
       filterByVerf_gbarkeit = filter.contains('Termin_Verf_gbarkeit__c');
+      filterByGender = filter.contains('Geschlecht_Dolmetscherwunsch__c');
     } catch (Exception ex) {
       res.statusCode = 400;
       MeineAnfragenError[] errs = new List<MeineAnfragenError>{
@@ -100,7 +102,8 @@ global with sharing class MeineAnfragen {
         Einsatz_Standort__Latitude__s,
         Einsatz_Standort__Longitude__s,
         Einsatzradius_km__c,
-        Verf_gbarkeit__c
+        Verf_gbarkeit__c,
+        Salutation
       FROM Contact
       WHERE Id = :u.ContactId
       WITH SECURITY_ENFORCED
@@ -203,6 +206,22 @@ global with sharing class MeineAnfragen {
       }
     }
 
+    // Gender Filter
+    if ((c.Salutation != null) && (filterByAll || filterByGender)) {
+      String genderFilter = '';
+      if (c.Salutation == 'Herr') {
+        // male
+        genderFilter = '((Geschlecht_Dolmetscherwunsch__c = \'Egal\') or (Geschlecht_Dolmetscherwunsch__c = \'Mann\') or (Geschlecht_Dolmetscherwunsch__c = null))';
+      } else if (c.Salutation == 'Frau') {
+        // female
+        genderFilter = '((Geschlecht_Dolmetscherwunsch__c = \'Egal\') or (Geschlecht_Dolmetscherwunsch__c = \'Frau\') or (Geschlecht_Dolmetscherwunsch__c = null))';
+      } else {
+        // others
+        genderFilter = '((Geschlecht_Dolmetscherwunsch__c = \'Egal\') or (Geschlecht_Dolmetscherwunsch__c = \'Divers\') or (Geschlecht_Dolmetscherwunsch__c = null))';
+      }
+      criteria.add(genderFilter);
+    }
+
     // Standort Filter
     // WHERE+DISTANCE(Termin_Standort__c,+GEOLOCATION(48.14294,11.541777),'km')<50
 
@@ -253,7 +272,8 @@ global with sharing class MeineAnfragen {
       'Termin_Datum__c, ' +
       'Termin_Dauer_min__c, ' +
       'Termin_Beginn__c, ' +
-      'Termin_Verf_gbarkeit__c ' +
+      'Termin_Verf_gbarkeit__c, ' +
+      'Geschlecht_Dolmetscherwunsch__c ' +
       'FROM TranslAid_Anfrage__c ' +
       whereClause +
       orderByClause;
