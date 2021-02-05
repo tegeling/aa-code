@@ -11,7 +11,7 @@ public without sharing class OpportunityActions {
         // flatten multiselect picklists and others as text
         o.Sprachen_As_Text__c = o.Sprachen__c;
         String TranslAidEinsatzFormat = o.TranslAid_Einsatz_Format__c;
-        //o.TranslAid_Einsatz_Format_As_Text__c = o.TranslAid_Einsatz_Format__c;
+        o.TranslAid_Einsatz_Format_As_Text__c = o.TranslAid_Einsatz_Format__c;
         o.CloseDate_As_Text__c = o.CloseDate.format();
         // set default email text
         o.Dolmetscher_Email__c = 'Fall: ' + o.Fallnummer2__c + '<br>';
