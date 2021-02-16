@@ -218,7 +218,7 @@ public class OpportunityTriggerTest {
       Datenschutz__c = true,
       TranslAid_Kategorie__c = 'Amtstermine',
       TranslAid_Einsatz_Format__c = 'persönlich;telefonisch;schriftlich;per Video',
-      Geschlecht_Dolmetscherwunsch__c = 'Frau',
+      Geschlecht_Dolmetscherwunsch__c = 'Egal',
       Termin_Standort__c = standort.Id
     );
     insert vermittlung;
