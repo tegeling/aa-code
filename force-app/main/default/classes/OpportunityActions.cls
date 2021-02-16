@@ -260,10 +260,11 @@ public without sharing class OpportunityActions {
         // check Contact Salutation
         if (curOpportunity.Geschlecht_Dolmetscherwunsch__c == 'Frau') {
           genderFilter = 'Salutation = \'Frau\'';
+          criteria.add(genderFilter);
         } else if (curOpportunity.Geschlecht_Dolmetscherwunsch__c == 'Mann') {
           genderFilter = 'Salutation = \'Herr\'';
+          criteria.add(genderFilter);
         }
-        criteria.add(genderFilter);
       }
 
       // Format Filter
