@@ -1,7 +1,7 @@
 @isTest(SeeAllData=false)
 public inherited sharing class Test_DuplicatesHelper {
   @isTest
-  static void testContactDuplicatesMatch() {
+  static void testContactDuplicates() {
     // Get Record Type Ids
     Id helferkreisRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName()
       .get('Helferkreis')
