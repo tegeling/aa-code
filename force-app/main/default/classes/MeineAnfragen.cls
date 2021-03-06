@@ -103,7 +103,8 @@ global with sharing class MeineAnfragen {
         Einsatz_Standort__Longitude__s,
         Einsatzradius_km__c,
         Verf_gbarkeit__c,
-        Salutation
+        Salutation,
+        Geschlecht__c
       FROM Contact
       WHERE Id = :u.ContactId
       WITH SECURITY_ENFORCED
@@ -207,12 +208,12 @@ global with sharing class MeineAnfragen {
     }
 
     // Gender Filter
-    if ((c.Salutation != null) && (filterByAll || filterByGender)) {
+    if ((c.Geschlecht__c != null) && (filterByAll || filterByGender)) {
       String genderFilter = '';
-      if (c.Salutation == 'Herr') {
+      if (c.Geschlecht__c == 'Mann') {
         // male
         genderFilter = '((Geschlecht_Dolmetscherwunsch__c = \'Egal\') or (Geschlecht_Dolmetscherwunsch__c = \'Mann\') or (Geschlecht_Dolmetscherwunsch__c = null))';
-      } else if (c.Salutation == 'Frau') {
+      } else if (c.Geschlecht__c == 'Frau') {
         // female
         genderFilter = '((Geschlecht_Dolmetscherwunsch__c = \'Egal\') or (Geschlecht_Dolmetscherwunsch__c = \'Frau\') or (Geschlecht_Dolmetscherwunsch__c = null))';
       } else {

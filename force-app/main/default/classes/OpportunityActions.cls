@@ -259,10 +259,13 @@ public without sharing class OpportunityActions {
         String genderFilter = '';
         // check Contact Salutation
         if (curOpportunity.Geschlecht_Dolmetscherwunsch__c == 'Frau') {
-          genderFilter = 'Salutation = \'Frau\'';
+          genderFilter = 'Geschlecht__c = \'Frau\'';
           criteria.add(genderFilter);
         } else if (curOpportunity.Geschlecht_Dolmetscherwunsch__c == 'Mann') {
-          genderFilter = 'Salutation = \'Herr\'';
+          genderFilter = 'Geschlecht__c = \'Mann\'';
+          criteria.add(genderFilter);
+        } else if (curOpportunity.Geschlecht_Dolmetscherwunsch__c == 'Divers') {
+          genderFilter = 'Geschlecht__c = \'Divers\'';
           criteria.add(genderFilter);
         }
       }
