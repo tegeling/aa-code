@@ -139,6 +139,7 @@ public class OpportunityTriggerTest {
     Contact sprachmittler1 = new Contact(
       AccountId = helferkreis.Id,
       Salutation = 'Frau',
+      Geschlecht__c = 'Frau',
       FirstName = 'VornameSprachmittler1',
       LastName = 'NachnameSprachmittler1',
       RecordTypeId = ehrenamtRecordTypeId,
@@ -168,6 +169,7 @@ public class OpportunityTriggerTest {
     Contact sprachmittler2 = new Contact(
       AccountId = helferkreis.Id,
       Salutation = 'Herr',
+      Geschlecht__c = 'Mann',
       FirstName = 'FirstSprachmittler2',
       LastName = 'LastSprachmittler2',
       RecordTypeId = ehrenamtRecordTypeId,
@@ -179,6 +181,7 @@ public class OpportunityTriggerTest {
     Contact sprachmittler3 = new Contact(
       AccountId = helferkreis.Id,
       Salutation = 'Herr',
+      Geschlecht__c = 'Mann',
       FirstName = 'VorSprach3',
       LastName = 'NachSprachmittler3',
       RecordTypeId = ehrenamtRecordTypeId,
@@ -218,7 +221,7 @@ public class OpportunityTriggerTest {
       Datenschutz__c = true,
       TranslAid_Kategorie__c = 'Amtstermine',
       TranslAid_Einsatz_Format__c = 'persönlich;telefonisch;schriftlich;per Video',
-      Geschlecht_Dolmetscherwunsch__c = 'Egal',
+      Geschlecht_Dolmetscherwunsch__c = 'Mann',
       Termin_Standort__c = standort.Id
     );
     insert vermittlung;

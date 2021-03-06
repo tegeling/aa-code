@@ -43,6 +43,7 @@ public with sharing class Test_MeineAnfragen {
     Contact dolmetscher = new Contact(
       AccountId = helferkreis.Id,
       Salutation = 'Herr',
+      Geschlecht__c = 'Mann',
       FirstName = 'VornameDolmetscher',
       LastName = 'NachnameDometscher',
       RecordTypeId = ehrenamtRecordTypeId,
