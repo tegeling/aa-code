@@ -100,11 +100,12 @@
   },
   onFlowStatusChanged: function (c, e, h) {
     switch (e.getParam("status")) {
+      case "FINISHED_SCREEN":
       case "FINISHED":
         c.set("v.modalBody", []);
         c.find("datatable").reload();
+        $A.get("e.force:refreshView").fire();
         break;
-      case "FINISHED_SCREEN":
       case "STARTED":
       case "PAUSED":
       case "ERROR":
