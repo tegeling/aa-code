@@ -108,6 +108,7 @@
             >Anrede<span class="required">*</span></label
           >
           <select name="salutation" id="salutation" required>
+            <option value=""></option>
             <option value="Frau">Frau</option>
             <option value="Herr">Herr</option>
             <option value="Divers">Divers</option>
@@ -253,6 +254,7 @@
             name="00N0800000Jwcvs"
             minlength="500"
             maxlength="2000"
+            rows="5"
             required
           ></textarea>
         </div>
@@ -274,6 +276,7 @@
             name="00N0800000Jwcw7"
             minlength="300"
             maxlength="1000"
+            rows="5"
             required
           ></textarea>
         </div>
@@ -284,37 +287,90 @@
               >*</span
             ></label
           >
-          <div class="description">
-            Anhörungs- und Klagebegleitung: Bereite Asylbewerber*innen auf die
-            Anhörung vor dem BAMF oder das Klageverfahren vor einem
-            Verwaltungsgericht vor und mache sie zu selbstbestimmten Akteuren
-            ihres eigenen Asylverfahrens!Jobmentoring: Hilf beim Erstellen von
-            Bewerbungsunterlagen, der Suche nach passenden Jobs oder
-            Ausbildungsstellen und bereite deine*n Mentee auf
-            Vorstellungsgespräche vor! DigitalAid: Mache deine*n Mentee fit für
-            den digitalen Alltag und hilf beim Umgang mit digitalen Geräten und
-            Themen wie z.B. Zoom oder Homeschooling Integrationsbegleitung:
-            Unterstütze bei den wichtigsten Integrationsschritten – z.B. Deutsch
-            lernen oder Wohnungssuche. EducAid: Hilf dabei, dass dein*e Mentee
-            die Ausbildung schafft – durch gemeinsames Lernen und in der
-            Kommunikation mit dem Ausbildungsbetrieb.
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N0800000JwcwW"
+                name="00N0800000JwcwW"
+                value="1"
+                required
+              />
+              Anhörungs- und Klagebegleitung</label
+            >
           </div>
-          <select
-            name="00N1p00000JMC4g"
-            id="00N1p00000JMC4g"
-            multiple="multiple"
-            required
-          >
-            <option value="Anhörungsbegleitung">
-              Anhörungs- und Klagebegleitung
-            </option>
-            <option value="Jobmentoring">Jobmentoring</option>
-            <option value="DigitalAid">DigitalAid</option>
-            <option value="Integrationsbegleitung">
-              Integrationsbegleitung
-            </option>
-            <option value="EducAid">EducAid</option>
-          </select>
+          <div class="description">
+            Bereite Asylbewerber*innen auf die Anhörung vor dem BAMF oder das
+            Klageverfahren vor einem Verwaltungsgericht vor und mache sie zu
+            selbstbestimmten Akteuren ihres eigenen Asylverfahrens!
+          </div>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N0800000Jwcwl"
+                name="00N0800000Jwcwl"
+                value="1"
+                required
+              />
+              EducAid</label
+            >
+          </div>
+          <div class="description">
+            Hilf dabei, dass dein*e Mentee die Ausbildung schafft – durch
+            gemeinsames Lernen und in der Kommunikation mit dem
+            Ausbildungsbetrieb.
+          </div>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N0800000Jwcwg"
+                name="00N0800000Jwcwg"
+                value="1"
+                required
+              />
+              DigitalAid</label
+            >
+          </div>
+          <div class="description">
+            Mache deine*n Mentee fit für den digitalen Alltag und hilf beim
+            Umgang mit digitalen Geräten und Themen wie z.B. Zoom oder
+            Homeschooling!
+          </div>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N0800000Jwcwc"
+                name="00N0800000Jwcwc"
+                value="1"
+                required
+              />
+              Integrationsbegleitung</label
+            >
+          </div>
+          <div class="description">
+            Unterstütze bei den wichtigsten Integrationsschritten – z.B. Deutsch
+            lernen oder Wohnungssuche.
+          </div>
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N0800000Jwcwb"
+                name="00N0800000Jwcwb"
+                value="1"
+                required
+              />
+              Jobmentoring</label
+            >
+          </div>
+          <div class="description">
+            Hilf beim Erstellen von Bewerbungsunterlagen, der Suche nach
+            passenden Jobs oder Ausbildungsstellen und bereite deine*n Mentee
+            auf Vorstellungsgespräche vor!
+          </div>
         </div>
         <div id="00N1p00000JDbHC-div" class="text">
           <label class="title" for="00N1p00000JDbHC"
