@@ -168,31 +168,41 @@
           />
         </div>
         <div id="street-div" class="text">
-          <label class="title" for="street">Straße und Hausnummer</label>
-          <input class="text" type="text" id="street" name="street" />
+          <label class="title" for="street"
+            >Straße und Hausnummer<span class="required">*</span></label
+          >
+          <input class="text" type="text" id="street" name="street" required />
         </div>
         <div id="zip-div" class="text">
-          <label class="title" for="zip">PLZ</label>
+          <label class="title" for="zip"
+            >PLZ<span class="required">*</span></label
+          >
           <input
             class="text"
             type="text"
             id="zip"
             name="zip"
             pattern="[0-9]{5}"
+            required
           />
         </div>
         <div id="city-div" class="text">
-          <label class="title" for="city">Stadt</label>
+          <label class="title" for="city"
+            >Stadt<span class="required">*</span></label
+          >
           <input
             class="text"
             type="text"
             id="city"
             name="city"
             maxlength="40"
+            required
           />
         </div>
         <div id="mobile-div" class="text">
-          <label class="title" for="mobile">Telefonnummer</label>
+          <label class="title" for="mobile"
+            >Telefonnummer<span class="required">*</span></label
+          >
           <div class="description">
             (Nur Ziffern, keine Sonderzeichen oder Leerzeichen!)
           </div>
@@ -202,6 +212,7 @@
             id="mobile"
             name="mobile"
             maxlength="40"
+            required
           />
         </div>
         <div id="00N0800000JwaS6-div" class="text">
