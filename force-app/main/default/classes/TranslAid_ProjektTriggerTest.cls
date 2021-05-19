@@ -36,7 +36,7 @@ public class TranslAid_ProjektTriggerTest {
       FirstName = 'FirstKlient',
       LastName = 'LastKlient',
       RecordTypeId = klientRecordTypeId,
-      Herkunftsland__c = 'Afghanistan'
+      Herkunftsland__pc = 'Afghanistan'
     );
     insert klient;
     Account standort = new Account(
