@@ -6,20 +6,26 @@ public with sharing class AccountActions {
       .getRecordTypeId();
     for (Account klient : newAccount) {
       if (klient.RecordTypeId == klientRecordTypeId) {
-        String sprachniveau = '';
-        if (!klient.Niveau_C2__pc.isBlank()) {
-          sprachniveau += 'C2: ';
-          sprachniveau += klient.Niveau_C2__pc;
+        List<String> niveaus = new List<String>();
+        if (!String.isBlank(klient.Niveau_C2__pc)) {
+          niveaus.add('C2: ' + klient.Niveau_C2__pc);
         }
-        /*
-        String a1 = 'A1: ';
-        String a2 = 'A2: ';
-        String b1 = 'B1: ';
-        String b2 = 'B2: ';
-        String c1 = 'C1: ';
-        String c2 = 'C2: ';
-          */
-        klient.Sprachniveau__pc = sprachniveau;
+        if (!String.isBlank(klient.Niveau_C1__pc)) {
+          niveaus.add('C1: ' + klient.Niveau_C1__pc);
+        }
+        if (!String.isBlank(klient.Niveau_B2__pc)) {
+          niveaus.add('B2: ' + klient.Niveau_B2__pc);
+        }
+        if (!String.isBlank(klient.Niveau_B1__pc)) {
+          niveaus.add('B1: ' + klient.Niveau_B1__pc);
+        }
+        if (!String.isBlank(klient.Niveau_A2__pc)) {
+          niveaus.add('A2: ' + klient.Niveau_A2__pc);
+        }
+        if (!String.isBlank(klient.Niveau_A1__pc)) {
+          niveaus.add('A1: ' + klient.Niveau_A1__pc);
+        }
+        klient.Sprachniveau__pc = String.join(niveaus, ' - ');
       }
     }
   }
