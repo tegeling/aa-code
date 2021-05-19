@@ -92,7 +92,7 @@ public without sharing class OpportunityActions {
           }
         }
         Account klient = [
-          SELECT Herkunftsland__c
+          SELECT Herkunftsland__pc
           FROM Account
           WHERE Id = :o.AccountId
           LIMIT 1
@@ -111,10 +111,10 @@ public without sharing class OpportunityActions {
             o.Geschlecht_Dolmetscherwunsch__c +
             '<br>';
         }
-        if (klient.Herkunftsland__c != null) {
+        if (klient.Herkunftsland__pc != null) {
           o.Dolmetscher_Email__c +=
             'Herkunftsland/Ethnie: ' +
-            klient.Herkunftsland__c +
+            klient.Herkunftsland__pc +
             '<br>';
         }
         o.Dolmetscher_Email__c += 'Sprache(n): ' + o.Sprachen__c;
