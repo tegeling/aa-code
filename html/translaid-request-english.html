@@ -106,20 +106,31 @@
         />
         <input type="hidden" name="recordType" value="0121p0000006yF0" />
         <input type="hidden" name="00N2400000JC8Ev" value="0" />
+
         <div id="salutation-div" class="select">
           <label class="title" for="salutation"
-            >Salutation<span class="required">*</span></label
+            >Salutation <span class="required">*</span></label
           >
           <select name="salutation" id="salutation" required>
             <option value=""></option>
             <option value="Frau">Mrs.</option>
             <option value="Herr">Mr.</option>
-            <option value="Divers">Mx.</option>
+          </select>
+        </div>
+        <div id="00N0800000JwZop-div" class="select">
+          <label class="title" for="00N0800000JwZop"
+            >Gender Identity <span class="required">*</span></label
+          >
+          <select name="00N0800000JwZop" id="00N0800000JwZop" required>
+            <option value=""></option>
+            <option value="Frau">female</option>
+            <option value="Mann">male</option>
+            <option value="Divers">diverse</option>
           </select>
         </div>
         <div id="first_name-div" class="text">
           <label class="title" for="first_name"
-            >Firstname<span class="required">*</span></label
+            >Firstname <span class="required">*</span></label
           >
           <input
             class="text"
@@ -132,7 +143,7 @@
         </div>
         <div id="last_name-div" class="text">
           <label class="title" for="last_name"
-            >Surname<span class="required">*</span></label
+            >Surname <span class="required">*</span></label
           >
           <input
             class="text"
@@ -145,7 +156,8 @@
         </div>
         <div id="00N1p00000JDbEr-div" class="select">
           <label class="title" for="00N1p00000JDbEr"
-            >Country of origin / Ethnicity<span class="required">*</span></label
+            >Country of origin / Ethnicity
+            <span class="required">*</span></label
           >
           <div class="description">
             This information is necessary to help us choose a suitable volunteer
@@ -396,7 +408,7 @@
         </div>
         <div id="00N1p00000JMCBm-div" class="select">
           <label class="title" for="00N1p00000JMCBm"
-            >Are you under 18?<span class="required">*</span></label
+            >Are you under 18? <span class="required">*</span></label
           >
           <select name="00N1p00000JMCBm" id="00N1p00000JMCBm" required>
             <option value="0">No</option>
@@ -405,7 +417,7 @@
         </div>
         <div id="00N1p00000JMBkR-div" class="text">
           <label class="title" for="00N1p00000JMBkR"
-            >Which language do you need?<span class="required">*</span></label
+            >Which language do you need? <span class="required">*</span></label
           >
           <input
             class="text"
@@ -418,7 +430,7 @@
         </div>
         <div id="00N1p00000JDbGd-div" class="text">
           <label class="title" for="00N1p00000JDbGd"
-            >Date of the appointment<span class="required">*</span></label
+            >Date of the appointment <span class="required">*</span></label
           >
           <div class="description">
             We are usually more likely to be able to find you a translator if
@@ -438,7 +450,7 @@
         </div>
         <div id="00N1p00000JMCBr-div" class="text">
           <label class="title" for="00N1p00000JMCBr"
-            >Time of the appointment<span class="required">*</span></label
+            >Time of the appointment <span class="required">*</span></label
           >
           <input
             class="text"
@@ -452,7 +464,7 @@
         <div id="00N1p00000JMCBw-div" class="text">
           <label class="title" for="00N1p00000JMCBw"
             >What exactly is the purpose of your appointment? What type of
-            appointment do you have?<span class="required">*</span></label
+            appointment do you have? <span class="required">*</span></label
           >
           <div class="description">
             Please describe as accurately and specifically as possible what your
@@ -472,7 +484,7 @@
         </div>
         <div id="00N1p00000JMCC1-div" class="text">
           <label class="title" for="00N1p00000JMCC1"
-            >Where is the appointment?<span class="required">*</span></label
+            >Where is the appointment? <span class="required">*</span></label
           >
           <div class="description">
             Please state an address and also an exact meeting place, where the
@@ -490,7 +502,7 @@
         <div id="00N1p00000JREAg-div" class="text">
           <label class="title" for="00N1p00000JREAg"
             >Is it possible to conduct the appointment either by telephone or by
-            videocall?<span class="required">*</span></label
+            videocall? <span class="required">*</span></label
           >
           <div class="description">
             Recently, it has been easier to find suitable volunteers to help
@@ -508,9 +520,8 @@
         </div>
         <div id="00N1p00000JMCC6-div" class="text">
           <label class="title" for="00N1p00000JMCC6"
-            >How long should the appointment take?<span class="required"
-              >*</span
-            ></label
+            >How long should the appointment take?
+            <span class="required">*</span></label
           >
           <div class="description">
             Please note that it is harder to find translators for longer
@@ -529,10 +540,8 @@
         </div>
         <div id="00N1p00000JMCCB-div" class="select">
           <label class="title" for="00N1p00000JMCCB"
-            >Would you prefer a male or a female translator?<span
-              class="required"
-              >*</span
-            ></label
+            >Would you prefer a male or a female translator?
+            <span class="required">*</span></label
           >
           <div class="description">
             The likelihood of finding a suitable match for your request is
@@ -557,7 +566,7 @@
         </div>
         <div id="00N1p00000JDbHH-div" class="text">
           <label class="title" for="00N1p00000JDbHH"
-            >Data protection policy<span class="required">*</span></label
+            >Data protection policy <span class="required">*</span></label
           >
           <div class="description">
             If you provide TranslAid with personal information, TranslAid will
