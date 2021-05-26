@@ -108,19 +108,28 @@
         <input type="hidden" name="00N2400000JC8Ev" value="0" />
         <div id="salutation-div" class="select">
           <label class="title" for="salutation"
-            >صيغة المخاطبة<span class="required">*</span></label
+            >صيغة المخاطبة <span class="required">*</span></label
           >
           <select name="salutation" id="salutation" required>
             <option value=""></option>
             <option value="Herr">سيد</option>
             <option value="Frau">سيدة</option>
-            <option value="Frau">آنسة</option>
+          </select>
+        </div>
+        <div id="00N0800000JwZop-div" class="select">
+          <label class="title" for="00N0800000JwZop"
+            >الهوية الجنسية <span class="required">*</span></label
+          >
+          <select name="00N0800000JwZop" id="00N0800000JwZop" required>
+            <option value=""></option>
+            <option value="Frau">أنثى</option>
+            <option value="Mann">ذكر</option>
             <option value="Divers">غير ذلك</option>
           </select>
         </div>
         <div id="first_name-div" class="text">
           <label class="title" for="first_name"
-            >الاسم الأول<span class="required">*</span></label
+            >الاسم الأول <span class="required">*</span></label
           >
           <input
             class="text"
@@ -133,7 +142,7 @@
         </div>
         <div id="last_name-div" class="text">
           <label class="title" for="last_name"
-            >اسم العائلة<span class="required">*</span></label
+            >اسم العائلة <span class="required">*</span></label
           >
           <input
             class="text"
@@ -146,7 +155,7 @@
         </div>
         <div id="00N1p00000JDbEr-div" class="select">
           <label class="title" for="00N1p00000JDbEr"
-            >الموطن الأصلي<span class="required">*</span></label
+            >الموطن الأصلي <span class="required">*</span></label
           >
           <div class="description">
             هذه المعلومة مهمة بالنسبة لنا لنستطيع إيجاد مترجم مناسب. إذا كان
@@ -397,7 +406,7 @@
         </div>
         <div id="00N1p00000JMCBm-div" class="select">
           <label class="title" for="00N1p00000JMCBm"
-            >هل أنت قاصر/ة؟<span class="required">*</span></label
+            >هل أنت قاصر/ة؟ <span class="required">*</span></label
           >
           <select name="00N1p00000JMCBm" id="00N1p00000JMCBm" required>
             <option value="0">لا</option>
@@ -406,7 +415,7 @@
         </div>
         <div id="00N1p00000JMBkR-div" class="text">
           <label class="title" for="00N1p00000JMBkR"
-            >اللغة المطلوبة<span class="required">*</span></label
+            >اللغة المطلوبة <span class="required">*</span></label
           >
           <input
             class="text"
@@ -419,7 +428,7 @@
         </div>
         <div id="00N1p00000JDbGd-div" class="text">
           <label class="title" for="00N1p00000JDbGd"
-            >تاريخ الموعد<span class="required">*</span></label
+            >تاريخ الموعد <span class="required">*</span></label
           >
           <div class="description">
             عادةً ما نستطيع إيجاد مترجم إذا كان الموعد في وقت متأخر بعض الشيء من
@@ -438,7 +447,7 @@
         </div>
         <div id="00N1p00000JMCBr-div" class="text">
           <label class="title" for="00N1p00000JMCBr"
-            >وقت الموعد<span class="required">*</span></label
+            >وقت الموعد <span class="required">*</span></label
           >
           <input
             class="text"
@@ -451,7 +460,7 @@
         </div>
         <div id="00N1p00000JMCBw-div" class="text">
           <label class="title" for="00N1p00000JMCBw"
-            >موضوع الموعد<span class="required">*</span></label
+            >موضوع الموعد <span class="required">*</span></label
           >
           <div class="description">
             يرجى إعطاء معلومات دقيقة و مفصلة عن الموعد بشكل محدد قدر الإمكان وما
@@ -470,7 +479,7 @@
         </div>
         <div id="00N1p00000JMCC1-div" class="text">
           <label class="title" for="00N1p00000JMCC1"
-            >عنوان الموعد<span class="required">*</span></label
+            >عنوان الموعد <span class="required">*</span></label
           >
           <div class="description">
             يرجى ذكر العنوان ومكان الاجتماع الدقيق ، وأين يمكن للمترجم مقابلة
@@ -487,10 +496,8 @@
         </div>
         <div id="00N1p00000JREAg-div" class="text">
           <label class="title" for="00N1p00000JREAg"
-            >هل من الممكن ان تتم الترجمة من خلال الهاتف أو مكالمة فيديو؟<span
-              class="required"
-              >*</span
-            ></label
+            >هل من الممكن ان تتم الترجمة من خلال الهاتف أو مكالمة فيديو؟
+            <span class="required">*</span></label
           >
           <div class="description">
             في الآونة الأخيرة ، كان من الأسهل العثور على متطوعين مناسبين
@@ -507,7 +514,7 @@
         </div>
         <div id="00N1p00000JMCC6-div" class="text">
           <label class="title" for="00N1p00000JMCC6"
-            >كم من الوقت سيستغرق الموعد؟<span class="required">*</span></label
+            >كم من الوقت سيستغرق الموعد؟ <span class="required">*</span></label
           >
           <div class="description">
             يرجى ملاحظة أنه من الصعب العثور على مترجمين لمواعيد أطول. من المهم
@@ -526,9 +533,8 @@
         </div>
         <div id="00N1p00000JMCCB-div" class="select">
           <label class="title" for="00N1p00000JMCCB"
-            >هل تفضل الذكور أو الإناث للترجمة؟<span class="required"
-              >*</span
-            ></label
+            >هل تفضل الذكور أو الإناث للترجمة؟
+            <span class="required">*</span></label
           >
           <div class="description">
             للأسف ، تقل احتمالية العثور على مترجم مناسب لطلبك إذا كان لديك تفضيل
@@ -553,7 +559,7 @@
         </div>
         <div id="00N1p00000JDbHH-div" class="text">
           <label class="title" for="00N1p00000JDbHH"
-            >بيان حماية البيانات الشخصية<span class="required">*</span></label
+            >بيان حماية البيانات الشخصية <span class="required">*</span></label
           >
           <div class="description">
             إذا قمت بتزويد TranslAid ببيانات شخصية للعملاء ، فلن يستخدم
