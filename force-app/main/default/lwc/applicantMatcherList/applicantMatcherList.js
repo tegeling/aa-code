@@ -15,7 +15,7 @@ const actions = [
 const columns = [
   { label: "First Name", fieldName: "FirstName" },
   { label: "Last Name", fieldName: "LastName" },
-  { label: "Berufswunsch", fieldName: "Berufswunsch__c", type: "text" },
+  { label: "Berufswunsch", fieldName: "Berufswunsch__pc", type: "text" },
   {
     label: "Deutschkenntnisse",
     fieldName: "Deutschkenntnisse__c",

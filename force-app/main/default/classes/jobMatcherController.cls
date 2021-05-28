@@ -38,7 +38,7 @@ public with sharing class jobMatcherController {
             FROM Account
             WHERE RecordTypeId = :applicantRecordTypeId
           )
-          AND IsActive = true
+          AND IsActive = TRUE
         ORDER BY Name
       ]
     );
@@ -261,7 +261,7 @@ public with sharing class jobMatcherController {
     }
 
     String query =
-      'SELECT FirstName, LastName, Deutschkenntnisse__c, Stellenvermittlung_neu__c, Berufswunsch__c, BillingLatitude, BillingLongitude' +
+      'SELECT FirstName, LastName, Deutschkenntnisse__c, Stellenvermittlung_neu__c, Berufswunsch__pc, BillingLatitude, BillingLongitude' +
       ' FROM Account ' +
       whereClause +
       orderByClause;
@@ -274,7 +274,7 @@ public with sharing class jobMatcherController {
         newAccount.LastName = account.LastName;
         newAccount.Deutschkenntnisse__c = account.Deutschkenntnisse__c;
         newAccount.Stellenvermittlung_neu__c = account.Stellenvermittlung_neu__c;
-        newAccount.Berufswunsch__c = account.Berufswunsch__c;
+        newAccount.Berufswunsch__pc = account.Berufswunsch__pc;
         Decimal distDecimal = 0;
         Location locJob = Location.newInstance(
           job[0].Billing_Latitude__c,
