@@ -23,7 +23,7 @@ const columns = [
   },
   {
     label: "Stellenvermittlung",
-    fieldName: "Stellenvermittlung_neu__c",
+    fieldName: "Stellenvermittlung__pc",
     type: "text"
   },
   { label: "Entfernung (km)", fieldName: "Distance_Job__c", type: "text" },

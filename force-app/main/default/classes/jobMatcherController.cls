@@ -246,7 +246,7 @@ public with sharing class jobMatcherController {
         if (hasCondition)
           stellenvermittlungQuery += ')';
         criteria.add(
-          'Stellenvermittlung_neu__c INCLUDES ' + stellenvermittlungQuery
+          'Stellenvermittlung__pc INCLUDES ' + stellenvermittlungQuery
         );
       }
       if (accountFilters.owners != null) {
@@ -255,14 +255,14 @@ public with sharing class jobMatcherController {
       }
       if (criteria.size() > 0) {
         whereClause =
-          'WHERE (NOT Job_ist_vorhanden__c = TRUE) AND (NOT LastName like \'Anonym%\') AND ' +
+          'WHERE (NOT Im_Moment_nicht_auf_Arbeitssuche__pc = TRUE) AND (NOT LastName like \'Anonym%\') AND ' +
           String.join(criteria, ' AND ');
       }
     }
 
     String query =
       'SELECT FirstName, LastName, Sprachniveau__pc, ' +
-      'Stellenvermittlung_neu__c, Berufswunsch__pc, BillingLatitude, BillingLongitude' +
+      'Stellenvermittlung__pc, Berufswunsch__pc, BillingLatitude, BillingLongitude' +
       ' FROM Account ' +
       whereClause +
       orderByClause;
@@ -274,7 +274,7 @@ public with sharing class jobMatcherController {
         newAccount.FirstName = account.FirstName;
         newAccount.LastName = account.LastName;
         newAccount.Sprachniveau__pc = account.Sprachniveau__pc;
-        newAccount.Stellenvermittlung_neu__c = account.Stellenvermittlung_neu__c;
+        newAccount.Stellenvermittlung__pc = account.Stellenvermittlung__pc;
         newAccount.Berufswunsch__pc = account.Berufswunsch__pc;
         Decimal distDecimal = 0;
         Location locJob = Location.newInstance(
