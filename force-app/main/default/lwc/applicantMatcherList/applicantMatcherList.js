@@ -17,8 +17,8 @@ const columns = [
   { label: "Last Name", fieldName: "LastName" },
   { label: "Berufswunsch", fieldName: "Berufswunsch__pc", type: "text" },
   {
-    label: "Deutschkenntnisse",
-    fieldName: "Deutschkenntnisse__c",
+    label: "Sprachniveau",
+    fieldName: "Sprachniveau__pc",
     type: "text"
   },
   {
