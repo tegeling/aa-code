@@ -14,7 +14,7 @@ const DELAY = 350;
 
 const ACCOUNTFIELDS = [
   "Account.Name",
-  "Account.Stellenvermittlung_neu__c",
+  "Account.Stellenvermittlung__pc",
   "Account.OwnerId"
 ];
 
@@ -41,8 +41,8 @@ export default class JobMatcherFilter extends LightningElement {
         })
       );
     } else if (data) {
-      if (data.fields.Stellenvermittlung_neu__c.value) {
-        this.categoryValues = data.fields.Stellenvermittlung_neu__c.value.split(
+      if (data.fields.Stellenvermittlung__pc.value) {
+        this.categoryValues = data.fields.Stellenvermittlung__pc.value.split(
           ";"
         );
       }

@@ -87,7 +87,7 @@ public class jobMatcherControllerTestDataFactory {
         FirstName = 'ApplicantFirstName A - ' + DateTime.now().getTime(),
         LastName = 'ApplicantLastName A - ' + DateTime.now().getTime(),
         RecordTypeId = applicantRecordTypeId,
-        Stellenvermittlung_neu__c = 'Vollzeitstelle',
+        Stellenvermittlung__pc = 'Vollzeitstelle',
         BillingLatitude = 48.09937,
         BillingLongitude = 11.53105
       );
