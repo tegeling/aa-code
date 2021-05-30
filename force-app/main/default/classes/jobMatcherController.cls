@@ -261,7 +261,8 @@ public with sharing class jobMatcherController {
     }
 
     String query =
-      'SELECT FirstName, LastName, Deutschkenntnisse__c, Stellenvermittlung_neu__c, Berufswunsch__pc, BillingLatitude, BillingLongitude' +
+      'SELECT FirstName, LastName, Sprachniveau__pc, ' +
+      'Stellenvermittlung_neu__c, Berufswunsch__pc, BillingLatitude, BillingLongitude' +
       ' FROM Account ' +
       whereClause +
       orderByClause;
@@ -272,7 +273,7 @@ public with sharing class jobMatcherController {
         newAccount.Record_Id__c = account.Id;
         newAccount.FirstName = account.FirstName;
         newAccount.LastName = account.LastName;
-        newAccount.Deutschkenntnisse__c = account.Deutschkenntnisse__c;
+        newAccount.Sprachniveau__pc = account.Sprachniveau__pc;
         newAccount.Stellenvermittlung_neu__c = account.Stellenvermittlung_neu__c;
         newAccount.Berufswunsch__pc = account.Berufswunsch__pc;
         Decimal distDecimal = 0;
