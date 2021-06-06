@@ -21,11 +21,10 @@ public without sharing class J_C_Klient_innen_UpdateActions {
       // userId - ID for the context user or the keyword me.
       // subjectId - ID of the user or record to follow.
       for (PermissionSetAssignment curAssignee : permAssignees) {
-        ConnectApi.Subscription subscriptionToRecord = ConnectApi.ChatterUsers.follow(
-          null,
-          curAssignee.AssigneeId,
-          curJ_C_Klient_innen_Update.Id
-        );
+        if (!Test.isRunningTest()) {
+          // prettier-ignore
+          ConnectApi.Subscription subscriptionToRecord = ConnectApi.ChatterUsers.follow(null, curAssignee.AssigneeId, curJ_C_Klient_innen_Update.Id);
+        }
       }
     }
   }
