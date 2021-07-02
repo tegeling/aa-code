@@ -3,6 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "description": "ArrivalAid code repository for Salesforce meta data",
+  "author": "ArrivalAid",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tegeling/aa-code"
+  },
   "scripts": {
     "lint": "npm run lint:lwc && npm run lint:aura",
     "lint:lwc": "eslint **/lwc/**",
@@ -15,11 +20,6 @@
     "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
     "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
     "postinstall": "node bin/check-version.js"
-  },
-  "author": "ArrivalAid",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tegeling/aa-code"
   },
   "engines": {
     "node": ">= 10.13.0",
