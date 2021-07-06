@@ -458,8 +458,10 @@
             Unterstützung anbieten können.
           </div>
           <select name="00N2400000JC8G8" id="00N2400000JC8G8" required>
-            <option value="Anhörung">Anhörung</option>
-            <option value="Klageverfahren">Klageverfahren</option>
+            <option value="Anhörung">Anhörung beim BAMF</option>
+            <option value="Klageverfahren">
+              mündliche Verhandlung im Klageverfahren
+            </option>
             <option value="Überprüfungsverfahren">Überprüfungsverfahren</option>
           </select>
         </div>
@@ -469,9 +471,9 @@
           >
           <div class="description">
             Wann ist der Termin beim Bundesamt für Migration und Flüchtlinge
-            (BAMF)? Sie können sich bzw. Ihren Schützling auch ohne einen
-            konkreten Anhörungstermin anmelden. In diesem Fall lassen Sie das
-            Feld bitte einfach leer.
+            (BAMF) bzw. beim Verwaltungsgericht? Sie können sich bzw. die/der
+            Asylsuchende*r auch ohne einen konkreten Anhörungstermin anmelden.
+            In diesem Fall lassen Sie das Feld bitte einfach leer.
           </div>
           <input
             class="text"
@@ -489,6 +491,20 @@
             <option value="1">Ja</option>
             <option value="0">Nein</option>
           </select>
+        </div>
+        <div id="00N1p00000JREAg-div" class="text">
+          <label class="title" for="00N1p00000JREAg"
+            >Ist der Termin auch telefonisch oder per Videochat möglich?
+            <span class="required">*</span></label
+          >
+          <input
+            class="text"
+            type="text"
+            id="00N1p00000JREAg"
+            name="00N1p00000JREAg"
+            maxlength="255"
+            required
+          />
         </div>
         <div id="00N1p00000JlKyb-div" class="text">
           <label class="title" for="00N1p00000JlKyb"
@@ -594,9 +610,26 @@
                 value="1"
                 required
               />
-              Ich bestätige, den Flüchtling über die hier dargestellte Tätigkeit
-              von ArrivalAid informiert zu haben und in seinem/ihrem Auftrag
-              nach gemeinsamer Absprache zu handeln.</label
+              Ich bestätige, die/den Asylsuchende*n über die hier dargestellte
+              Tätigkeit von ArrivalAid informiert zu haben und in seinem/ihrem
+              Auftrag nach gemeinsamer Absprache zu handeln.</label
+            >
+          </div>
+        </div>
+        <div id="00N0800000Jwin1-div" class="text">
+          <div class="option">
+            <label
+              ><input
+                type="checkbox"
+                id="00N0800000Jwin1"
+                name="00N0800000Jwin1"
+                value="1"
+                required
+              />
+              Ich bestätige, dass die Vorbereitung ausschließlich für die hier
+              angemeldete asylsuchende Person ist (für Familienangehörige oder
+              andere bitte extra Anfrage und in Sonderfällen einen Vermerk in
+              die Nachricht)</label
             >
           </div>
         </div>
