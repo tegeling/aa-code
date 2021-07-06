@@ -1,4 +1,4 @@
-public with sharing class AdoptionTrackerController {
+public class AdoptionTrackerController {
   @AuraEnabled
   @future
   public static void publishEvent(String feature, String action) {
