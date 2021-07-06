@@ -1,8 +1,8 @@
 @isTest
 public class AdoptionTrackerControllerTest {
   /* 
-        This test relies on the event-triggered Flow "Adoption Event" to create the adoption records. Else it will fail :-(
-    */
+    This test relies on the event-triggered Flow "Adoption Event" to create the adoption records. Else it will fail :-(
+  */
   @isTest
   static void testPublishEvent() {
     Test.startTest();
