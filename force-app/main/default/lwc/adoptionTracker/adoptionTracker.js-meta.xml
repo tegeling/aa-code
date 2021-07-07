@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Adoption Tracker</masterLabel>
+    <description>Fires a Platform Event to track user adoption</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__UtilityBar</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__FlowScreen</target>
+        <target>lightning__HomePage</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightningCommunity__Page</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig
+      targets="lightning__RecordPage, lightning__UtilityBar, lightning__AppPage, lightning__FlowScreen, lightning__HomePage, lightningCommunity__Default"
+    >
+            <property
+        name="feature"
+        type="String"
+        label="Feature"
+        description="High-level category of the tracked action"
+        required="true"
+      />
+            <property
+        name="action"
+        type="String"
+        label="Action"
+        description="Detail-level description of the tracked action"
+        required="true"
+      />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
